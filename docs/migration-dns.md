@@ -127,5 +127,20 @@ curl -I "https://www.cruzmi.com/politique-de-confidentialit%C3%A9"   # 301 → /
 1. **SPF pour cruzmi.com** : aucun enregistrement aujourd'hui, ce qui pénalise la délivrabilité des e-mails envoyés depuis @cruzmi.com. Proposition à valider avec la documentation LWS : `v=spf1 mx a:mailphp.lws-hosting.com include:spf.brevo.com ~all`.
 2. **DKIM pour les boîtes LWS** : à activer dans le panneau LWS si l'offre le permet.
 3. **DMARC** : passer de `p=none` à `p=quarantine` une fois SPF et DKIM en place et les rapports propres.
-4. **Liens d'invitation sans l'appli** : `https://redirect.cruzmi.fr/join/…` renvoie aujourd'hui une **404 nginx** aux invités qui n'ont pas encore l'appli. Proposition : une page « Vous êtes invité ! Installez Cruzmi » sur le nouveau site (`/fr/rejoindre/`, `/en/join/`) et, dans nginx, une redirection 302 de tout ce qui n'est pas `/.well-known/` vers cette page.
-5. **AASA** : `apple-app-site-association` est servi en `application/octet-stream` ; `application/json` est recommandé.
+4. **Liens d'invitation sans l'appli** : `https://redirect.cruzmi.fr/join/…` renvoie aujourd'hui une **404 nginx** aux invités qui n'ont pas encore l'appli. La page d'accueil des invités existe sur le nouveau site : `/join/` choisit la langue puis affiche `/fr/rejoindre/` ou `/en/join/`. Si elle reçoit `?path=/join/<trip>/<membership>`, elle propose un bouton qui rouvre l'invitation dans l'appli une fois celle-ci installée. Reste à ajouter dans nginx sur `redirect.cruzmi.fr` (équipe appli) :
+
+   ```nginx
+   # Keep serving the universal-link files as today.
+   location /.well-known/ {
+       default_type application/json;   # recommended for AASA (served as octet-stream today)
+       # ... existing config ...
+   }
+
+   # Any other path = the app is not installed: send the visitor to the invitation page.
+   location / {
+       return 302 https://www.cruzmi.com/join/?path=$uri;
+   }
+   ```
+
+   Utiliser une **302** (et non 301) pour que les navigateurs ne mémorisent pas la redirection. Tant que www.cruzmi.com n'a pas basculé, tester avec l'URL d'aperçu Cloudflare à la place de `https://www.cruzmi.com`.
+5. **AASA** : `apple-app-site-association` est servi en `application/octet-stream` ; `application/json` est recommandé (voir la configuration nginx ci-dessus).

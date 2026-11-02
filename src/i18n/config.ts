@@ -14,6 +14,7 @@ export const routes = {
   legal: { fr: 'mentions-legales', en: 'legal-notice' },
   terms: { fr: 'cgu', en: 'terms' },
   privacy: { fr: 'confidentialite', en: 'privacy' },
+  join: { fr: 'rejoindre', en: 'join' },
 } as const satisfies Record<string, Record<Locale, string>>;
 export type RouteKey = keyof typeof routes;
 
@@ -21,6 +22,14 @@ export function path(locale: Locale, key: RouteKey, hash?: string): string {
   const slug = routes[key][locale];
   return `/${locale}/${slug ? `${slug}/` : ''}${hash ? `#${hash}` : ''}`;
 }
+
+/**
+ * Universal links of the mobile app (AASA / assetlinks served there by nginx on Coolify).
+ * Invitation links look like https://redirect.cruzmi.fr/join/<tripId>/<membershipId>.
+ */
+export const APP_LINK_ORIGIN = 'https://redirect.cruzmi.fr';
+/** App link paths accepted by the join page (?path=…): safe characters only, no "//". */
+export const APP_LINK_PATH_RE = /^\/(?!\/)[A-Za-z0-9_\-/]{1,200}$/;
 
 export const stores = {
   ios: { fr: 'https://apps.apple.com/fr/app/cruzmi/id6683313752', en: 'https://apps.apple.com/app/id6683313752' },

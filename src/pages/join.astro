@@ -1,0 +1,29 @@
+---
+/**
+ * /join/ — neutral entry point for invitation links when the app is not installed.
+ * nginx on redirect.cruzmi.fr sends non-.well-known requests here as /join/?path=<original path>.
+ * Forwards to /fr/rejoindre/ or /en/join/ by browser language, keeping the query string.
+ */
+const site = Astro.site!;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Cruzmi</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL('/fr/rejoindre/', site).href} />
+    <script is:inline>
+      var langs = navigator.languages || [navigator.language || 'fr'];
+      var fr = String(langs[0] || 'fr').toLowerCase().indexOf('fr') === 0;
+      location.replace((fr ? '/fr/rejoindre/' : '/en/join/') + location.search);
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=/fr/rejoindre/" /></noscript>
+  </head>
+  <body>
+    <p><a href="/fr/rejoindre/">Français</a> · <a href="/en/join/">English</a></p>
+  </body>
+</html>

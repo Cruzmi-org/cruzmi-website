@@ -133,4 +133,20 @@ const legal = defineCollection({
   }),
 });
 
-export const collections = { home, features, faq, about, contact, legal };
+/** Invitation landing page (src/content/join/<locale>.yaml). */
+const join = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/content/join' }),
+  schema: z.object({
+    meta: z.object({ title: z.string(), description: z.string() }),
+    kicker: z.string(),
+    title: z.string(),
+    lead: z.string(),
+    steps: z.array(textItem.extend({ textNoLink: z.string().optional() })).length(3),
+    openButton: z.string(),
+    help: z.string(),
+    helpLink: z.string(),
+    discover: z.object({ title: z.string(), text: z.string(), link: z.string() }),
+  }),
+});
+
+export const collections = { home, features, faq, about, contact, legal, join };

@@ -1,0 +1,27 @@
+# Invitation landing page (FR): where invitation links land when the app is not installed yet.
+# Draft written by Claude — to be reviewed by the team.
+meta:
+  title: "Vous êtes invité sur Cruzmi"
+  description: "Vous avez reçu une invitation à rejoindre un projet Cruzmi : installez l'application gratuite, créez votre compte et rejoignez le groupe."
+
+kicker: "Invitation"
+title: "Vous êtes invité à rejoindre un projet Cruzmi !"
+lead: "Un proche vous a invité à préparer un projet de groupe avec Cruzmi. Pour le rejoindre, il vous suffit de l'application : elle est gratuite et prête en deux minutes."
+
+steps:
+  - title: "Installez Cruzmi"
+    text: "Téléchargez l'application sur l'App Store ou sur Google Play."
+  - title: "Créez votre compte"
+    text: "Ouvrez Cruzmi et inscrivez-vous, ou connectez-vous si vous avez déjà un compte."
+  - title: "Rejoignez le projet"
+    text: "Revenez sur cette page et touchez le bouton ci-dessous : l'invitation s'ouvrira directement dans l'application."
+    textNoLink: "Touchez de nouveau le lien d'invitation que vous avez reçu : il s'ouvrira directement dans l'application."
+
+openButton: "Ouvrir l'invitation dans Cruzmi"
+help: "Le lien ne fonctionne pas ? Demandez à l'organisateur du projet de vous renvoyer une invitation, ou"
+helpLink: "écrivez-nous"
+
+discover:
+  title: "Cruzmi, c'est quoi ?"
+  text: "L'application collaborative pour organiser et vivre vos projets à plusieurs : programme, carte des étapes, budget partagé, repas, courses et photos, au même endroit pour tout le groupe."
+  link: "Découvrir les fonctionnalités"
