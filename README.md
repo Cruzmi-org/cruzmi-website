@@ -1,7 +1,10 @@
 # cruzmi-website
 
 Marketing site for [Cruzmi](https://www.cruzmi.com) — Astro (static) + Tailwind CSS 4 + TypeScript,
-hosted on Cloudflare Pages.
+hosted on Cloudflare Pages. Preview: https://develop.cruzmi-website.pages.dev
+
+- **What's left before launch (FR, for the team): [`docs/reste-a-faire.md`](docs/reste-a-faire.md)**
+- DNS migration plan (FR): [`docs/migration-dns.md`](docs/migration-dns.md)
 
 ## Develop
 
