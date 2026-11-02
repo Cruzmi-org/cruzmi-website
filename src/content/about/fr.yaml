@@ -1,0 +1,56 @@
+# About page copy (FR). Draft written by Claude from the Wix pages /copie-de-a-propos and /what-we-do.
+# Items marked TODO(team) need validation.
+meta:
+  title: "Qui sommes-nous ? — Cruzmi"
+  description: "Cruzmi est née d'une bande d'amis qui ne trouvait pas d'application pour organiser ses projets à plusieurs. Découvrez notre histoire, notre équipe et CRUZMI SAS."
+
+intro:
+  kicker: "Qui sommes-nous ?"
+  title: "Une bande d'amis qui a créé l'application dont elle rêvait"
+  lead: "Week-ends, escapades à thème, croisières, fêtes de famille : nous aimons faire des choses ensemble. Cruzmi est né de cette envie, et d'un constat."
+  imageAlt: "Les fondateurs de Cruzmi réunis autour d'une table."
+
+story:
+  title: "Notre histoire"
+  paragraphs:
+    - "Comme beaucoup de groupes d'amis, nous partons régulièrement ensemble : un week-end, une escapade à thème, une croisière, un anniversaire à célébrer… Et à chaque fois, la même scène se répète : l'organisation repose sur une seule personne, les informations s'éparpillent entre les messages, les e-mails et les tableurs, et personne ne sait vraiment qui doit quoi à qui."
+    - "Nous avons cherché l'application qui nous simplifierait la vie. Nous ne l'avons pas trouvée. Alors nous l'avons créée."
+    - "Cruzmi, c'est l'outil que nous voulions pour nous-mêmes : un espace commun où chacun participe, où tout le monde a les mêmes informations, et où les souvenirs se partagent aussi facilement que les dépenses."
+
+team:
+  title: "Une équipe expérimentée et pragmatique"
+  text: "Les fondateurs de Cruzmi sont entrepreneurs et professionnels du numérique. Nous mettons notre expérience au service d'une ambition simple : que l'organisation d'un projet de groupe devienne une partie du plaisir, et non une corvée."
+  values:
+    - title: "Ensemble"
+      text: "Un projet de groupe se prépare à plusieurs : chacun doit pouvoir y contribuer."
+    - title: "Simple"
+      text: "Une application claire, qu'on prend en main sans mode d'emploi."
+    - title: "Mémorable"
+      text: "Le projet ne s'arrête pas au retour : les souvenirs méritent de rester."
+
+company:
+  title: "CRUZMI SAS"
+  text: "Fondée en février 2023, CRUZMI SAS conçoit et développe l'application Cruzmi. Elle s'adresse aux particuliers, pour un projet ponctuel ou des rendez-vous réguliers, et aux professionnels du tourisme et de la location qui souhaitent la recommander à leurs clients."
+  facts:
+    - label: "Création"
+      value: "Février 2023"
+    - label: "Société"
+      value: "CRUZMI SAS"
+    - label: "Application"
+      value: "iPhone, iPad et Android"
+    - label: "Langues"
+      value: "Français, anglais, espagnol"
+
+pros:
+  title: "Vous êtes un professionnel ?"
+  # TODO(team): confirm the "pre-rental paperwork / client-renter exchange" feature is still current.
+  text: "Loueurs de bateaux, croisières fluviales, véhicules de loisirs, hébergements… Les professionnels du tourisme et de la location qui nous ont découverts y voient un vrai plus pour leur service client."
+  points:
+    - "Offrez à vos clients un outil pour préparer leur séjour avant même le départ."
+    - "Simplifiez les démarches et les échanges d'informations avant la location."
+    - "Accompagnez vos clients pendant et après leur séjour."
+  button: "Parlons-en"
+
+download:
+  title: "Rejoignez l'aventure"
+  text: "Téléchargez Cruzmi et faites de votre prochain projet une belle aventure collective."

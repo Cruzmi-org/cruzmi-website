@@ -26,6 +26,8 @@ categories:
         a: "Oui. Cruzmi est fait pour vous accompagner où que vous alliez, et les albums photo peuvent être livrés dans le monde entier."
       - q: "L'application fonctionne-t-elle sans réseau ?"
         a: "Oui, en mode dégradé : les informations déjà chargées sur votre téléphone restent consultables. Pour ajouter du contenu et voir les mises à jour des autres participants, une connexion est nécessaire."
+      - q: "Cruzmi peut-il m'aider à naviguer en bateau ?"
+        a: "Non. Pour une croisière, Cruzmi vous aide à organiser le programme, les étapes et la vie à bord, mais ce n'est pas un outil d'aide à la navigation : l'application ne remplace en aucun cas les cartes marines, le GPS et les équipements de sécurité obligatoires à bord."
 
   - id: account
     title: "Compte et participants"

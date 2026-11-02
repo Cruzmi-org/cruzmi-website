@@ -24,6 +24,8 @@ categories:
         a: "Yes. Cruzmi is made to go wherever you go, and photo albums can be delivered worldwide."
       - q: "Does the app work without a network connection?"
         a: "Yes, in a limited mode: information already loaded on your phone remains available. To add content and see the other participants' updates, you need a connection."
+      - q: "Can Cruzmi help me navigate at sea?"
+        a: "No. For a sailing cruise, Cruzmi helps you organise the schedule, the stops and life on board, but it is not a navigation aid: the app in no way replaces nautical charts, GPS and the safety equipment required on board."
 
   - id: account
     title: "Account and participants"

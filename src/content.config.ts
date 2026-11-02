@@ -71,4 +71,22 @@ const faq = defineCollection({
   }),
 });
 
-export const collections = { home, features, faq };
+/** About page copy (src/content/about/<locale>.yaml). */
+const about = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/content/about' }),
+  schema: z.object({
+    meta: z.object({ title: z.string(), description: z.string() }),
+    intro: z.object({ kicker: z.string(), title: z.string(), lead: z.string(), imageAlt: z.string() }),
+    story: z.object({ title: z.string(), paragraphs: z.array(z.string()) }),
+    team: z.object({ title: z.string(), text: z.string(), values: z.array(textItem) }),
+    company: z.object({
+      title: z.string(),
+      text: z.string(),
+      facts: z.array(z.object({ label: z.string(), value: z.string() })),
+    }),
+    pros: z.object({ title: z.string(), text: z.string(), points: z.array(z.string()), button: z.string() }),
+    download: z.object({ title: z.string(), text: z.string() }),
+  }),
+});
+
+export const collections = { home, features, faq, about };

@@ -1,0 +1,109 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DownloadCta from './DownloadCta.astro';
+import Icon from './Icon.astro';
+import PhotoPlaceholder from './PhotoPlaceholder.astro';
+import { path, type Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const entry = await getEntry('about', locale);
+if (!entry) throw new Error(`Missing about content for locale "${locale}"`);
+const c = entry.data;
+---
+
+<BaseLayout locale={locale} routeKey="about" title={c.meta.title} description={c.meta.description}>
+  <!-- Intro -->
+  <section class="bg-mist">
+    <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:px-8 lg:py-20">
+      <div>
+        <p class="text-xl font-bold tracking-wide text-azur uppercase">{c.intro.kicker}</p>
+        <h1 class="mt-2 text-5xl leading-[0.95] font-bold text-balance sm:text-6xl">{c.intro.title}</h1>
+        <p class="mt-5 max-w-xl text-xl leading-snug">{c.intro.lead}</p>
+      </div>
+      <PhotoPlaceholder locale={locale} alt={c.intro.imageAlt} class="aspect-[4/3] w-full rounded-3xl" />
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
+    <h2 class="text-4xl font-bold sm:text-5xl">{c.story.title}</h2>
+    <div class="mt-6 space-y-5 text-xl leading-snug">
+      {
+        c.story.paragraphs.map((p, i) => (
+          <p class:list={[i === 1 && 'border-l-4 border-azur pl-5 text-2xl font-semibold text-azur']}>{p}</p>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Team & values -->
+  <section class="bg-argile/50">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="max-w-3xl">
+        <h2 class="text-4xl font-bold sm:text-5xl">{c.team.title}</h2>
+        <p class="mt-4 text-xl leading-snug">{c.team.text}</p>
+      </div>
+      <ul class="mt-10 grid gap-5 md:grid-cols-3">
+        {
+          c.team.values.map((v) => (
+            <li class="rounded-2xl bg-white p-6 shadow-sm">
+              <h3 class="text-3xl font-bold text-azur">{v.title}</h3>
+              <p class="mt-1 text-lg leading-snug">{v.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Company -->
+  <section class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
+    <div>
+      <h2 class="text-4xl font-bold sm:text-5xl">{c.company.title}</h2>
+      <p class="mt-4 text-xl leading-snug">{c.company.text}</p>
+    </div>
+    <dl class="grid grid-cols-2 gap-px self-start overflow-hidden rounded-2xl bg-argile ring-1 ring-argile">
+      {
+        c.company.facts.map((f) => (
+          <div class="bg-mist p-5">
+            <dt class="text-base font-semibold tracking-wide text-azur uppercase">{f.label}</dt>
+            <dd class="mt-1 text-xl leading-tight font-bold">{f.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <!-- Professionals -->
+  <section class="px-4 pb-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-7xl gap-8 rounded-3xl bg-night px-8 py-12 text-white lg:grid-cols-2 lg:px-14">
+      <div>
+        <h2 class="text-4xl font-bold sm:text-5xl">{c.pros.title}</h2>
+        <p class="mt-3 text-xl leading-snug text-white/85">{c.pros.text}</p>
+        <a
+          href={path(locale, 'contact')}
+          class="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-xl font-semibold text-night transition hover:bg-argile"
+        >
+          <Icon name="mail" class="size-5" />
+          {c.pros.button}
+        </a>
+      </div>
+      <ul class="space-y-3 self-center text-xl leading-snug">
+        {
+          c.pros.points.map((pt) => (
+            <li class="flex gap-3">
+              <Icon name="check" class="mt-1 size-6 shrink-0 text-blush" />
+              {pt}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <DownloadCta locale={locale} title={c.download.title} text={c.download.text} />
+</BaseLayout>
