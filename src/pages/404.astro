@@ -1,0 +1,40 @@
+---
+/**
+ * 404 page. Cloudflare Pages serves dist/404.html with a real 404 status for unknown URLs
+ * (without it, Pages falls back to the home page with a 200). The visitor's language is unknown
+ * here, so the page is bilingual.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { path } from '../i18n/config';
+---
+
+<BaseLayout locale="fr" routeKey="home" title="Page introuvable — Page not found — Cruzmi" noindex>
+  <section class="bg-mist">
+    <div class="mx-auto grid max-w-5xl gap-12 px-4 py-20 sm:px-6 md:grid-cols-2 lg:py-28">
+      <div lang="fr">
+        <p class="text-xl font-bold tracking-wide text-azur uppercase">Erreur 404</p>
+        <h1 class="mt-2 text-5xl leading-[0.95] font-bold">Cette page est introuvable</h1>
+        <p class="mt-4 text-xl leading-snug">
+          Elle a peut-être été déplacée, ou l’adresse contient une erreur.
+        </p>
+        <a
+          href={path('fr', 'home')}
+          class="mt-6 inline-flex rounded-full bg-azur px-6 py-3 text-xl font-semibold text-white transition hover:bg-azur-dark"
+        >
+          Retour à l’accueil
+        </a>
+      </div>
+      <div lang="en">
+        <p class="text-xl font-bold tracking-wide text-azur uppercase">Error 404</p>
+        <p class="mt-2 text-5xl leading-[0.95] font-bold" role="heading" aria-level="2">This page can’t be found</p>
+        <p class="mt-4 text-xl leading-snug">It may have moved, or the address may contain a typo.</p>
+        <a
+          href={path('en', 'home')}
+          class="mt-6 inline-flex rounded-full bg-azur px-6 py-3 text-xl font-semibold text-white transition hover:bg-azur-dark"
+        >
+          Back to the home page
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
