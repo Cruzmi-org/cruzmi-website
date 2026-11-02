@@ -30,3 +30,6 @@ Adding a language (e.g. `es`): add it to `astro.config.mjs`, `src/i18n/config.ts
 then add `src/content/*/es.yaml` and `src/pages/es/`.
 
 Photos: `PhotoPlaceholder` marks every spot waiting for a real, rights-cleared image.
+
+French typography: use a narrow no-break space (U+202F) before `? ! : ;` and inside `« »` so
+punctuation never wraps alone onto a new line.

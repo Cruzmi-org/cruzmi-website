@@ -1,0 +1,72 @@
+# FAQ copy (FR). Draft written by Claude from the Wix FAQ (corrected) and the app's own texts.
+# Answers: plain text, blank line = new paragraph. Items marked TODO(team) need a decision/validation.
+meta:
+  title: "Questions fréquentes — Cruzmi"
+  description: "Prix, appareils compatibles, invitations, mode hors-ligne, albums photo imprimés, données personnelles : les réponses à vos questions sur Cruzmi."
+
+intro:
+  title: "Questions fréquentes"
+  text: "Les réponses aux questions que l'on nous pose le plus souvent. Vous ne trouvez pas la vôtre ? Écrivez-nous."
+
+categories:
+  - id: general
+    title: "L'application"
+    items:
+      - q: "Qu'est-ce que Cruzmi ?"
+        a: "Cruzmi est une application collaborative pour organiser et vivre vos projets de groupe : voyages, croisières, week-ends, événements, sorties d'associations… Programme, carte des étapes, budget partagé, repas, courses, photos : tout le groupe retrouve les mêmes informations au même endroit."
+      # TODO(team): confirm that everything except photo albums is free.
+      - q: "Cruzmi est-il gratuit ?"
+        a: "Oui. Le téléchargement et l'utilisation de l'application sont gratuits. Seuls les albums photo que vous choisissez de commander (PDF haute définition ou livre imprimé) sont payants."
+      - q: "Sur quels appareils fonctionne Cruzmi ?"
+        a: "Cruzmi est disponible sur iPhone et iPad (iOS 16.4 ou plus récent) via l'App Store, et sur smartphones et tablettes Android via Google Play."
+      - q: "Dans quelles langues l'application est-elle disponible ?"
+        a: "Cruzmi est disponible en français, en anglais et en espagnol. D'autres langues suivront."
+      # TODO(team): confirm store availability outside France (Wix sentence was cut).
+      - q: "Puis-je utiliser Cruzmi en dehors de la France ?"
+        a: "Oui. Cruzmi est fait pour vous accompagner où que vous alliez, et les albums photo peuvent être livrés dans le monde entier."
+      - q: "L'application fonctionne-t-elle sans réseau ?"
+        a: "Oui, en mode dégradé : les informations déjà chargées sur votre téléphone restent consultables. Pour ajouter du contenu et voir les mises à jour des autres participants, une connexion est nécessaire."
+
+  - id: account
+    title: "Compte et participants"
+    items:
+      - q: "Je ne reçois pas l'e-mail de validation de mon compte. Que faire ?"
+        a: "Vérifiez votre dossier de courrier indésirable (spams) et, sur Gmail, l'onglet « Promotions ». Si vous ne le trouvez toujours pas, contactez-nous."
+      - q: "Comment inviter des participants à mon projet ?"
+        a: "Depuis votre projet, partagez le lien d'invitation par message, e-mail ou sur votre groupe de discussion habituel. Vos invités téléchargent l'application, puis rejoignent le projet en cliquant sur le lien."
+      - q: "Tous les participants doivent-ils installer l'application ?"
+        a: "Oui : pour rejoindre un projet, consulter le programme et contribuer (dépenses, courses, photos…), chaque participant utilise l'application sur son téléphone ou sa tablette."
+      - q: "Peut-on n'utiliser que certaines fonctionnalités ?"
+        a: "Oui. À la création du projet, activez seulement les modules utiles (dépenses, repas, courses, photos, ressources…). Vous pourrez modifier ce choix à tout moment."
+
+  - id: albums
+    title: "Albums photo"
+    items:
+      - q: "Comment créer un album photo ?"
+        a: "Une fois les photos partagées dans la galerie du projet, lancez la création d'un album : Cruzmi le compose automatiquement en moins d'une minute.\n\nVous choisissez les photos, la couverture, le thème (mer, montagne, ville, campagne, famille, fête, anniversaire), le format et l'orientation, et vous pouvez ajouter une page de synthèse du projet (destination, participants, dates…)."
+      - q: "Quelles sont les formules proposées ?"
+        a: "Trois finitions au choix au moment de la commande :\n\n• PDF haute définition, à télécharger et partager librement ;\n• Album imprimé Standard, à couverture rigide ;\n• Édition Premium « ouverture à plat », qui se déploie à 180° pour que chaque photo s'affiche sans coupure à la reliure.\n\nLe prix TTC de chaque finition est indiqué dans l'application avant la commande."
+      - q: "La livraison est-elle comprise ?"
+        a: "Oui. Le prix TTC affiché comprend la livraison à l'adresse indiquée lors de la commande, partout dans le monde.\n\nPour certains pays hors Union européenne (par exemple la Suisse ou le Canada), des frais de douane peuvent être demandés à la réception du colis par les autorités locales. Ils ne sont pas systématiques et restent à la charge du destinataire."
+      - q: "Où les albums sont-ils imprimés ?"
+        a: "Les albums sont imprimés en France par notre partenaire Flexilivre, sur du papier issu de forêts gérées durablement, dans une imprimerie labellisée Imprim'Vert."
+      - q: "Combien de temps mon album reste-t-il disponible ?"
+        a: "Les albums générés sont conservés 15 jours dans l'application : vous pouvez en relancer un nouveau à tout moment, jusqu'à trois albums par projet. Le fichier PDF haute définition est téléchargeable pendant 2 jours après le paiement."
+
+  - id: data
+    title: "Données et confidentialité"
+    items:
+      # TODO(team): retention policy contradiction (old FAQ: never deleted / CGU §7.5: deleted after
+      # 2 years of inactivity). This answer follows the CGU — align both texts before publishing.
+      - q: "Mes projets sont-ils conservés ?"
+        a: "Oui, vos projets restent accessibles tant que vous utilisez Cruzmi. Comme le prévoient nos conditions générales d'utilisation, les données d'un compte inactif depuis 2 ans peuvent être supprimées : vous serez prévenu à l'avance pour pouvoir récupérer ce qui vous importe."
+      - q: "Comment supprimer mon compte ?"
+        a: "Directement dans l'application, depuis vos préférences : « Suppression de mon compte Cruzmi ». Vos données personnelles sont alors supprimées ; vos contributions aux projets partagés (dépenses, photos…) restent visibles des autres participants de manière anonymisée."
+      # TODO(team): confirm projects are only visible to their participants.
+      - q: "Comment mes données sont-elles protégées ?"
+        a: "Vos projets ne sont visibles que par leurs participants. Tous les détails figurent dans notre politique de confidentialité ; pour toute question, écrivez à dpo@cruzmi.com."
+
+contact:
+  title: "Une autre question ?"
+  text: "Écrivez-nous, l'équipe Cruzmi vous répondra par e-mail."
+  button: "Nous contacter"

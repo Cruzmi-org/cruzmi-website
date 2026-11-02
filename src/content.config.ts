@@ -54,4 +54,21 @@ const features = defineCollection({
   }),
 });
 
-export const collections = { home, features };
+/** FAQ copy (src/content/faq/<locale>.yaml). Answers: blank line = paragraph, "• " lines = list. */
+const faq = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/content/faq' }),
+  schema: z.object({
+    meta: z.object({ title: z.string(), description: z.string() }),
+    intro: z.object({ title: z.string(), text: z.string() }),
+    categories: z.array(
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        items: z.array(z.object({ q: z.string(), a: z.string() })),
+      }),
+    ),
+    contact: z.object({ title: z.string(), text: z.string(), button: z.string() }),
+  }),
+});
+
+export const collections = { home, features, faq };

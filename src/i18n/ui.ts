@@ -12,7 +12,7 @@ export const ui = {
     'a11y.mainNav': 'Navigation principale',
     'a11y.language': 'Langue',
     'a11y.onThisPage': 'Sur cette page',
-    'alt.screenshot': "Capture d'écran de l'application Cruzmi :",
+    'alt.screenshot': "Capture d'écran de l'application Cruzmi :",
     'nav.audiences': "À qui s'adresse Cruzmi",
     'nav.howItWorks': 'Comment ça marche',
     'nav.features': 'Fonctionnalités',

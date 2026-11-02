@@ -2,11 +2,11 @@
 # `image` refers to a key in src/components/FeaturesPage.astro (screenshots in src/assets/screenshots/).
 meta:
   title: "Fonctionnalités — Cruzmi"
-  description: "Programme, carte des étapes, budget partagé, repas, courses, participants, galerie photos et albums imprimés : découvrez tout ce que Cruzmi fait pour vos projets de groupe."
+  description: "Programme, carte des étapes, budget partagé, repas, courses, participants, galerie photos et albums imprimés : découvrez tout ce que Cruzmi fait pour vos projets de groupe."
 
 intro:
   title: "Tout ce qu'il faut pour vivre vos projets à plusieurs"
-  text: "Cruzmi réunit au même endroit tout ce dont votre groupe a besoin, de la première idée au dernier souvenir. Activez seulement les modules utiles à votre projet : vous pourrez toujours changer d'avis."
+  text: "Cruzmi réunit au même endroit tout ce dont votre groupe a besoin, de la première idée au dernier souvenir. Activez seulement les modules utiles à votre projet : vous pourrez toujours changer d'avis."
 
 features:
   - id: programme
@@ -23,7 +23,7 @@ features:
     image: map
     kicker: "Carte"
     title: "Votre parcours sur la carte"
-    text: "Visualisez toutes les étapes de votre projet et la façon de les rejoindre : voiture, vélo, bus, avion, bateau…"
+    text: "Visualisez toutes les étapes de votre projet et la façon de les rejoindre : voiture, vélo, bus, avion, bateau…"
     points:
       - "Les étapes numérotées dans l'ordre du parcours."
       - "Le moyen de transport entre chaque étape."
@@ -33,7 +33,7 @@ features:
     image: budget
     kicker: "Budget"
     title: "Des comptes simples entre participants"
-    text: "Chacun enregistre ses dépenses, Cruzmi s'occupe des calculs. Fini les tableurs et les « qui doit combien à qui ? »."
+    text: "Chacun enregistre ses dépenses, Cruzmi s'occupe des calculs. Fini les tableurs et les « qui doit combien à qui ? »."
     points:
       - "Un budget prévisionnel pour le groupe, ou pour soi."
       - "Le suivi des dépenses par rapport au budget."
@@ -43,9 +43,9 @@ features:
     image: meals
     kicker: "Repas"
     title: "Les repas, jour par jour"
-    text: "Petit-déjeuner à la plage, déjeuner maison ou dîner au restaurant : planifiez les repas du séjour et ajoutez-les au programme."
+    text: "Petit-déjeuner à la plage, déjeuner maison ou dîner au restaurant : planifiez les repas du séjour et ajoutez-les au programme."
     points:
-      - "Menus « maison » ou restaurants."
+      - "Menus « maison » ou restaurants."
       - "Une vue jour par jour et un résumé du séjour."
       - "Des suggestions de repas partagées par le groupe."
 
@@ -94,17 +94,17 @@ more:
   items:
     - icon: checklist
       title: "Ressources partagées"
-      text: "Check-list, liens utiles, et les biens que chacun met à disposition : logement, véhicule, équipement…"
+      text: "Check-list, liens utiles, et les biens que chacun met à disposition : logement, véhicule, équipement…"
     - icon: sliders
       title: "Modules à la carte"
       text: "Activez seulement les fonctionnalités dont votre projet a besoin."
     - icon: idea
       title: "Chacun contribue"
-      text: "Une suggestion d'activité, une idée de repas, un coup de main : chacun participe à sa façon."
+      text: "Une suggestion d'activité, une idée de repas, un coup de main : chacun participe à sa façon."
     - icon: devices
       title: "iPhone, iPad et Android"
       text: "Cruzmi fonctionne sur téléphone et sur tablette, en français, en anglais et en espagnol."
 
 download:
-  title: "Prêt à essayer ?"
+  title: "Prêt à essayer ?"
   text: "Téléchargez Cruzmi et créez votre premier projet de groupe en quelques minutes."
