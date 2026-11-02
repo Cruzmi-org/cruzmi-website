@@ -10,7 +10,7 @@ hero:
   subtitle: "L'application collaborative pour organiser, partager et faire avancer vos projets à plusieurs."
   lead: "Rassemblez les participants, échangez vos idées, centralisez vos informations, coordonnez vos activités et partagez vos expériences."
   tagline: "Et si vous faisiez de votre prochain projet une belle aventure collective ?"
-  imageAlt: "Un groupe d'amis prépare ensemble son prochain projet autour d'une tablette."
+  imageAlt: "Quatre amis rient ensemble autour d'une table de café en regardant un smartphone."
 
 pillars:
   - icon: users

@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { getEntry } from 'astro:content';
+import heroPhoto from '../assets/photos/hero-vitaly-gariev-unsplash.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DownloadCta from './DownloadCta.astro';
 import Icon from './Icon.astro';
@@ -32,7 +34,16 @@ const c = entry.data;
           <span class="decoration-blush underline decoration-4 underline-offset-8">{c.hero.tagline}</span>
         </p>
       </div>
-      <PhotoPlaceholder locale={locale} alt={c.hero.imageAlt} class="aspect-[4/3] w-full rounded-3xl" />
+      <Image
+        src={heroPhoto}
+        alt={c.hero.imageAlt}
+        width={1920}
+        widths={[640, 960, 1280, 1600, 1920]}
+        sizes="(min-width: 1280px) 608px, (min-width: 1024px) 46vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="h-auto w-full rounded-3xl object-cover shadow-sm"
+      />
     </div>
   </section>
 
