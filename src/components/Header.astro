@@ -1,0 +1,98 @@
+﻿---
+import Logo from '../assets/brand/logo-cruzmi.svg';
+import DownloadButton from './DownloadButton.astro';
+import Icon from './Icon.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { path, type Locale, type RouteKey } from '../i18n/config';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  routeKey: RouteKey;
+}
+const { locale, routeKey } = Astro.props;
+const tr = t(locale);
+
+const nav = [
+  { label: tr('nav.audiences'), href: path(locale, 'home', 'audiences') },
+  { label: tr('nav.howItWorks'), href: path(locale, 'home', 'how-it-works') },
+  { label: tr('nav.features'), href: path(locale, 'features'), key: 'features' },
+  { label: tr('nav.about'), href: path(locale, 'about'), key: 'about' },
+  { label: tr('nav.faq'), href: path(locale, 'faq'), key: 'faq' },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-argile bg-white/95 backdrop-blur">
+  <div class="mx-auto flex h-18 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8">
+    <a href={path(locale, 'home')} aria-label={tr('a11y.home')} class="shrink-0 text-azur">
+      <Logo class="h-9 w-auto" aria-hidden="true" />
+    </a>
+
+    <nav aria-label={tr('a11y.mainNav')} class="hidden flex-1 justify-center lg:flex">
+      <ul class="flex items-center gap-7 text-lg font-semibold">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={item.key === routeKey ? 'page' : undefined}
+                class="transition hover:text-azur aria-[current=page]:text-azur"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="ml-auto flex items-center gap-3 lg:ml-0">
+      <div class="hidden sm:block"><LanguageSwitcher locale={locale} routeKey={routeKey} /></div>
+      <div class="hidden sm:block"><DownloadButton locale={locale} /></div>
+      <button
+        type="button"
+        class="rounded-lg p-2 lg:hidden"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <span class="sr-only">{tr('a11y.menu')}</span>
+        <Icon name="menu" class="size-7" />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" hidden class="border-t border-argile bg-white lg:hidden">
+    <nav aria-label={tr('a11y.mainNav')} class="px-4 py-4">
+      <ul class="flex flex-col gap-1 text-xl font-semibold">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class="block rounded-lg px-3 py-2 hover:bg-mist" data-menu-link>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-4 flex items-center justify-between gap-3 px-3">
+        <LanguageSwitcher locale={locale} routeKey={routeKey} />
+        <DownloadButton locale={locale} />
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => setOpen(menu.hidden));
+    menu.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+  }
+</script>

@@ -1,0 +1,45 @@
+---
+/**
+ * "Download Cruzmi" button. Without JS (and on desktop) it scrolls to the #download section
+ * that shows both stores; on iOS / Android a tiny script points it straight at the right store.
+ */
+import Icon from './Icon.astro';
+import { path, stores, type Locale } from '../i18n/config';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+const { locale, class: className = '' } = Astro.props;
+---
+
+<a
+  href={path(locale, 'home', 'download')}
+  data-store-link
+  data-ios={stores.ios[locale]}
+  data-android={stores.android[locale]}
+  class:list={[
+    'inline-flex items-center gap-2 rounded-full bg-azur px-5 py-2.5 text-lg font-semibold text-white shadow-sm transition hover:bg-azur-dark',
+    className,
+  ]}
+>
+  <Icon name="download" class="size-5" />
+  {t(locale)('cta.download')}
+</a>
+
+<script>
+  const ua = navigator.userAgent;
+  // iPadOS reports itself as a Mac: detect it through touch support.
+  const isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  const isAndroid = /Android/.test(ua);
+  if (isIOS || isAndroid) {
+    document.querySelectorAll<HTMLAnchorElement>('a[data-store-link]').forEach((a) => {
+      const href = isIOS ? a.dataset.ios : a.dataset.android;
+      if (href) {
+        a.href = href;
+        a.rel = 'noopener';
+      }
+    });
+  }
+</script>

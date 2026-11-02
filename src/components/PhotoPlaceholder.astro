@@ -1,0 +1,26 @@
+---
+/** Clearly marked stand-in until real, rights-cleared photos are supplied. */
+import { t } from '../i18n/ui';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  alt: string;
+  class?: string;
+}
+const { locale, alt, class: className = '' } = Astro.props;
+---
+
+<div
+  role="img"
+  aria-label={alt}
+  data-placeholder
+  class:list={[
+    'flex items-center justify-center bg-linear-to-br from-sky via-argile to-blush/60 text-center',
+    className,
+  ]}
+>
+  <span class="rounded-full border-2 border-dashed border-azur/50 bg-white/70 px-4 py-1 text-sm font-semibold text-azur">
+    {t(locale)('placeholder.photo')}
+  </span>
+</div>

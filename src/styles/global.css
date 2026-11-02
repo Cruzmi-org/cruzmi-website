@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+@import '@fontsource/darker-grotesque/400.css';
+@import '@fontsource/darker-grotesque/600.css';
+@import '@fontsource/darker-grotesque/700.css';
+
+/* Cruzmi brand tokens (source: app src/components/colors.js + backoffice globals.css) */
+@theme {
+  --font-sans: 'Darker Grotesque', ui-sans-serif, system-ui, sans-serif;
+
+  --color-night: #0f082c; /* Bleu nuit — text, headings */
+  --color-azur: #005e93; /* Bleu azur — primary actions, accents */
+  --color-azur-dark: #004a74;
+  --color-argile: #eae7f8; /* Blanc argile — soft backgrounds */
+  --color-sky: #e8f4fd; /* Light blue — bands, cards */
+  --color-mist: #f5f5ff; /* App background */
+  --color-cherry: #de2b52; /* Rouge cerise — rare highlights */
+  --color-blush: #ffbecc; /* Rose pâle */
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth bg-white font-sans text-night antialiased;
+    /* Darker Grotesque runs small: bump the base size for readability. */
+    font-size: 112.5%;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-azur;
+  }
+}

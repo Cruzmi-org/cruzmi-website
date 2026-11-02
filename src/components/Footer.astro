@@ -1,0 +1,56 @@
+---
+import Logo from '../assets/brand/logo-cruzmi.svg';
+import StoreBadges from './StoreBadges.astro';
+import { path, type Locale } from '../i18n/config';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+
+const columns = [
+  [
+    { label: tr('nav.features'), href: path(locale, 'features') },
+    { label: tr('nav.about'), href: path(locale, 'about') },
+    { label: tr('nav.faq'), href: path(locale, 'faq') },
+    { label: tr('nav.contact'), href: path(locale, 'contact') },
+  ],
+  [
+    { label: tr('footer.legal'), href: path(locale, 'legal') },
+    { label: tr('footer.terms'), href: path(locale, 'terms') },
+    { label: tr('footer.privacy'), href: path(locale, 'privacy') },
+  ],
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-night text-white">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.5fr_1fr_1fr] lg:px-8">
+    <div class="space-y-5">
+      <Logo class="h-10 w-auto text-white" aria-hidden="true" />
+      <p class="text-xl">{tr('footer.tagline')}</p>
+      <StoreBadges locale={locale} />
+    </div>
+    {
+      columns.map((links) => (
+        <ul class="space-y-2 text-lg">
+          {links.map((l) => (
+            <li>
+              <a href={l.href} class="text-white/80 transition hover:text-white">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ))
+    }
+  </div>
+  <div class="border-t border-white/10">
+    <p class="mx-auto max-w-7xl px-4 py-5 text-base text-white/60 sm:px-6 lg:px-8">
+      © {year} CRUZMI SAS ·
+      <a href="mailto:contact@cruzmi.com" class="underline-offset-2 hover:text-white hover:underline">contact@cruzmi.com</a>
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { htmlLang, locales, path, defaultLocale, type Locale, type RouteKey } from '../i18n/config';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  routeKey: RouteKey;
+  title: string;
+  description?: string;
+  noindex?: boolean;
+}
+const { locale, routeKey, title, description, noindex = false } = Astro.props;
+const tr = t(locale);
+const site = Astro.site!;
+const canonical = new URL(path(locale, routeKey), site).href;
+const desc = description ?? tr('meta.defaultDescription');
+---
+
+<!doctype html>
+<html lang={htmlLang[locale]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    {
+      locales.map((l) => (
+        <link rel="alternate" hreflang={htmlLang[l]} href={new URL(path(l, routeKey), site).href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={new URL(path(defaultLocale, routeKey), site).href} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={tr('meta.siteName')} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : 'en_GB'} />
+    <!-- TODO: og:image (1200×630) once real visuals are available -->
+
+    <meta name="theme-color" content="#005e93" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a
+      href="#main"
+      class="sr-only z-50 rounded-lg bg-azur px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+    >
+      {tr('a11y.skip')}
+    </a>
+    <Header locale={locale} routeKey={routeKey} />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

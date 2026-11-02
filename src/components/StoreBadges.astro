@@ -1,0 +1,40 @@
+---
+/**
+ * Store buttons. TODO: replace with the official Apple / Google badge artwork (FR + EN variants)
+ * before launch — the stores' brand guidelines require their official badges.
+ */
+import Icon from './Icon.astro';
+import { stores, type Locale } from '../i18n/config';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+const { locale, class: className = '' } = Astro.props;
+const tr = t(locale);
+const badges = [
+  { href: stores.android[locale], icon: 'play', small: tr('store.android.small'), big: tr('store.android.big') },
+  { href: stores.ios[locale], icon: 'apple', small: tr('store.ios.small'), big: tr('store.ios.big') },
+] as const;
+---
+
+<ul class:list={['flex flex-wrap gap-3', className]}>
+  {
+    badges.map((b) => (
+      <li>
+        <a
+          href={b.href}
+          rel="noopener"
+          class="flex h-14 min-w-44 items-center gap-3 rounded-xl bg-black px-4 text-white transition hover:bg-night"
+        >
+          <Icon name={b.icon} class="size-7 shrink-0" />
+          <span class="flex flex-col leading-none">
+            <span class="text-xs font-semibold uppercase tracking-wide">{b.small}</span>
+            <span class="text-2xl font-semibold">{b.big}</span>
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>

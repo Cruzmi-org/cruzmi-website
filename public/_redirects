@@ -1,0 +1,12 @@
+# Cloudflare Pages redirects. Old Wix URLs -> new pages (keep forever: store listings may link them).
+# Accented Wix slugs are listed both percent-encoded and raw to be safe.
+/what-we-do                          /fr/qui-sommes-nous/   301
+/copie-de-a-propos                   /fr/qui-sommes-nous/   301
+/faq                                 /fr/faq/               301
+/contact                             /fr/contact/           301
+/mentions-l%C3%A9gales               /fr/mentions-legales/  301
+/mentions-légales                    /fr/mentions-legales/  301
+# The Wix "privacy policy" page actually held the CGU; the stores use it as the privacy URL,
+# so it goes to the (new) privacy policy, which links to the CGU.
+/politique-de-confidentialit%C3%A9   /fr/confidentialite/   301
+/politique-de-confidentialité        /fr/confidentialite/   301

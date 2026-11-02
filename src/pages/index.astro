@@ -1,0 +1,29 @@
+---
+/**
+ * Root URL: send visitors to /en/ or /fr/ based on their browser language (French by default).
+ * Search engines get the hreflang alternates and the noscript links.
+ */
+const site = Astro.site!;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cruzmi</title>
+    <link rel="alternate" hreflang="fr-FR" href={new URL('/fr/', site).href} />
+    <link rel="alternate" hreflang="en" href={new URL('/en/', site).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', site).href} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      var langs = navigator.languages || [navigator.language || 'fr'];
+      var first = String(langs[0] || 'fr').toLowerCase();
+      location.replace(first.indexOf('fr') === 0 ? '/fr/' : '/en/');
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=/fr/" /></noscript>
+  </head>
+  <body>
+    <p><a href="/fr/">Français</a> · <a href="/en/">English</a></p>
+  </body>
+</html>

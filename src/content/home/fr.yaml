@@ -1,0 +1,79 @@
+# Home page copy (FR). Draft written by Claude — to be reviewed by the team.
+meta:
+  title: "Cruzmi — L'application collaborative pour vos projets de groupe"
+  description: "Voyages, croisières, événements, associations : avec Cruzmi, rassemblez les participants, centralisez les informations, suivez le programme et partagez vos souvenirs."
+
+hero:
+  titleBefore: "Tous vos projets de groupe prennent vie avec"
+  titleHighlight: "Cruzmi"
+  titleAfter: " !"
+  subtitle: "L'application collaborative pour organiser, partager et faire avancer vos projets à plusieurs."
+  lead: "Rassemblez les participants, échangez vos idées, centralisez vos informations, coordonnez vos activités et partagez vos expériences."
+  tagline: "Et si vous faisiez de votre prochain projet une belle aventure collective ?"
+  imageAlt: "Un groupe d'amis prépare ensemble son prochain projet autour d'une tablette."
+
+pillars:
+  - icon: users
+    title: "Collaborer"
+    text: "Impliquer tous les participants."
+  - icon: calendar
+    title: "Organiser"
+    text: "Centraliser les informations et les actions."
+  - icon: map
+    title: "Coordonner"
+    text: "Suivre le programme et les étapes."
+  - icon: camera
+    title: "Partager"
+    text: "Réunir les contenus et les souvenirs."
+
+useCases:
+  title: "Des projets pour tous les moments de la vie"
+  items:
+    - title: "Voyages et croisières"
+      text: "Une croisière entre amis, un road-trip en famille, un week-end à plusieurs : tout le monde suit le même cap."
+    - title: "Événements et fêtes"
+      text: "Anniversaire, mariage, cousinade : répartissez les tâches et ne perdez plus une information."
+    - title: "Activités et associations"
+      text: "Sorties du club, compétitions, stages : chaque membre sait où, quand et avec qui."
+    - title: "Projets personnels et collectifs"
+      text: "Un chantier, une tournée, un projet entre voisins : avancez ensemble, à votre rythme."
+
+audiences:
+  title: "À qui s'adresse Cruzmi ?"
+  intro: "À tous ceux qui font des choses ensemble — et qui en ont assez des messages perdus dans dix conversations différentes."
+  items:
+    - title: "Les groupes d'amis et les familles"
+      text: "Préparez vos vacances, vos croisières et vos week-ends sans tableur ni fil de discussion interminable."
+    - title: "Les associations et les clubs"
+      text: "Organisez sorties, déplacements et événements, et gardez tous les membres informés."
+    - title: "Les organisateurs d'événements"
+      text: "Un seul endroit pour le programme, les participants, les repas et les dépenses."
+    - title: "Les professionnels"
+      text: "Loueurs de bateaux, agences, organisateurs de séjours : offrez à vos clients un outil pour préparer leur aventure."
+
+howItWorks:
+  title: "Comment ça marche ?"
+  intro: "Cruzmi vous accompagne à chaque étape de votre projet."
+  steps:
+    - label: "Avant"
+      title: "Préparez ensemble"
+      points:
+        - "Créez votre projet et invitez les participants d'un simple lien."
+        - "Construisez le programme jour par jour, à plusieurs."
+        - "Anticipez le budget, les repas et la liste de courses."
+    - label: "Pendant"
+      title: "Vivez le projet"
+      points:
+        - "Chacun retrouve le programme et les informations utiles."
+        - "Suivez les étapes et le trajet sur la carte."
+        - "Notez les dépenses au fil de l'eau."
+    - label: "Après"
+      title: "Gardez les souvenirs"
+      points:
+        - "Réunissez les photos de tous les participants."
+        - "Faites les comptes simplement."
+        - "Commandez un album photo imprimé de votre aventure."
+
+download:
+  title: "Prêt à embarquer ?"
+  text: "Téléchargez Cruzmi et lancez votre premier projet de groupe en quelques minutes."

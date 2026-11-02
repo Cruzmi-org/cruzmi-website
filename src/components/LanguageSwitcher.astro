@@ -1,0 +1,31 @@
+---
+import { locales, path, type Locale, type RouteKey } from '../i18n/config';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  routeKey: RouteKey;
+  class?: string;
+}
+const { locale, routeKey, class: className = '' } = Astro.props;
+const names: Record<Locale, string> = { fr: 'Français', en: 'English' };
+---
+
+<ul aria-label={t(locale)('a11y.language')} class:list={['flex items-center gap-1 text-base font-semibold', className]}>
+  {
+    locales.map((l) => (
+      <li>
+        <a
+          href={path(l, routeKey)}
+          hreflang={l}
+          lang={l}
+          aria-current={l === locale ? 'true' : undefined}
+          title={names[l]}
+          class="rounded-md px-2 py-1 uppercase transition hover:bg-mist aria-[current=true]:bg-argile aria-[current=true]:text-azur"
+        >
+          {l}
+        </a>
+      </li>
+    ))
+  }
+</ul>
