@@ -65,10 +65,11 @@ link points to a search instead of the app page; nav items without anchors; acce
 - **DNS of cruzmi.com is at Wix** (ns4/ns5.wixdns.net); registrar is LWS. Before leaving Wix, recreate
   ALL records at LWS — especially **MX (mail.cruzmi.com)**: contact@, support@, dpo@, legal@ must keep
   working. Keep the Search Console TXT record.
-- **Universal links**: mobile app uses `applinks:${WEB_DOMAIN}` (cruzmi-supabase/app.config.ts) —
-  apparently served by redirect.cruzmi.fr (nginx on Coolify). Verify WEB_DOMAIN before switching DNS;
-  if it is cruzmi.com, the new site must serve `/.well-known/apple-app-site-association` and
-  `assetlinks.json`.
+- **Universal links**: mobile app uses `applinks:${WEB_DOMAIN}` (cruzmi-supabase/app.config.ts).
+  Checked 2026-11-02: AASA/assetlinks are served by `redirect.cruzmi.fr` (nginx on Coolify, zone
+  cruzmi.fr at LWS); `cruzmi.fr/.well-known/*` is 404. So the cruzmi.com switch does not affect them;
+  the cruzmi.fr redirect must only cover the apex and www. Prod value of the `WEB_DOMAIN` GitHub
+  secret still to be confirmed. Full DNS inventory and runbook: `docs/migration-dns.md`.
 - Supabase Auth Site URL is `cruzmi.fr` (currently an LWS parking page): the new redirect fixes it;
   check auth emails still land somewhere sensible.
 - Store listings / app may link to the Wix legal pages: keep 301s from the old URLs.
