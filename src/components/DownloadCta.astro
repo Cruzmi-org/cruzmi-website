@@ -1,0 +1,26 @@
+---
+/** Closing "download the app" band shared by the content pages. */
+import StoreBadges from './StoreBadges.astro';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  text: string;
+  /** Anchor target of the header download button on the home page. */
+  id?: string;
+}
+const { locale, title, text, id } = Astro.props;
+---
+
+<section id={id} class="scroll-mt-20 px-4 pb-20 sm:px-6 lg:px-8">
+  <div
+    class="mx-auto flex max-w-7xl flex-col items-start gap-6 rounded-3xl bg-azur px-8 py-12 text-white md:flex-row md:items-center md:justify-between lg:px-14"
+  >
+    <div>
+      <h2 class="text-4xl font-bold sm:text-5xl">{title}</h2>
+      <p class="mt-2 text-xl text-white/90">{text}</p>
+    </div>
+    <StoreBadges locale={locale} />
+  </div>
+</section>

@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DownloadCta from './DownloadCta.astro';
 import Icon from './Icon.astro';
 import PhotoPlaceholder from './PhotoPlaceholder.astro';
 import StoreBadges from './StoreBadges.astro';
@@ -116,13 +117,5 @@ const c = entry.data;
   </section>
 
   <!-- Download -->
-  <section id="download" class="scroll-mt-20 px-4 pb-20 sm:px-6 lg:px-8">
-    <div class="mx-auto flex max-w-7xl flex-col items-start gap-6 rounded-3xl bg-azur px-8 py-12 text-white md:flex-row md:items-center md:justify-between lg:px-14">
-      <div>
-        <h2 class="text-4xl font-bold sm:text-5xl">{c.download.title}</h2>
-        <p class="mt-2 text-xl text-white/90">{c.download.text}</p>
-      </div>
-      <StoreBadges locale={locale} />
-    </div>
-  </section>
+  <DownloadCta locale={locale} id="download" title={c.download.title} text={c.download.text} />
 </BaseLayout>

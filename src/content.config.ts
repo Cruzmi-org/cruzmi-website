@@ -30,4 +30,28 @@ const home = defineCollection({
   }),
 });
 
-export const collections = { home };
+/** Features page copy (src/content/features/<locale>.yaml). */
+const features = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/content/features' }),
+  schema: z.object({
+    meta: z.object({ title: z.string(), description: z.string() }),
+    intro: z.object({ title: z.string(), text: z.string() }),
+    features: z.array(
+      z.object({
+        id: z.string(),
+        image: z.enum(['programme', 'map', 'budget', 'meals', 'shopping', 'participants', 'photos', 'albums']),
+        kicker: z.string(),
+        title: z.string(),
+        text: z.string(),
+        points: z.array(z.string()),
+      }),
+    ),
+    more: z.object({
+      title: z.string(),
+      items: z.array(textItem.extend({ icon: z.enum(['checklist', 'sliders', 'idea', 'devices']) })),
+    }),
+    download: z.object({ title: z.string(), text: z.string() }),
+  }),
+});
+
+export const collections = { home, features };

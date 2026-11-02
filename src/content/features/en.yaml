@@ -1,0 +1,110 @@
+# Features page copy (EN). Draft written by Claude — to be reviewed by the team.
+# `image` refers to a key in src/components/FeaturesPage.astro (screenshots in src/assets/screenshots/).
+meta:
+  title: "Features — Cruzmi"
+  description: "Schedule, route map, shared budget, meals, shopping list, participants, photo gallery and printed albums: discover everything Cruzmi does for your group projects."
+
+intro:
+  title: "Everything you need to live your projects together"
+  text: "Cruzmi brings everything your group needs into one place, from the first idea to the last memory. Switch on only the modules your project needs — you can always change your mind."
+
+features:
+  - id: programme
+    image: programme
+    kicker: "Schedule"
+    title: "A clear schedule, built together"
+    text: "Day after day, find the stop, the accommodation and the planned activities. Everyone can add ideas to the activity suggestions."
+    points:
+      - "An assistant helps you build the schedule in a few questions."
+      - "Stops, accommodation and activities with times and addresses."
+      - "Everyone sees the same, always up-to-date schedule."
+
+  - id: map
+    image: map
+    kicker: "Map"
+    title: "Your route on the map"
+    text: "See every stop of your project and how you get there: car, bike, bus, plane, boat…"
+    points:
+      - "Stops numbered in route order."
+      - "The means of transport between each stop."
+      - "Destination, today's stop and accommodation at a glance."
+
+  - id: budget
+    image: budget
+    kicker: "Budget"
+    title: "Simple accounts between participants"
+    text: "Everyone logs their expenses, Cruzmi does the maths. No more spreadsheets or “who owes what to whom?”."
+    points:
+      - "A planned budget for the group, or just for you."
+      - "Expenses tracked against the budget."
+      - "Balances calculated automatically."
+
+  - id: meals
+    image: meals
+    kicker: "Meals"
+    title: "Meals, day by day"
+    text: "Breakfast on the beach, lunch at home or dinner out: plan the meals of your stay and add them to the schedule."
+    points:
+      - "Home-made menus or restaurants."
+      - "A day-by-day view and a summary of the stay."
+      - "Meal suggestions shared by the group."
+
+  - id: shopping
+    image: shopping
+    kicker: "Shopping"
+    title: "One shared shopping list"
+    text: "Every participant adds what needs buying and sees in real time what the others have already picked up."
+    points:
+      - "One list for the whole group, sorted by category."
+      - "Purchases ticked off live, no duplicates."
+      - "Export the list in one tap."
+
+  - id: participants
+    image: participants
+    kicker: "Participants"
+    title: "Everyone on board"
+    text: "Invite participants with a simple link. Everyone joins the project from their phone and finds the information that matters to them."
+    points:
+      - "An invitation link to share wherever you like."
+      - "Each person's dates of attendance."
+      - "An organiser and members, each in their role."
+
+  - id: photos
+    image: photos
+    kicker: "Photos"
+    title: "All the group's photos in one place"
+    text: "Everyone shares their photos in a common gallery, sorted by day. No more chasing everyone for pictures once you're home."
+    points:
+      - "A gallery shared by all participants."
+      - "Photos sorted day by day."
+      - "Perfect material for your souvenir album."
+
+  - id: albums
+    image: albums
+    kicker: "Photo albums"
+    title: "Your adventure in a real book"
+    text: "From the shared photos, Cruzmi automatically creates an album in less than a minute. Customise it, then order it printed or as a PDF."
+    points:
+      - "An album generated automatically from the gallery."
+      - "Choose the theme, format and cover."
+      - "High-definition printing delivered to your door."
+
+more:
+  title: "And also…"
+  items:
+    - icon: checklist
+      title: "Shared resources"
+      text: "Checklist, useful links, and the things everyone makes available: accommodation, vehicle, equipment…"
+    - icon: sliders
+      title: "Pick your modules"
+      text: "Switch on only the features your project needs."
+    - icon: idea
+      title: "Everyone contributes"
+      text: "An activity suggestion, a meal idea, a helping hand: everyone takes part in their own way."
+    - icon: devices
+      title: "iPhone, iPad and Android"
+      text: "Cruzmi works on phones and tablets, in English, French and Spanish."
+
+download:
+  title: "Ready to give it a try?"
+  text: "Download Cruzmi and create your first group project in minutes."

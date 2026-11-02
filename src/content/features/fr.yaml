@@ -1,0 +1,110 @@
+# Features page copy (FR). Draft written by Claude — to be reviewed by the team.
+# `image` refers to a key in src/components/FeaturesPage.astro (screenshots in src/assets/screenshots/).
+meta:
+  title: "Fonctionnalités — Cruzmi"
+  description: "Programme, carte des étapes, budget partagé, repas, courses, participants, galerie photos et albums imprimés : découvrez tout ce que Cruzmi fait pour vos projets de groupe."
+
+intro:
+  title: "Tout ce qu'il faut pour vivre vos projets à plusieurs"
+  text: "Cruzmi réunit au même endroit tout ce dont votre groupe a besoin, de la première idée au dernier souvenir. Activez seulement les modules utiles à votre projet : vous pourrez toujours changer d'avis."
+
+features:
+  - id: programme
+    image: programme
+    kicker: "Programme"
+    title: "Un programme clair, construit ensemble"
+    text: "Jour après jour, retrouvez l'étape, l'hébergement et les activités prévues. Chacun peut proposer des idées dans les suggestions d'activités."
+    points:
+      - "Un assistant vous aide à créer le programme en quelques questions."
+      - "Étapes, hébergements et activités avec horaires et adresses."
+      - "Tout le monde voit le même programme, toujours à jour."
+
+  - id: map
+    image: map
+    kicker: "Carte"
+    title: "Votre parcours sur la carte"
+    text: "Visualisez toutes les étapes de votre projet et la façon de les rejoindre : voiture, vélo, bus, avion, bateau…"
+    points:
+      - "Les étapes numérotées dans l'ordre du parcours."
+      - "Le moyen de transport entre chaque étape."
+      - "La destination, l'étape du jour et l'hébergement d'un coup d'œil."
+
+  - id: budget
+    image: budget
+    kicker: "Budget"
+    title: "Des comptes simples entre participants"
+    text: "Chacun enregistre ses dépenses, Cruzmi s'occupe des calculs. Fini les tableurs et les « qui doit combien à qui ? »."
+    points:
+      - "Un budget prévisionnel pour le groupe, ou pour soi."
+      - "Le suivi des dépenses par rapport au budget."
+      - "L'équilibre des comptes calculé automatiquement."
+
+  - id: meals
+    image: meals
+    kicker: "Repas"
+    title: "Les repas, jour par jour"
+    text: "Petit-déjeuner à la plage, déjeuner maison ou dîner au restaurant : planifiez les repas du séjour et ajoutez-les au programme."
+    points:
+      - "Menus « maison » ou restaurants."
+      - "Une vue jour par jour et un résumé du séjour."
+      - "Des suggestions de repas partagées par le groupe."
+
+  - id: shopping
+    image: shopping
+    kicker: "Courses"
+    title: "Une liste de courses commune"
+    text: "Chaque participant ajoute ce qu'il faut acheter et voit en temps réel ce que les autres ont déjà pris."
+    points:
+      - "Une seule liste pour tout le groupe, classée par catégories."
+      - "Les achats cochés en direct, sans doublons."
+      - "La liste exportable en un geste."
+
+  - id: participants
+    image: participants
+    kicker: "Participants"
+    title: "Tout le monde à bord"
+    text: "Invitez les participants d'un simple lien. Chacun rejoint le projet depuis son téléphone et retrouve les informations qui le concernent."
+    points:
+      - "Une invitation par lien, à partager où vous voulez."
+      - "Les dates de présence de chacun."
+      - "Un organisateur et des membres, chacun dans son rôle."
+
+  - id: photos
+    image: photos
+    kicker: "Photos"
+    title: "Toutes les photos du groupe, au même endroit"
+    text: "Chacun partage ses photos dans une galerie commune, classée par jour. Plus besoin de les réclamer à tout le monde après le retour."
+    points:
+      - "Une galerie partagée par tous les participants."
+      - "Les photos rangées jour par jour."
+      - "La matière idéale pour votre album souvenir."
+
+  - id: albums
+    image: albums
+    kicker: "Albums photo"
+    title: "Votre aventure dans un vrai livre"
+    text: "À partir des photos partagées, Cruzmi crée automatiquement un album en moins d'une minute. Personnalisez-le, puis commandez-le imprimé ou en PDF."
+    points:
+      - "Un album généré automatiquement depuis la galerie."
+      - "Le choix du thème, du format et de la couverture."
+      - "Une impression haute définition livrée chez vous."
+
+more:
+  title: "Et aussi…"
+  items:
+    - icon: checklist
+      title: "Ressources partagées"
+      text: "Check-list, liens utiles, et les biens que chacun met à disposition : logement, véhicule, équipement…"
+    - icon: sliders
+      title: "Modules à la carte"
+      text: "Activez seulement les fonctionnalités dont votre projet a besoin."
+    - icon: idea
+      title: "Chacun contribue"
+      text: "Une suggestion d'activité, une idée de repas, un coup de main : chacun participe à sa façon."
+    - icon: devices
+      title: "iPhone, iPad et Android"
+      text: "Cruzmi fonctionne sur téléphone et sur tablette, en français, en anglais et en espagnol."
+
+download:
+  title: "Prêt à essayer ?"
+  text: "Téléchargez Cruzmi et créez votre premier projet de groupe en quelques minutes."
