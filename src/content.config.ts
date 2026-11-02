@@ -118,4 +118,19 @@ const contact = defineCollection({
   }),
 });
 
-export const collections = { home, features, faq, about, contact };
+/**
+ * Legal pages in Markdown: src/content/legal/<locale>/<legal|terms|privacy>.md (entry id "fr/terms").
+ * `reviewed: false` shows a "draft" banner and sets noindex until a legal professional has validated it.
+ */
+const legal = defineCollection({
+  loader: glob({ pattern: '*/*.md', base: './src/content/legal' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    updated: z.coerce.date(),
+    reviewed: z.boolean(),
+    toc: z.boolean().default(false),
+  }),
+});
+
+export const collections = { home, features, faq, about, contact, legal };

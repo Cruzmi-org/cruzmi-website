@@ -29,6 +29,9 @@ export const ui = {
     'footer.terms': "Conditions générales d'utilisation",
     'footer.privacy': 'Politique de confidentialité',
     'placeholder.photo': 'Photo à fournir',
+    'legal.updated': 'Dernière mise à jour :',
+    'legal.toc': 'Sommaire',
+    'legal.draft': 'Projet de texte en cours de validation juridique : ce document n’est pas encore définitif.',
   },
   en: {
     'meta.siteName': 'Cruzmi',
@@ -57,6 +60,9 @@ export const ui = {
     'footer.terms': 'Terms of use',
     'footer.privacy': 'Privacy policy',
     'placeholder.photo': 'Photo to be supplied',
+    'legal.updated': 'Last updated:',
+    'legal.toc': 'Contents',
+    'legal.draft': 'Draft under legal review: this document is not final yet.',
   },
 } as const satisfies Record<Locale, Record<string, string>>;
 
