@@ -85,7 +85,7 @@ const c = entry.data;
         <h2 class="text-4xl font-bold sm:text-5xl">{c.pros.title}</h2>
         <p class="mt-3 text-xl leading-snug text-white/85">{c.pros.text}</p>
         <a
-          href={path(locale, 'contact')}
+          href={`${path(locale, 'contact')}?subject=pro`}
           class="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-xl font-semibold text-night transition hover:bg-argile"
         >
           <Icon name="mail" class="size-5" />

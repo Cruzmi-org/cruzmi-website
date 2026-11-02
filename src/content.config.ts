@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { SUBJECTS } from './lib/contact';
 
 const textItem = z.object({ title: z.string(), text: z.string() });
 
@@ -89,4 +90,32 @@ const about = defineCollection({
   }),
 });
 
-export const collections = { home, features, faq, about };
+/** Contact page copy (src/content/contact/<locale>.yaml). */
+const contact = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/content/contact' }),
+  schema: z.object({
+    meta: z.object({ title: z.string(), description: z.string() }),
+    intro: z.object({ title: z.string(), text: z.string() }),
+    form: z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+      email: z.string(),
+      subject: z.string(),
+      subjectOptions: z.array(z.object({ value: z.enum(SUBJECTS), label: z.string() })),
+      message: z.string(),
+      submit: z.string(),
+      sending: z.string(),
+      privacyBefore: z.string(),
+      privacyLink: z.string(),
+      success: z.object({ title: z.string(), text: z.string() }),
+      errors: z.object({ validation: z.string(), captcha: z.string(), send: z.string() }),
+      noscript: z.string(),
+    }),
+    aside: z.object({
+      title: z.string(),
+      items: z.array(z.object({ label: z.string(), email: z.string() })),
+    }),
+  }),
+});
+
+export const collections = { home, features, faq, about, contact };

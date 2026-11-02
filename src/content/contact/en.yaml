@@ -1,0 +1,46 @@
+# Contact page copy (EN). Draft written by Claude — to be reviewed by the team.
+meta:
+  title: "Contact — Cruzmi"
+  description: "A question about Cruzmi, photo albums, a partnership or a press enquiry? Write to us and the Cruzmi team will get back to you by email."
+
+intro:
+  title: "Contact us"
+  text: "A question, a suggestion, a partnership idea? Write to us and the Cruzmi team will get back to you by email."
+
+form:
+  firstName: "First name"
+  lastName: "Last name"
+  email: "Email address"
+  subject: "Subject"
+  subjectOptions:
+    - value: app
+      label: "A question about the app"
+    - value: albums
+      label: "Photo albums"
+    - value: pro
+      label: "I'm a professional"
+    - value: press
+      label: "Press and partnerships"
+    - value: other
+      label: "Other"
+  message: "Your message"
+  submit: "Send message"
+  sending: "Sending…"
+  privacyBefore: "The information you enter is only used to reply to your message. Learn more:"
+  privacyLink: "privacy policy"
+  success:
+    title: "Message sent, thank you!"
+    text: "We have received your message and will get back to you by email as soon as possible."
+  errors:
+    validation: "Please check the form: some fields are missing or invalid."
+    captcha: "The anti-bot check failed. Please reload the page and try again."
+    send: "Your message could not be sent. Please try again in a moment, or write to us directly at contact@cruzmi.com."
+  noscript: "The form requires JavaScript. You can also write to us directly at contact@cruzmi.com."
+
+aside:
+  title: "Write to us directly"
+  items:
+    - label: "General enquiries"
+      email: "contact@cruzmi.com"
+    - label: "Personal data"
+      email: "dpo@cruzmi.com"
