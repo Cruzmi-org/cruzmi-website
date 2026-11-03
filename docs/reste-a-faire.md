@@ -226,7 +226,7 @@ Le DNS de cruzmi.com est aujourd'hui **chez Wix**, le domaine est enregistré ch
 - **Option A, DNS chez LWS** : possible seulement si LWS sait faire cette redirection en HTTPS.
 - **Option B, DNS chez Cloudflare** (gratuit, recommandé) : redirection native. Le domaine reste enregistré chez LWS.
 
-- [ ] Option choisie : `……` (détails dans `docs/migration-dns.md` §2)
+- [x] Option choisie le 3 novembre 2026 : **B, DNS chez Cloudflare**, bascule dès que possible (déroulé dans `docs/migration-dns.md` §2).
 
 ### D2. Fusion puis bascule
 

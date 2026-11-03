@@ -67,6 +67,22 @@ Cloudflare Pages accepte `www.cruzmi.com` avec un DNS externe (simple CNAME), ma
 
 **Recommandation : option B**, sauf si LWS confirme une redirection HTTPS du domaine nu qui conserve le chemin. Le domaine reste enregistré chez LWS dans les deux cas ; seule la gestion de la zone change.
 
+> **Décision du 3 novembre 2026 : option B (DNS chez Cloudflare), bascule dès que possible**, sans attendre la relecture complète des textes ni la validation juridique. Les pages légales restent marquées « Projet de texte » et non indexées jusqu'à leur validation. Le site Wix n'est pas en meilleur état : il n'a pas de politique de confidentialité. DNSSEC n'est pas activé sur cruzmi.com (aucun DS au 3 novembre 2026) : rien à désactiver avant de changer les serveurs de noms.
+
+### Déroulé retenu (option B, en deux temps)
+
+Les e-mails et le site sont basculés **séparément**, pour qu'un éventuel souci soit facile à localiser :
+
+1. **Fusion** `develop` → `main` : la production `cruzmi-website.pages.dev` reçoit le site complet.
+2. **Export de la zone Wix** (capture des enregistrements DNS).
+3. **Zone Cloudflare** : ajouter cruzmi.com (offre gratuite). Cloudflare importe les enregistrements existants. Tout est vérifié contre le §1 et mis en **DNS only** (nuage gris), y compris `cruzmi.com` et `www`, qui pointent **encore vers Wix**.
+4. **Serveurs de noms** : chez LWS, remplacer `ns4/ns5.wixdns.net` par les deux serveurs Cloudflare. Rien ne change pour les visiteurs, ni pour les e-mails : la nouvelle zone est une copie de l'ancienne. Attendre que Cloudflare indique la zone **Active**, puis vérifier les e-mails.
+5. **Bascule du site**, quelques minutes et réversible :
+   - Pages → Custom domains → `www.cruzmi.com`, puis `cruzmi.com` ;
+   - règle de redirection `cruzmi.com/*` → `https://www.cruzmi.com/$1` (301) ;
+   - ajouter les noms d'hôte au widget Turnstile.
+6. **Vérifications** du §6, Search Console, puis résiliation de Wix après deux semaines.
+
 ## 3. Prérequis avant la bascule
 
 - [ ] Site validé sur l'aperçu Cloudflare (`develop`), textes relus, pages légales validées (`reviewed: true`).
