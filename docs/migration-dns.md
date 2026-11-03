@@ -27,6 +27,7 @@
 | `smtp`, `imap`, `pop` | CNAME | `mail.cruzmi.com` | **Oui** |
 | `cruzmi.com` | TXT | `google-site-verification=TLcPFkw3SrKn0v9SWFzDJXWstazbyn-LcDMC9XPPYiM` | **Oui** |
 | `cruzmi.com` | TXT | `brevo-code:577adf056f6e8587be066fd6d49fd180` | **Oui** |
+| `mail` | TXT | `v=spf1 a:mail.cruzmi.com ip4:193.203.239.24 include:_spf.google.com ~all` (SPF du seul sous-domaine `mail` ; Wix l'affiche aussi dans une section « SPF », ancien type inutile à recopier) | **Oui, à l'identique** |
 | `brevo1._domainkey` | CNAME | `b1.cruzmi-com.dkim.brevo.com` | **Oui** |
 | `brevo2._domainkey` | CNAME | `b2.cruzmi-com.dkim.brevo.com` | **Oui** |
 | `_dmarc` | TXT | `v=DMARC1; p=none; rua=mailto:rua@dmarc.brevo.com` | **Oui** |
@@ -34,7 +35,7 @@
 | `sg` | CNAME | `sg.cruzmi.com.s010.ascendbywix.com` (envoi d'e-mails Wix) | Idem |
 | `fr`, `en` | CNAME | `cdn3.wixdns.net` (anciennes adresses de langue Wix ; `fr` redirige vers www, `en` répond 404) | Oui, puis à l'étape 5 : redirection vers `https://www.cruzmi.com/fr/` et `/en/` |
 
-> Inventaire complété le 3 novembre 2026 avec l'export de la zone Wix (captures). `s2`, `sel1`, `sg`, `fr` et `en` n'apparaissaient pas dans le relevé public.
+> Inventaire complété le 3 novembre 2026 avec l'export de la zone Wix (captures, aucun AAAA, SRV ni CAA). `s2`, `sel1`, `sg`, `fr`, `en` et le TXT de `mail` n'apparaissaient pas dans le relevé public : 20 enregistrements à recopier.
 
 Constats :
 - **Aucun enregistrement SPF** sur cruzmi.com (pas de `v=spf1`). Voir §6 (amélioration, hors migration).
