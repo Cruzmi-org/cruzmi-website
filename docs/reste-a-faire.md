@@ -155,7 +155,7 @@ Tous les textes sont des **brouillons** à valider. Pour les modifier, chaque fi
 
 Points à trancher, marqués `TODO(team)` dans les fichiers :
 - [ ] Les trois valeurs de la page Qui sommes-nous (« Ensemble, Simple, Mémorable ») ont été ajoutées : à garder ou non.
-- [ ] Prénoms, rôles et photo des fondateurs, à ajouter si souhaité.
+- [ ] Prénoms et rôles des fondateurs : à ajouter sur la page Qui sommes-nous **quand la photo définitive sera validée** (l'actuelle est provisoire ; une vraie photo des fondateurs en polos Cruzmi est envisagée).
 
 Conventions : on **vouvoie** le visiteur (l'appli tutoie, le site non). En français, espace insécable avant `? ! : ;` (voir README).
 

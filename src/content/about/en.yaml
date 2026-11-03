@@ -29,7 +29,7 @@ team:
 
 company:
   title: "CRUZMI SAS"
-  text: "Founded in February 2023, CRUZMI SAS designs and develops the Cruzmi app. It is aimed at individuals, for a one-off project or regular get-togethers, and at tourism and rental professionals who want to recommend it to their customers."
+  text: "Founded in February 2023, CRUZMI SAS designs and develops the Cruzmi app, for everyone who organises projects with others, one-off or regular. It relies on a growing network of tourism, rental and leisure professionals who recommend it to their customers."
   facts:
     - label: "Founded"
       value: "February 2023"
@@ -42,13 +42,13 @@ company:
 
 pros:
   title: "Are you a professional?"
-  text: "Boat charters, river cruises, leisure vehicles, holiday accommodation… The tourism and rental professionals who have discovered Cruzmi see it as a real plus for their customer service."
+  text: "Tourism, rental, leisure: join the network of Cruzmi partner professionals and recommend the app to your customers."
   points:
-    - "Give your customers a tool to prepare their stay before they even set off."
-    - "Simplify paperwork and information exchange before the rental."
-    - "Support your customers during and after their stay."
+    - "Offer your customers a free app to plan and live their stay together."
+    - "Schedule, expenses, meals, photos: they share everything, before, during and after."
+    - "Join a growing network of tourism, rental and leisure professionals."
   button: "Let's talk"
 
 download:
   title: "Join the adventure"
-  text: "Download Cruzmi and turn your next project into a great shared adventure."
+  text: "Download Cruzmi for free and turn your next project into a great shared experience."

@@ -1,13 +1,14 @@
 # About page copy (FR). Draft written by Claude from the Wix pages /copie-de-a-propos and /what-we-do.
 # Items marked TODO(team) need validation.
+# Gender: "Cruzmi" alone takes no gendered agreement (it is a companion, not just an app); rephrase instead.
 meta:
   title: "Qui sommes-nous ? — Cruzmi"
-  description: "Cruzmi est née d'une bande d'amis qui ne trouvait pas d'application pour organiser ses projets à plusieurs. Découvrez notre histoire, notre équipe et CRUZMI SAS."
+  description: "L'histoire de Cruzmi commence avec une bande d'amis qui ne trouvait pas d'application pour organiser ses projets à plusieurs. Découvrez notre histoire, notre équipe et CRUZMI SAS."
 
 intro:
   kicker: "Qui sommes-nous ?"
   title: "Une bande d'amis qui a créé l'application dont elle rêvait"
-  lead: "Week-ends, escapades à thème, croisières, fêtes de famille : nous aimons faire des choses ensemble. Cruzmi est né de cette envie, et d'un constat."
+  lead: "Week-ends, escapades à thème, croisières, fêtes de famille : nous aimons faire des choses ensemble. Cruzmi vient de cette envie, et d'un constat."
   imageAlt: "Les cinq fondateurs de Cruzmi, souriants, réunis entre amis."
 
 story:
@@ -30,7 +31,7 @@ team:
 
 company:
   title: "CRUZMI SAS"
-  text: "Fondée en février 2023, CRUZMI SAS conçoit et développe l'application Cruzmi. Elle s'adresse aux particuliers, pour un projet ponctuel ou des rendez-vous réguliers, et aux professionnels du tourisme et de la location qui souhaitent la recommander à leurs clients."
+  text: "Fondée en février 2023, CRUZMI SAS conçoit et développe l'application Cruzmi, pour tous ceux qui organisent des projets à plusieurs, ponctuels ou réguliers. Elle s'appuie sur un réseau grandissant de professionnels du tourisme, de la location et des loisirs qui la recommandent à leurs clients."
   facts:
     - label: "Création"
       value: "Février 2023"
@@ -43,14 +44,14 @@ company:
 
 pros:
   title: "Vous êtes un professionnel ?"
-  # TODO(team): confirm the "pre-rental paperwork / client-renter exchange" feature is still current.
-  text: "Loueurs de bateaux, croisières fluviales, véhicules de loisirs, hébergements… Les professionnels du tourisme et de la location qui nous ont découverts y voient un vrai plus pour leur service client."
+  # Pro offer (Cruzmi Studio) not live yet: only the partner network (prescribers) is presented.
+  text: "Tourisme, location, loisirs : rejoignez le réseau des professionnels partenaires de Cruzmi et recommandez l'application à vos clients."
   points:
-    - "Offrez à vos clients un outil pour préparer leur séjour avant même le départ."
-    - "Simplifiez les démarches et les échanges d'informations avant la location."
-    - "Accompagnez vos clients pendant et après leur séjour."
+    - "Proposez à vos clients une application gratuite pour préparer et vivre leur séjour à plusieurs."
+    - "Programme, dépenses, repas, photos : ils partagent tout, avant, pendant et après."
+    - "Rejoignez un réseau grandissant de professionnels du tourisme, de la location et des loisirs."
   button: "Parlons-en"
 
 download:
   title: "Rejoignez l'aventure"
-  text: "Téléchargez Cruzmi et faites de votre prochain projet une belle aventure collective."
+  text: "Téléchargez Cruzmi gratuitement et faites de votre prochain projet une belle expérience collective."
