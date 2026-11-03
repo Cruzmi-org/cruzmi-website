@@ -25,7 +25,7 @@ type Frame = 'phone' | 'tablet' | 'photo';
 const visuals: Record<(typeof c.features)[number]['image'], { src: ImageMetadata; frame: Frame }> = {
   programme: { src: screenshot(locale, 'programme'), frame: 'phone' },
   map: { src: screenshot(locale, 'map-route'), frame: 'phone' },
-  budget: { src: screenshot(locale, 'budget'), frame: 'phone' },
+  budget: { src: screenshot(locale, 'balance'), frame: 'phone' },
   meals: { src: screenshot(locale, 'meals'), frame: 'phone' },
   shopping: { src: screenshot(locale, 'shopping'), frame: 'phone' },
   participants: { src: screenshot(locale, 'participants'), frame: 'phone' },

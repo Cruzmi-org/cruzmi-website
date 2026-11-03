@@ -60,7 +60,7 @@ const features = defineCollection({
     ),
     more: z.object({
       title: z.string(),
-      items: z.array(textItem.extend({ icon: z.enum(['checklist', 'sliders', 'idea', 'devices']) })),
+      items: z.array(textItem.extend({ icon: z.enum(['checklist', 'offline', 'idea', 'devices']) })),
     }),
     download: z.object({ title: z.string(), text: z.string() }),
   }),
