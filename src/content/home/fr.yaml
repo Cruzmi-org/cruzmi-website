@@ -66,16 +66,16 @@ useCases:
 
 audiences:
   title: "À qui s'adresse Cruzmi ?"
-  intro: "À tous ceux qui font des choses ensemble — et qui en ont assez des messages perdus dans dix conversations différentes."
+  intro: "À tous ceux qui font des choses ensemble, chacun à sa place."
   items:
-    - title: "Les groupes d'amis et les familles"
-      text: "Préparez vos vacances, vos croisières et vos week-ends sans tableur ni fil de discussion interminable."
-    - title: "Les associations et les clubs"
-      text: "Organisez sorties, déplacements et événements, et gardez tous les membres informés."
-    - title: "Les organisateurs d'événements"
-      text: "Un seul endroit pour le programme, les participants, les repas et les dépenses."
-    - title: "Les professionnels"
-      text: "Loueurs de bateaux, agences, organisateurs de séjours : offrez à vos clients un outil pour préparer leur aventure."
+    - title: "Vous organisez"
+      text: "Vous lancez le projet ? Créez-le en quelques questions, invitez le groupe d'un simple lien et gardez une vue d'ensemble, sans tout porter seul."
+    - title: "Vous êtes invité"
+      text: "Tout est au même endroit : le programme, la liste de courses, les photos des autres et ce que vous devez, au centime près. Une idée ? Proposez-la au groupe."
+    - title: "Vous vous retrouvez souvent"
+      text: "Familles, bandes d'amis, clubs : retrouvez vos projets passés, et réutilisez d'un projet à l'autre vos listes de courses et les biens que vous mettez à disposition (maison, bateau, camping-car)."
+  # The professional offer (Cruzmi Studio) is not live yet: only the partner network is mentioned.
+  partners: "L'application Cruzmi est recommandée par un réseau grandissant de professionnels du tourisme, de la location et des loisirs."
 
 howItWorks:
   title: "Comment ça marche ?"

@@ -31,7 +31,7 @@ const home = defineCollection({
       title: z.string(),
       items: z.array(textItem.extend({ image: z.enum(['voyages', 'evenements', 'associations', 'projets']) })).length(4),
     }),
-    audiences: z.object({ title: z.string(), intro: z.string(), items: z.array(textItem) }),
+    audiences: z.object({ title: z.string(), intro: z.string(), items: z.array(textItem).length(3), partners: z.string() }),
     howItWorks: z.object({
       title: z.string(),
       intro: z.string(),

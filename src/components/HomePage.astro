@@ -179,7 +179,7 @@ const benefitCrop: Record<(typeof c.benefits.items)[number]['image'], string> = 
     <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <h2 class="text-4xl font-bold sm:text-5xl">{c.audiences.title}</h2>
       <p class="mt-3 max-w-2xl text-xl">{c.audiences.intro}</p>
-      <ul class="mt-10 grid gap-5 sm:grid-cols-2">
+      <ul class="mt-10 grid gap-5 md:grid-cols-3">
         {
           c.audiences.items.map((a) => (
             <li class="rounded-2xl bg-white p-6 shadow-sm">
@@ -189,6 +189,10 @@ const benefitCrop: Record<(typeof c.benefits.items)[number]['image'], string> = 
           ))
         }
       </ul>
+      <p class="mt-6 flex items-center gap-4 rounded-2xl bg-white/70 p-5 text-lg leading-snug font-semibold">
+        <Icon name="users" class="size-9 shrink-0 text-azur" />
+        {c.audiences.partners}
+      </p>
     </div>
   </section>
 

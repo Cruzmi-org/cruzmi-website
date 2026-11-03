@@ -63,16 +63,15 @@ useCases:
 
 audiences:
   title: "Who is Cruzmi for?"
-  intro: "For everyone who does things together — and is tired of messages lost across ten different chats."
+  intro: "For everyone who does things together, each in their own role."
   items:
-    - title: "Friends and families"
-      text: "Plan holidays, cruises and weekends without spreadsheets or endless group chats."
-    - title: "Associations and clubs"
-      text: "Organise outings, trips and events, and keep every member in the loop."
-    - title: "Event organisers"
-      text: "One place for the schedule, participants, meals and expenses."
-    - title: "Professionals"
-      text: "Boat charter companies, agencies, tour organisers: give your customers a tool to prepare their adventure."
+    - title: "You organise"
+      text: "Starting the project? Set it up in a few questions, invite the group with a simple link and keep the big picture, without carrying it all alone."
+    - title: "You're invited"
+      text: "Everything is in one place: the schedule, the shopping list, everyone's photos and what you owe, to the cent. Got an idea? Suggest it to the group."
+    - title: "You get together often"
+      text: "Families, groups of friends, clubs: find your past projects, and reuse your shopping lists and the things you lend (house, boat, camper van) from one project to the next."
+  partners: "Cruzmi is recommended by a growing network of tourism, rental and leisure professionals."
 
 howItWorks:
   title: "How does it work?"
