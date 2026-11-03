@@ -1,9 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import { getEntry } from 'astro:content';
+import foundersPhoto from '../assets/photos/fondateurs.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DownloadCta from './DownloadCta.astro';
 import Icon from './Icon.astro';
-import PhotoPlaceholder from './PhotoPlaceholder.astro';
 import { path, type Locale } from '../i18n/config';
 
 interface Props {
@@ -24,7 +25,14 @@ const c = entry.data;
         <h1 class="mt-2 text-5xl leading-[0.95] font-bold text-balance sm:text-6xl">{c.intro.title}</h1>
         <p class="mt-5 max-w-xl text-xl leading-snug">{c.intro.lead}</p>
       </div>
-      <PhotoPlaceholder locale={locale} alt={c.intro.imageAlt} class="aspect-[4/3] w-full rounded-3xl" />
+      <Image
+        src={foundersPhoto}
+        alt={c.intro.imageAlt}
+        widths={[640, 960, 1280, 1600]}
+        sizes="(min-width: 1280px) 580px, (min-width: 1024px) 45vw, 100vw"
+        loading="eager"
+        class="aspect-[4/3] w-full rounded-3xl object-cover object-[50%_30%] shadow-sm"
+      />
     </div>
   </section>
 

@@ -10,6 +10,7 @@ required (not valid for "Unsplash+" photos).
 | `cas-usage/evenements.jpg` | Home, use case "Événements et fêtes" | Unsplash |
 | `cas-usage/associations.jpg` | Home, use case "Activités et associations" | Unsplash |
 | `cas-usage/projets.jpg` | Home, use case "Projets personnels et collectifs" | Unsplash |
+| `fondateurs.jpg` | About, intro | Cruzmi team (boat name on the polos blurred) |
 | `printed-albums.jpg`, `printed-albums-2.jpg` | Features, home | Cruzmi team (photos of printed albums) |
 
 Add the Unsplash page URL of each photo when known.

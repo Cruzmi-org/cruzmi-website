@@ -21,6 +21,7 @@
 | A3 | Vérifier l'URL de site Supabase Auth (`cruzmi.fr`) | Équipe appli | Oui |
 | A4 | Répondre aux questions factuelles sur l'appli | Équipe appli | Oui |
 | A5 | Mettre à jour les fiches App Store / Google Play | Équipe appli | Après la bascule |
+| A6 | Libellé « Mes escapades » → « Mes projets » dans l'appli (FR) | Équipe appli | Non, mais nécessaire pour la capture « projets » |
 | B1 | Relire tous les textes | Direction + équipe | Oui |
 | B2 | Fournir photos, badges officiels, captures EN | Direction | Oui pour les badges, conseillé pour le reste |
 | C1 | Faire valider les pages légales | Juriste | Oui |
@@ -108,6 +109,14 @@ Les textes du site décrivent ce que fait l'appli. Les réponses peuvent être n
 - [ ] **URL de la politique de confidentialité** : remplacer `https://www.cruzmi.com/politique-de-confidentialité` par `https://www.cruzmi.com/fr/confidentialite/` (l'ancienne URL redirige déjà, mais autant pointer directement).
 - [ ] **App Store Connect** : la fiche n'indique que « EN Anglais » comme langue, alors que l'appli existe en FR, EN et ES.
 - [ ] Vérifier les autres liens des fiches (site, support) vers les nouvelles pages.
+
+
+### A6. « Mes escapades » → « Mes projets » dans l'appli
+
+Le site présente Cruzmi pour **tous les projets de groupe**, pas seulement les voyages. Or la liste des projets de l'appli s'intitule en français « Mes escapades » et « Mes escapades passées » (clés `pages.trips.myTrips` et `pages.trips.pastTrips` de `src/translations/fr.json`). La version anglaise dit déjà « My projects ».
+
+- [ ] Remplacer par « Mes projets » et « Mes projets passés » (et vérifier l'espagnol).
+- [ ] Ensuite, refaire la capture de la liste des projets avec un compte de démonstration contenant des projets **variés** (anniversaire, week-end de club, croisière, mariage…) et sans projet de test (« Projet New York 2027 Sans wizard »). Elle illustrera l'idée « tous vos projets au même endroit, en cours, à venir ou passés » sur le site.
 
 ---
 
