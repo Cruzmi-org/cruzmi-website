@@ -79,26 +79,28 @@ audiences:
 
 howItWorks:
   title: "Comment ça marche ?"
-  intro: "Cruzmi vous accompagne à chaque étape de votre projet."
+  intro: "De la première idée au dernier souvenir, Cruzmi accompagne votre groupe à chaque étape."
   steps:
     - label: "Avant"
       title: "Préparez ensemble"
       points:
-        - "Créez votre projet et invitez les participants d'un simple lien."
-        - "Construisez le programme jour par jour, à plusieurs."
-        - "Anticipez le budget, les repas et la liste de courses."
+        - "Créez votre projet en quelques questions : dates, lieux, hébergements."
+        - "Activez seulement ce qui vous sert : dépenses, repas, courses, ressources, photos."
+        - "Invitez les participants d'un simple lien, par SMS, WhatsApp ou e-mail."
+        - "Construisez le programme à plusieurs : chacun propose ses idées."
     - label: "Pendant"
       title: "Vivez le projet"
       points:
-        - "Chacun retrouve le programme et les informations utiles."
-        - "Suivez les étapes et le trajet sur la carte."
-        - "Notez les dépenses au fil de l'eau."
+        - "Chacun retrouve le programme du jour et le parcours sur la carte."
+        - "Notez les dépenses au fur et à mesure : Cruzmi tient compte de qui était là, et quand."
+        - "Cochez les courses en direct, sans acheter deux fois la même chose."
+        - "Pas de réseau ? Les informations déjà chargées restent consultables."
     - label: "Après"
-      title: "Gardez les souvenirs"
+      title: "Soldez les comptes, gardez les souvenirs"
       points:
-        - "Réunissez les photos de tous les participants."
-        - "Faites les comptes simplement."
-        - "Commandez un album photo imprimé de votre aventure."
+        - "Cruzmi calcule qui rembourse qui : il ne reste qu'à régler."
+        - "Réunissez les photos de tous les participants dans une galerie commune."
+        - "Créez votre album en moins d'une minute, en PDF ou imprimé et livré chez vous."
 
 download:
   title: "Prêt à embarquer ?"

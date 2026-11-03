@@ -75,26 +75,28 @@ audiences:
 
 howItWorks:
   title: "How does it work?"
-  intro: "Cruzmi is with you at every stage of your project."
+  intro: "From the first idea to the last memory, Cruzmi supports your group every step of the way."
   steps:
     - label: "Before"
       title: "Plan together"
       points:
-        - "Create your project and invite participants with a simple link."
-        - "Build the day-by-day schedule together."
-        - "Plan the budget, meals and shopping list ahead."
+        - "Create your project in a few questions: dates, places, accommodation."
+        - "Turn on only what you need: expenses, meals, shopping, resources, photos."
+        - "Invite participants with a simple link, by text, WhatsApp or email."
+        - "Build the schedule together: everyone suggests their ideas."
     - label: "During"
       title: "Live the project"
       points:
-        - "Everyone has the schedule and key information at hand."
-        - "Follow each step and the route on the map."
-        - "Log expenses as you go."
+        - "Everyone sees the day's schedule and the route on the map."
+        - "Log expenses as you go: Cruzmi takes into account who was there, and when."
+        - "Tick off the shopping in real time, without buying the same thing twice."
+        - "No signal? Information already loaded stays available."
     - label: "After"
-      title: "Keep the memories"
+      title: "Settle up, keep the memories"
       points:
-        - "Gather everyone's photos in one place."
-        - "Settle up easily."
-        - "Order a printed photo album of your adventure."
+        - "Cruzmi works out who owes whom: all that's left is to pay up."
+        - "Bring together every participant's photos in a shared gallery."
+        - "Create your album in under a minute, as a PDF or printed and delivered to your door."
 
 download:
   title: "Ready to come aboard?"
