@@ -1,13 +1,17 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { getEntry } from 'astro:content';
 import heroPhoto from '../assets/photos/hero-vitaly-gariev-unsplash.jpg';
 import printedAlbums from '../assets/photos/printed-albums.jpg';
 import { screenshot } from '../assets/screenshots';
+import voyages from '../assets/photos/cas-usage/voyages.jpg';
+import evenements from '../assets/photos/cas-usage/evenements.jpg';
+import associations from '../assets/photos/cas-usage/associations.jpg';
+import projets from '../assets/photos/cas-usage/projets.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DownloadCta from './DownloadCta.astro';
 import Icon from './Icon.astro';
-import PhotoPlaceholder from './PhotoPlaceholder.astro';
 import StoreBadges from './StoreBadges.astro';
 import { path, type Locale } from '../i18n/config';
 
@@ -18,6 +22,14 @@ const { locale } = Astro.props;
 const entry = await getEntry('home', locale);
 if (!entry) throw new Error(`Missing home content for locale "${locale}"`);
 const c = entry.data;
+
+/** Use-case photos, with the crop position that keeps people in the 4:3 card frame. */
+const useCasePhotos: Record<(typeof c.useCases.items)[number]['image'], { src: ImageMetadata; position: string }> = {
+  voyages: { src: voyages, position: 'object-center' },
+  evenements: { src: evenements, position: 'object-center' },
+  associations: { src: associations, position: 'object-center' },
+  projets: { src: projets, position: 'object-[50%_68%]' },
+};
 
 /** Part of each screenshot shown on its benefit card: vertical position of the square crop (skips the project header). */
 const benefitCrop: Record<(typeof c.benefits.items)[number]['image'], string> = {
@@ -135,7 +147,13 @@ const benefitCrop: Record<(typeof c.benefits.items)[number]['image'], string> = 
       {
         c.useCases.items.map((u) => (
           <li class="w-[80%] shrink-0 snap-start overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-argile sm:w-72 md:w-auto">
-            <PhotoPlaceholder locale={locale} alt={u.title} class="aspect-[4/3] w-full" />
+            <Image
+              src={useCasePhotos[u.image].src}
+              alt=""
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 296px, (min-width: 768px) 45vw, 80vw"
+              class:list={['aspect-[4/3] w-full object-cover', useCasePhotos[u.image].position]}
+            />
             <div class="space-y-1 p-5">
               <h3 class="text-2xl leading-tight font-bold">{u.title}</h3>
               <p class="text-lg leading-snug">{u.text}</p>

@@ -27,7 +27,10 @@ const home = defineCollection({
       items: z.array(textItem.extend({ image: z.enum(['programme', 'reimbursements', 'shopping', 'gallery']) })).length(4),
       link: z.string(),
     }),
-    useCases: z.object({ title: z.string(), items: z.array(textItem) }),
+    useCases: z.object({
+      title: z.string(),
+      items: z.array(textItem.extend({ image: z.enum(['voyages', 'evenements', 'associations', 'projets']) })).length(4),
+    }),
     audiences: z.object({ title: z.string(), intro: z.string(), items: z.array(textItem) }),
     howItWorks: z.object({
       title: z.string(),

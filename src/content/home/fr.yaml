@@ -49,15 +49,20 @@ benefits:
 
 useCases:
   title: "Des projets pour tous les moments de la vie"
+  # image: photo in src/assets/photos/cas-usage/<image>.jpg (Unsplash, see CREDITS.md there).
   items:
-    - title: "Voyages et croisières"
+    - image: voyages
+      title: "Voyages et croisières"
       text: "Une croisière entre amis, un road-trip en famille, un week-end à plusieurs : tout le monde suit le même cap."
-    - title: "Événements et fêtes"
-      text: "Anniversaire, mariage, cousinade : répartissez les tâches et ne perdez plus une information."
-    - title: "Activités et associations"
+    - image: evenements
+      title: "Événements et fêtes"
+      text: "Anniversaire, mariage, cousinade : programme, repas et dépenses au même endroit, et plus une information perdue."
+    - image: associations
+      title: "Activités et associations"
       text: "Sorties du club, compétitions, stages : chaque membre sait où, quand et avec qui."
-    - title: "Projets personnels et collectifs"
-      text: "Un chantier, une tournée, un projet entre voisins : avancez ensemble, à votre rythme."
+    - image: projets
+      title: "Projets personnels et collectifs"
+      text: "Un week-end entre familles, une randonnée de plusieurs jours, un séjour solidaire : avancez ensemble, à votre rythme."
 
 audiences:
   title: "À qui s'adresse Cruzmi ?"

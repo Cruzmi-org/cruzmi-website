@@ -48,14 +48,18 @@ benefits:
 useCases:
   title: "Projects for every moment of life"
   items:
-    - title: "Trips and cruises"
+    - image: voyages
+      title: "Trips and cruises"
       text: "A sailing cruise with friends, a family road trip, a weekend away: everyone sets the same course."
-    - title: "Events and parties"
-      text: "Birthdays, weddings, family reunions: share out the tasks and never lose a detail again."
-    - title: "Activities and clubs"
+    - image: evenements
+      title: "Events and parties"
+      text: "Birthdays, weddings, family reunions: schedule, meals and expenses in one place, and no detail lost."
+    - image: associations
+      title: "Activities and clubs"
       text: "Club outings, competitions, training camps: every member knows where, when and with whom."
-    - title: "Personal and shared projects"
-      text: "A renovation, a tour, a neighbourhood project: move forward together, at your own pace."
+    - image: projets
+      title: "Personal and shared projects"
+      text: "A weekend with several families, a multi-day hike, a volunteer trip: move forward together, at your own pace."
 
 audiences:
   title: "Who is Cruzmi for?"
