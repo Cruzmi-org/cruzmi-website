@@ -2,6 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { SUBJECTS } from './lib/contact';
+import { routes, type RouteKey } from './i18n/config';
 
 const textItem = z.object({ title: z.string(), text: z.string() });
 
@@ -77,7 +78,15 @@ const faq = defineCollection({
         id: z.string(),
         title: z.string(),
         // onHome: also shown in the home page's quick questions (same text, single source).
-        items: z.array(z.object({ q: z.string(), a: z.string(), onHome: z.boolean().optional() })),
+        // link: optional "read more" link to a site page under the answer (`to` = route key).
+        items: z.array(
+          z.object({
+            q: z.string(),
+            a: z.string(),
+            onHome: z.boolean().optional(),
+            link: z.object({ label: z.string(), to: z.enum(Object.keys(routes) as [RouteKey, ...RouteKey[]]) }).optional(),
+          }),
+        ),
       }),
     ),
     contact: z.object({ title: z.string(), text: z.string(), button: z.string() }),
@@ -161,4 +170,38 @@ const join = defineCollection({
   }),
 });
 
-export const collections = { home, features, faq, about, contact, legal, join };
+/**
+ * Install page for visitors outside the store countries (src/content/install/<locale>.yaml).
+ * Links live in src/i18n/config.ts (`altInstall`).
+ */
+const install = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/content/install' }),
+  schema: z.object({
+    meta: z.object({ title: z.string(), description: z.string() }),
+    kicker: z.string(),
+    title: z.string(),
+    lead: z.string(),
+    ios: z.object({
+      title: z.string(),
+      intro: z.string(),
+      steps: z.array(textItem).length(3),
+      testflightButton: z.string(),
+      joinButton: z.string(),
+      scan: z.string(),
+      note: z.string(),
+    }),
+    android: z.object({
+      title: z.string(),
+      intro: z.string(),
+      steps: z.array(textItem).length(3),
+      button: z.string(),
+      scan: z.string(),
+      pending: z.object({ text: z.string(), link: z.string() }),
+    }),
+    inStores: z.object({ title: z.string(), text: z.string() }),
+    help: z.string(),
+    helpLink: z.string(),
+  }),
+});
+
+export const collections = { home, features, faq, about, contact, legal, join, install };

@@ -1,0 +1,48 @@
+# Install page (FR) for visitors outside France, Belgium, Switzerland and Luxembourg
+# (docs/reste-a-faire.md A7). Draft written by Claude — to be reviewed by the team.
+# Links (TestFlight, Google Play testing) are in src/i18n/config.ts (altInstall).
+meta:
+  title: "Installer Cruzmi hors de France, Belgique, Suisse et Luxembourg"
+  description: "Cruzmi n'est pas encore sur l'App Store ou Google Play de votre pays ? Voici comment installer l'application gratuite partout dans le monde."
+
+kicker: "Installation"
+title: "Installer Cruzmi depuis n'importe quel pays"
+lead: "Pour l'instant, l'App Store et Google Play proposent Cruzmi en France, en Belgique, en Suisse et au Luxembourg. Ailleurs, votre store indique que l'application n'est pas disponible dans votre pays : en attendant son ouverture, vous pouvez l'installer gratuitement par le programme de test officiel d'Apple."
+
+ios:
+  title: "Sur iPhone et iPad"
+  intro: "Avec TestFlight, l'application d'Apple qui permet d'installer les versions de test. Comptez deux minutes."
+  steps:
+    - title: "Installez TestFlight"
+      text: "Téléchargez l'application gratuite TestFlight sur l'App Store. Inutile de l'ouvrir."
+    - title: "Ouvrez le lien Cruzmi sur votre iPhone"
+      text: "Touchez le bouton ci-dessous depuis votre iPhone ou votre iPad, puis « Accepter » et « Installer » dans TestFlight."
+    - title: "Créez votre compte"
+      text: "Ouvrez Cruzmi depuis votre écran d'accueil, puis inscrivez-vous ou connectez-vous. Vous pouvez rejoindre les projets de vos proches, quel que soit leur pays."
+  testflightButton: "TestFlight sur l'App Store"
+  joinButton: "Installer Cruzmi avec TestFlight"
+  scan: "Sur ordinateur ? Scannez ce code avec votre iPhone :"
+  note: "Les mises à jour de Cruzmi vous sont proposées dans TestFlight."
+
+android:
+  title: "Sur Android"
+  intro: "Avec le programme de test de Google Play, depuis votre compte Google habituel."
+  steps:
+    - title: "Devenez testeur"
+      text: "Touchez le bouton ci-dessous depuis votre téléphone Android, connecté à votre compte Google, puis « Devenir testeur »."
+    - title: "Installez Cruzmi"
+      text: "Touchez ensuite « Télécharger sur Google Play » et installez l'application."
+    - title: "Créez votre compte"
+      text: "Ouvrez Cruzmi, puis inscrivez-vous ou connectez-vous. Vous pouvez rejoindre les projets de vos proches, quel que soit leur pays."
+  button: "Devenir testeur sur Google Play"
+  scan: "Sur ordinateur ? Scannez ce code avec votre téléphone Android :"
+  pending:
+    text: "La version Android pour votre pays arrive très bientôt. Écrivez-nous : nous vous préviendrons dès qu'elle sera disponible."
+    link: "Être prévenu"
+
+inStores:
+  title: "Vous êtes en France, en Belgique, en Suisse ou au Luxembourg ?"
+  text: "Téléchargez simplement Cruzmi sur votre store :"
+
+help: "Un souci pendant l'installation ?"
+helpLink: "Écrivez-nous"

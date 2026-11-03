@@ -1,0 +1,48 @@
+# Install page (EN) for visitors outside France, Belgium, Switzerland and Luxembourg
+# (docs/reste-a-faire.md A7). Draft written by Claude — to be reviewed by the team.
+# Links (TestFlight, Google Play testing) are in src/i18n/config.ts (altInstall).
+meta:
+  title: "Get Cruzmi outside France, Belgium, Switzerland and Luxembourg"
+  description: "Cruzmi isn't on the App Store or Google Play in your country yet? Here's how to install the free app anywhere in the world."
+
+kicker: "Installation"
+title: "Get Cruzmi wherever you are"
+lead: "For now, Cruzmi is offered on the App Store and Google Play in France, Belgium, Switzerland and Luxembourg. Elsewhere, your store says the app isn't available in your country: until it opens there, you can install it for free through Apple's official testing program."
+
+ios:
+  title: "On iPhone and iPad"
+  intro: "With TestFlight, Apple's app for installing test versions. It takes two minutes."
+  steps:
+    - title: "Install TestFlight"
+      text: "Download the free TestFlight app from the App Store. No need to open it."
+    - title: "Open the Cruzmi link on your iPhone"
+      text: "Tap the button below on your iPhone or iPad, then \"Accept\" and \"Install\" in TestFlight."
+    - title: "Create your account"
+      text: "Open Cruzmi from your home screen, then sign up or log in. You can join your friends' projects, whatever country they are in."
+  testflightButton: "TestFlight on the App Store"
+  joinButton: "Install Cruzmi with TestFlight"
+  scan: "On a computer? Scan this code with your iPhone:"
+  note: "Cruzmi updates are offered to you in TestFlight."
+
+android:
+  title: "On Android"
+  intro: "With Google Play's testing program, using your usual Google account."
+  steps:
+    - title: "Become a tester"
+      text: "Tap the button below on your Android phone, signed in to your Google account, then \"Become a tester\"."
+    - title: "Install Cruzmi"
+      text: "Then tap \"Download it on Google Play\" and install the app."
+    - title: "Create your account"
+      text: "Open Cruzmi, then sign up or log in. You can join your friends' projects, whatever country they are in."
+  button: "Become a tester on Google Play"
+  scan: "On a computer? Scan this code with your Android phone:"
+  pending:
+    text: "The Android version for your country is coming very soon. Write to us and we'll let you know as soon as it's available."
+    link: "Get notified"
+
+inStores:
+  title: "In France, Belgium, Switzerland or Luxembourg?"
+  text: "Simply download Cruzmi from your store:"
+
+help: "Trouble installing?"
+helpLink: "Write to us"

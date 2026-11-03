@@ -14,7 +14,7 @@ Cruzmi est une application mobile collaborative (iPhone, iPad, Android) qui réu
 |---|---|
 | Plateformes | iOS (iPhone et iPad) et Android. Pas de version web pour les utilisateurs. |
 | Langues | Français, anglais, espagnol. |
-| Pays | Téléchargeable uniquement en **France, Suisse, Belgique et Luxembourg** (au 3 novembre 2026, voir `reste-a-faire.md` A7). L'appli s'utilise ensuite partout. [à confirmer : usage à l'étranger une fois installée] |
+| Pays | Téléchargeable uniquement en **France, Suisse, Belgique et Luxembourg** (au 3 novembre 2026, voir `reste-a-faire.md` A7). Ailleurs : iOS via le lien public TestFlight (page `/fr/installer/`), pas encore de solution Android. L'appli s'utilise ensuite partout. [à confirmer : usage à l'étranger une fois installée] |
 | Prix | Application gratuite, sans abonnement ni achat intégré trouvé dans le code. **Seuls les albums photo sont payants** (voir §6). [à confirmer] |
 | Compte | E-mail et mot de passe, ou connexion avec **Google** ou **Apple**. |
 | Limite | **10 projets** par utilisateur « en version bêta » (message affiché dans l'appli). |

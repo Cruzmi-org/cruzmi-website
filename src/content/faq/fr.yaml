@@ -29,7 +29,8 @@ categories:
         a: "Cruzmi est disponible en français, en anglais et en espagnol."
       # Update when more store countries open (docs/reste-a-faire.md A7).
       - q: "Puis-je utiliser Cruzmi en dehors de la France ?"
-        a: "Cruzmi se télécharge aujourd'hui sur l'App Store et Google Play en France, en Suisse, en Belgique et au Luxembourg, et nous préparons l'ouverture à d'autres pays. Une fois installée, l'application vous suit dans tous vos déplacements."
+        a: "Oui. Cruzmi se télécharge aujourd'hui sur l'App Store et Google Play en France, en Suisse, en Belgique et au Luxembourg, et nous préparons l'ouverture à d'autres pays. Ailleurs, vous pouvez déjà l'installer sur iPhone et iPad grâce à TestFlight, le programme de test officiel d'Apple. Une fois installée, l'application vous suit dans tous vos déplacements."
+        link: { label: "Installer Cruzmi depuis un autre pays", to: install }
       - q: "L'application fonctionne-t-elle sans réseau ?"
         a: "En partie : les informations déjà chargées sur votre téléphone restent consultables. Pour ajouter du contenu et voir les nouveautés des autres participants, une connexion est nécessaire."
       - q: "Cruzmi, c'est un outil de navigation ?"

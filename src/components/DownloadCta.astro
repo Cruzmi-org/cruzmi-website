@@ -34,13 +34,13 @@ const qrCodes = await Promise.all(
   <div
     class="mx-auto flex max-w-7xl flex-col items-start gap-8 rounded-3xl bg-azur px-8 py-12 text-white lg:flex-row lg:items-center lg:justify-between lg:px-14"
   >
-    <div class="max-w-xl">
+    <div class="max-w-xl lg:min-w-0 lg:flex-1">
       <h2 class="text-4xl font-bold sm:text-5xl">{title}</h2>
       <p class="mt-2 text-xl text-white/90">{text}</p>
     </div>
-    <div class="flex flex-col gap-6 lg:flex-row lg:items-center">
-      <div class="space-y-3">
-        <StoreBadges locale={locale} />
+    <div class="flex flex-col gap-6 lg:shrink-0 lg:flex-row lg:items-center">
+      <div class="space-y-3 lg:shrink-0">
+        <StoreBadges locale={locale} tone="dark" />
         <p class="text-lg font-semibold text-white/90">{tr('store.reassurance')}</p>
       </div>
       <!-- QR codes: only useful on a computer, phones use the badges. -->

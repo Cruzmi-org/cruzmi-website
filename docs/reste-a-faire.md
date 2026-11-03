@@ -1,6 +1,6 @@
 # Nouveau site cruzmi.com — reste à faire
 
-> État au 2 novembre 2026. Document destiné à l'équipe Cruzmi, en particulier à l'équipe en charge de l'appli.
+> État au 3 novembre 2026. Document destiné à l'équipe Cruzmi, en particulier à l'équipe en charge de l'appli.
 > Cocher les cases au fil de l'eau (dans une PR) pour garder ce fichier à jour.
 
 ## Contexte en 30 secondes
@@ -8,7 +8,7 @@
 - **Quoi** : nouveau site vitrine qui remplace le site Wix de www.cruzmi.com. Objectif : présenter Cruzmi et faire télécharger l'appli. Des lecteurs vont arriver d'un article dans un magazine de voile (FR + EN).
 - **Où voir le site** : aperçu complet sur **https://develop.cruzmi-website.pages.dev** (non indexé par les moteurs de recherche). www.cruzmi.com est toujours servi par Wix.
 - **Code** : dépôt `Cruzmi-org/cruzmi-website`, branche `develop`. Astro (site statique) + Tailwind + TypeScript, hébergé sur Cloudflare Pages (compte Cloudflare de l'équipe). Chaque push sur `develop` met à jour l'aperçu en 1 à 2 minutes.
-- **Pages** (FR + EN) : accueil, fonctionnalités, qui sommes-nous, FAQ, contact, mentions légales, CGU, politique de confidentialité, page d'invitation (`/join/`), page 404.
+- **Pages** (FR + EN) : accueil, fonctionnalités, qui sommes-nous, FAQ, contact, mentions légales, CGU, politique de confidentialité, page d'invitation (`/join/`), installation hors des pays des stores (`/fr/installer/`), page 404.
 - **Formulaire de contact** : fonction Cloudflare → API Brevo → contact@cruzmi.com, avec anti-robot Cloudflare Turnstile. **Testé de bout en bout, il fonctionne.**
 - **Documents liés** : [`docs/migration-dns.md`](migration-dns.md) (plan de bascule DNS) · [`README.md`](../README.md) (technique) · [`CLAUDE.md`](../CLAUDE.md) (brief initial et décisions).
 
@@ -22,7 +22,7 @@
 | A4 | Répondre aux questions factuelles sur l'appli | Équipe appli | Oui |
 | A5 | Mettre à jour les fiches App Store / Google Play | Équipe appli | Après la bascule |
 | A6 | Libellé « Mes escapades » → « Mes projets » dans l'appli (FR) | Équipe appli | Non, mais nécessaire pour la capture « projets » |
-| A7 | Ouvrir l'appli dans d'autres pays sur les stores | Direction + équipe appli | Très recommandé avant l'article (lecteurs EN) |
+| A7 | Ouvrir l'appli dans d'autres pays sur les stores (solution d'attente iOS en place, Android à prévoir) | Direction + équipe appli | Très recommandé avant l'article (lecteurs EN) |
 | A8 | Activer le bouton « Se connecter » vers Cruzmi Studio | Équipe appli + Studio | Non (préparé, en sommeil) |
 | B1 | Relire tous les textes | Direction + équipe | Oui |
 | B2 | Fournir photos, badges officiels, captures EN | Direction | Oui pour les badges, conseillé pour le reste |
@@ -128,13 +128,26 @@ L'appli n'est aujourd'hui proposée sur l'App Store et Google Play **qu'en Franc
 - **Impact** : les lecteurs de la version anglaise de l'article, et tout visiteur hors de ces 4 pays, ne peuvent pas télécharger Cruzmi. La version anglaise du site perd alors son intérêt.
 - [ ] Décider des pays à ouvrir (au minimum ceux du lectorat du magazine) et les activer dans App Store Connect (Tarifs et disponibilité) et dans la Google Play Console (Production → Pays/régions).
 - [ ] Vérifier que les albums photo peuvent être commandés et livrés dans ces pays.
-- [ ] Ensuite, corriger la FAQ « Puis-je utiliser Cruzmi en dehors de la France ? » (elle dit aujourd'hui « où que vous alliez » sans préciser les pays de téléchargement).
+- [ ] Ensuite, mettre à jour la FAQ « Puis-je utiliser Cruzmi en dehors de la France ? » et la mention sous les badges (`store.countries` dans `src/i18n/ui.ts`).
 
-**Solution d'attente à reprendre sur le nouveau site** (à traiter tant que l'appli n'est pas ouverte dans les pays anglophones) : l'actuel site Wix explique comment installer Cruzmi hors de ces 4 pays, dans **deux popups** de la page d'accueil (phrase « Pour télécharger Cruzmi hors France, Belgique, Luxembourg, Suisse », puis un logo Android et un logo Apple). D'après l'équipe : version Android « développeur » (programme de test Google Play) et version iOS via **TestFlight**.
+**Solution d'attente, en place sur le nouveau site depuis le 3 novembre 2026** : elle reprend les deux popups de l'accueil Wix (« Pour télécharger Cruzmi hors France, Belgique, Luxembourg, Suisse », logos Android et Apple), relus le 3 novembre 2026 :
 
-- [ ] Récupérer le texte complet des deux popups et leurs liens (lien d'inscription au test Google Play, de la forme `https://play.google.com/apps/testing/com.cruzmi.Cruzmi`, et lien public TestFlight `https://testflight.apple.com/join/…`). Le contenu des popups Wix ne se charge qu'au clic : il n'a pas pu être lu automatiquement le 3 novembre 2026.
-- [ ] Vérifier que ces procédures fonctionnent vraiment depuis un pays non ouvert (le lien `https://play.google.com/store/apps/details?id=com.cruzmi.Cruzmi` seul est la page publique normale, il ne suffit pas).
-- [ ] Les reprendre sur le nouveau site (page ou encart « Télécharger Cruzmi hors de France, Belgique, Suisse et Luxembourg », en FR et EN, lié depuis la FAQ et le bandeau de téléchargement de la version anglaise), avant la parution de l'article.
+- popup **iOS** : installer TestFlight, puis le lien public **`https://testflight.apple.com/join/JTRxvEcs`** (actif le 3 novembre 2026, bêta « Cruzmi ») ;
+- popup **Android** : il renvoie seulement vers la page Google Play normale, qui affiche « non disponible dans votre pays » hors des 4 pays. **Il n'existe donc aucune solution Android aujourd'hui.**
+
+Sur le nouveau site :
+
+- sous chaque groupe de badges (accueil, bandeau de téléchargement, pied de page, page d'invitation) : « Sur les stores en France, Belgique, Suisse et Luxembourg. Ailleurs, voici comment installer Cruzmi → » ;
+- ce lien mène à une page dédiée, **`/fr/installer/`** et **`/en/install/`**, indexée par les moteurs de recherche. Elle propose la procédure TestFlight en 3 étapes, avec un QR code pour ceux qui lisent sur ordinateur. La partie Android affiche « bientôt disponible » et un lien « Être prévenu » vers le formulaire de contact ;
+- la FAQ « Puis-je utiliser Cruzmi en dehors de la France ? » mentionne TestFlight et renvoie vers cette page.
+
+Reste à faire :
+
+- [ ] **Android** : ouvrir une piste de **test ouvert** dans la Google Play Console (Tests → Test ouvert), disponible dans tous les pays (la disponibilité par pays d'une piste de test est indépendante de la production). Renseigner ensuite son lien d'inscription (`https://play.google.com/apps/testing/com.cruzmi.Cruzmi`) dans `altInstall.androidTesting` de `src/i18n/config.ts`. La page affichera alors automatiquement la procédure Android en 3 étapes et son QR code.
+- [ ] **TestFlight** : une version TestFlight externe **expire au bout de 90 jours**. Garder en permanence une version récente dans le groupe public, sinon le lien n'installe plus rien. Vérifier aussi la limite de testeurs du lien public.
+- [ ] Tester la procédure TestFlight depuis un compte Apple d'un pays non ouvert (par exemple Royaume-Uni ou États-Unis).
+- [ ] Relire les textes : `src/content/install/fr.yaml` et `en.yaml`.
+- [ ] Quand l'appli sera ouverte partout : supprimer la page, la mention sous les badges (`elsewhere` dans `src/components/StoreBadges.astro`) et `altInstall`.
 
 ### A8. Bouton « Se connecter » vers Cruzmi Studio — en sommeil
 

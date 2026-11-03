@@ -96,6 +96,17 @@ const jsonLd = {
                       </ul>
                     ),
                   )}
+                  {item.link && (
+                    <p>
+                      <a
+                        href={path(locale, item.link.to)}
+                        class="font-semibold text-azur underline underline-offset-2 hover:text-azur-dark"
+                      >
+                        {item.link.label}
+                        <span aria-hidden="true">&nbsp;→</span>
+                      </a>
+                    </p>
+                  )}
                 </div>
               </details>
             ))}
