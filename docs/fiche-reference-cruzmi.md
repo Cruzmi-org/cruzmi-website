@@ -80,7 +80,7 @@ Principe d'interface : chaque élément (étape, hébergement, activité, partic
 
 ### Albums photo
 - **Album généré automatiquement** à partir des photos partagées en moins d'une minute (minimum 10 photos ; 3 albums au plus par projet).
-- Personnalisation : thème (Anniversaire, Campagne, Famille, Fête, Mer, Montagne, Ville), format (A4, A5, carré 30 × 30 ou 21 × 21, portrait ou paysage), photo de couverture, page de synthèse du projet en option. Les descriptions des journées enrichissent l'album.
+- Personnalisation : choix des photos, format (A4, A5, carré 30 × 30 ou 21 × 21, portrait ou paysage), photo de couverture. Le choix du thème et la page de synthèse du projet, présents dans le code, ne sont **pas encore proposés** aux utilisateurs (équipe, 2026-11-03) : ne pas les citer sur le site. Les descriptions des journées enrichissent l'album.
 - Aperçu animé en « flipbook » avant commande.
 - Les albums générés sont conservés 15 jours, puis supprimés (on peut en relancer un).
 
