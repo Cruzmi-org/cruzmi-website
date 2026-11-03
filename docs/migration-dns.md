@@ -30,7 +30,11 @@
 | `brevo1._domainkey` | CNAME | `b1.cruzmi-com.dkim.brevo.com` | **Oui** |
 | `brevo2._domainkey` | CNAME | `b2.cruzmi-com.dkim.brevo.com` | **Oui** |
 | `_dmarc` | TXT | `v=DMARC1; p=none; rua=mailto:rua@dmarc.brevo.com` | **Oui** |
-| `s1._domainkey` | CNAME | `s1._domainkey.cruzmi.com.s010.ascendbywix.com` (e-mails marketing Wix) | Non, sauf si Wix e-mailing est utilisé |
+| `s1._domainkey`, `s2._domainkey`, `sel1._domainkey` | CNAME | `<nom>.cruzmi.com.s010.ascendbywix.com` (e-mails marketing Wix) | Oui pendant la transition, à supprimer à la résiliation de Wix |
+| `sg` | CNAME | `sg.cruzmi.com.s010.ascendbywix.com` (envoi d'e-mails Wix) | Idem |
+| `fr`, `en` | CNAME | `cdn3.wixdns.net` (anciennes adresses de langue Wix ; `fr` redirige vers www, `en` répond 404) | Oui, puis à l'étape 5 : redirection vers `https://www.cruzmi.com/fr/` et `/en/` |
+
+> Inventaire complété le 3 novembre 2026 avec l'export de la zone Wix (captures). `s2`, `sel1`, `sg`, `fr` et `en` n'apparaissaient pas dans le relevé public.
 
 Constats :
 - **Aucun enregistrement SPF** sur cruzmi.com (pas de `v=spf1`). Voir §6 (amélioration, hors migration).
@@ -80,6 +84,7 @@ Les e-mails et le site sont basculés **séparément**, pour qu'un éventuel sou
 5. **Bascule du site**, quelques minutes et réversible :
    - Pages → Custom domains → `www.cruzmi.com`, puis `cruzmi.com` ;
    - règle de redirection `cruzmi.com/*` → `https://www.cruzmi.com/$1` (301) ;
+   - `fr.cruzmi.com` et `en.cruzmi.com` : enregistrements proxifiés, avec des règles de redirection vers `https://www.cruzmi.com/fr/` et `https://www.cruzmi.com/en/` (301) ;
    - ajouter les noms d'hôte au widget Turnstile.
 6. **Vérifications** du §6, Search Console, puis résiliation de Wix après deux semaines.
 
