@@ -35,7 +35,7 @@
 | `sg` | CNAME | `sg.cruzmi.com.s010.ascendbywix.com` (envoi d'e-mails Wix) | Idem |
 | `fr`, `en` | CNAME | `cdn3.wixdns.net` (anciennes adresses de langue Wix ; `fr` redirige vers www, `en` répond 404) | Oui, puis à l'étape 5 : redirection vers `https://www.cruzmi.com/fr/` et `/en/` |
 
-> Inventaire complété le 3 novembre 2026 avec l'export de la zone Wix (captures, aucun AAAA, SRV ni CAA). `s2`, `sel1`, `sg`, `fr`, `en` et le TXT de `mail` n'apparaissaient pas dans le relevé public : 20 enregistrements à recopier.
+> Inventaire complété le 3 novembre 2026 avec l'export de la zone Wix (captures, aucun AAAA, SRV ni CAA). `s2`, `sel1`, `sg`, `fr`, `en` et le TXT de `mail` n'apparaissaient pas dans le relevé public : 21 enregistrements à recopier (4 A, 12 CNAME, 1 MX, 4 TXT).
 
 Constats :
 - **Aucun enregistrement SPF** sur cruzmi.com (pas de `v=spf1`). Voir §6 (amélioration, hors migration).
