@@ -29,7 +29,10 @@ const c = entry.data;
         </h1>
         <p class="text-2xl leading-tight font-bold sm:text-3xl">{c.hero.subtitle}</p>
         <p class="max-w-xl text-xl leading-snug">{c.hero.lead}</p>
-        <StoreBadges locale={locale} />
+        <div class="space-y-3">
+          <StoreBadges locale={locale} />
+          <p class="text-lg font-semibold text-azur">{c.hero.reassurance}</p>
+        </div>
         <p class="text-2xl font-semibold text-azur italic">
           <span class="decoration-blush underline decoration-4 underline-offset-8">{c.hero.tagline}</span>
         </p>

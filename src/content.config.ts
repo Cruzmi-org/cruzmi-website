@@ -16,6 +16,7 @@ const home = defineCollection({
       titleAfter: z.string(),
       subtitle: z.string(),
       lead: z.string(),
+      reassurance: z.string(),
       tagline: z.string(),
       imageAlt: z.string(),
     }),
