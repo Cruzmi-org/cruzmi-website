@@ -36,7 +36,7 @@ company:
     - label: "Company"
       value: "CRUZMI SAS (France)"
     - label: "App"
-      value: "iPhone, iPad and Android"
+      value: "iPhone and Android"
     - label: "Languages"
       value: "English, French, Spanish"
 

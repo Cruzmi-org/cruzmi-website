@@ -1,31 +1,82 @@
 ---
+/**
+ * Language picker: a "languages" icon button that opens the list of site languages.
+ * Each entry links to the same page in that language. Adding a locale to `locales` adds it here.
+ */
+import Icon from './Icon.astro';
 import { locales, path, type Locale, type RouteKey } from '../i18n/config';
 import { t } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
   routeKey: RouteKey;
+  /** Side the menu opens towards (right-aligned in the header, left-aligned in the mobile menu). */
+  align?: 'left' | 'right';
   class?: string;
 }
-const { locale, routeKey, class: className = '' } = Astro.props;
+const { locale, routeKey, align = 'right', class: className = '' } = Astro.props;
+const label = t(locale)('a11y.language');
 const names: Record<Locale, string> = { fr: 'Français', en: 'English' };
 ---
 
-<ul aria-label={t(locale)('a11y.language')} class:list={['flex items-center gap-1 text-base font-semibold', className]}>
-  {
-    locales.map((l) => (
-      <li>
-        <a
-          href={path(l, routeKey)}
-          hreflang={l}
-          lang={l}
-          aria-current={l === locale ? 'true' : undefined}
-          title={names[l]}
-          class="rounded-md px-2 py-1 uppercase transition hover:bg-mist aria-[current=true]:bg-argile aria-[current=true]:text-azur"
-        >
-          {l}
-        </a>
-      </li>
-    ))
-  }
-</ul>
+<div class:list={['relative', className]} data-lang-switcher>
+  <button
+    type="button"
+    aria-expanded="false"
+    data-lang-toggle
+    class="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-base font-semibold transition hover:bg-mist aria-expanded:bg-mist"
+  >
+    <Icon name="languages" class="size-6 text-azur" />
+    <span class="uppercase" aria-hidden="true">{locale}</span>
+    <span class="sr-only">{label} : {names[locale]}</span>
+    <Icon name="chevron" class="size-4" />
+  </button>
+  <ul
+    hidden
+    data-lang-menu
+    aria-label={label}
+    class:list={[
+      'absolute top-full z-50 mt-2 min-w-44 rounded-xl bg-white p-1 shadow-lg ring-1 ring-argile',
+      align === 'right' ? 'right-0' : 'left-0',
+    ]}
+  >
+    {
+      locales.map((l) => (
+        <li>
+          <a
+            href={path(l, routeKey)}
+            hreflang={l}
+            lang={l}
+            aria-current={l === locale ? 'true' : undefined}
+            class="flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-lg font-semibold transition hover:bg-mist aria-[current=true]:text-azur"
+          >
+            {names[l]}
+            {l === locale && <Icon name="check" class="size-5" />}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-lang-switcher]').forEach((root) => {
+    const toggle = root.querySelector<HTMLButtonElement>('[data-lang-toggle]');
+    const menu = root.querySelector<HTMLElement>('[data-lang-menu]');
+    if (!toggle || !menu) return;
+    const setOpen = (open: boolean) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => setOpen(menu.hidden));
+    document.addEventListener('click', (e) => {
+      if (!root.contains(e.target as Node)) setOpen(false);
+    });
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  });
+</script>

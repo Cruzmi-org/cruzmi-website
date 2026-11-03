@@ -47,7 +47,7 @@ const nav = [
     </nav>
 
     <div class="ml-auto flex items-center gap-3 lg:ml-0">
-      <div class="hidden sm:block"><LanguageSwitcher locale={locale} routeKey={routeKey} /></div>
+      <LanguageSwitcher locale={locale} routeKey={routeKey} />
       <div class="hidden sm:block"><DownloadButton locale={locale} /></div>
       <button
         type="button"
@@ -75,8 +75,7 @@ const nav = [
           ))
         }
       </ul>
-      <div class="mt-4 flex items-center justify-between gap-3 px-3">
-        <LanguageSwitcher locale={locale} routeKey={routeKey} />
+      <div class="mt-4 px-3 sm:hidden">
         <DownloadButton locale={locale} />
       </div>
     </nav>

@@ -10,7 +10,7 @@ hero:
   subtitle: "L'application collaborative pour préparer, vivre et partager vos projets à plusieurs."
   lead: "Programme, dépenses, repas, photos : tout votre groupe au même endroit, et chacun y contribue."
   # TODO(team): "Gratuit" assumes no in-app purchase besides photo albums (see docs/fiche-reference-cruzmi.md §2).
-  reassurance: "Gratuit · iPhone, iPad et Android · Français, anglais, espagnol"
+  reassurance: "Gratuit · iPhone et Android"
   tagline: "Et si vous faisiez de votre prochain projet une belle expérience collective ?"
   imageAlt: "Quatre amis rient ensemble autour d'une table de café en regardant un smartphone."
 
