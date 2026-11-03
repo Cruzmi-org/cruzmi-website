@@ -37,6 +37,7 @@ const home = defineCollection({
       intro: z.string(),
       steps: z.array(z.object({ label: z.string(), title: z.string(), points: z.array(z.string()) })),
     }),
+    quickQuestions: z.object({ title: z.string(), link: z.string() }),
     download: z.object({ title: z.string(), text: z.string() }),
   }),
 });
@@ -75,7 +76,8 @@ const faq = defineCollection({
       z.object({
         id: z.string(),
         title: z.string(),
-        items: z.array(z.object({ q: z.string(), a: z.string() })),
+        // onHome: also shown in the home page's quick questions (same text, single source).
+        items: z.array(z.object({ q: z.string(), a: z.string(), onHome: z.boolean().optional() })),
       }),
     ),
     contact: z.object({ title: z.string(), text: z.string(), button: z.string() }),

@@ -98,6 +98,10 @@ howItWorks:
         - "Bring together every participant's photos in a shared gallery."
         - "Create your album in under a minute, as a PDF or printed and delivered to your door."
 
+quickQuestions:
+  title: "The questions we get asked most"
+  link: "All questions"
+
 download:
   title: "Ready to come aboard?"
   text: "Download Cruzmi and start your first group project in minutes."

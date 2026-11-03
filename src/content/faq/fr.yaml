@@ -13,12 +13,15 @@ categories:
     title: "L'application"
     items:
       - q: "Qu'est-ce que Cruzmi ?"
-        a: "Cruzmi est une application collaborative pour organiser et vivre vos projets de groupe : voyages, croisières, week-ends, événements, sorties d'associations… Programme, carte des étapes, budget partagé, repas, courses, photos : tout le groupe retrouve les mêmes informations au même endroit."
+        onHome: true
+        a: "Une application mobile collaborative pour organiser, vivre et partager vos projets de groupe : voyages et croisières, week-ends, fêtes et événements, sorties de clubs et d'associations… Programme jour par jour, carte, dépenses partagées, repas, courses, photos et album souvenir : tout le groupe retrouve les mêmes informations au même endroit, et chacun y contribue."
       # TODO(team): confirm that everything except photo albums is free.
       - q: "Cruzmi est-il gratuit ?"
+        onHome: true
         a: "Oui. Le téléchargement et l'utilisation de l'application sont gratuits. Seuls les albums photo que vous choisissez de commander (PDF haute définition ou livre imprimé) sont payants."
-      - q: "Sur quels appareils fonctionne Cruzmi ?"
-        a: "Cruzmi est disponible sur iPhone (iOS 16.4 ou plus récent) via l'App Store, et sur smartphones Android via Google Play."
+      - q: "Sur quels téléphones fonctionne Cruzmi ?"
+        onHome: true
+        a: "Sur iPhone (iOS 16.4 ou plus récent) via l'App Store et sur smartphones Android via Google Play, en français, en anglais et en espagnol."
       - q: "Dans quelles langues l'application est-elle disponible ?"
         a: "Cruzmi est disponible en français, en anglais et en espagnol. D'autres langues suivront."
       # TODO(team): confirm store availability outside France (Wix sentence was cut).
@@ -37,7 +40,8 @@ categories:
       - q: "Comment inviter des participants à mon projet ?"
         a: "Depuis votre projet, partagez le lien d'invitation par message, e-mail ou sur votre groupe de discussion habituel. Vos invités téléchargent l'application, puis rejoignent le projet en cliquant sur le lien."
       - q: "Tous les participants doivent-ils installer l'application ?"
-        a: "Oui : pour rejoindre un projet, consulter le programme et contribuer (dépenses, courses, photos…), chaque participant utilise l'application sur son téléphone."
+        onHome: true
+        a: "Oui : pour rejoindre un projet, consulter le programme et contribuer (dépenses, courses, photos…), chaque participant utilise l'application sur son téléphone. Il suffit de cliquer sur le lien d'invitation."
       - q: "Peut-on n'utiliser que certaines fonctionnalités ?"
         a: "Oui. À la création du projet, activez seulement les modules utiles (dépenses, repas, courses, photos, ressources…). Vous pourrez modifier ce choix à tout moment."
 

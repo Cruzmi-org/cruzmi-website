@@ -13,11 +13,14 @@ categories:
     title: "The app"
     items:
       - q: "What is Cruzmi?"
-        a: "Cruzmi is a collaborative app to organise and live your group projects: trips, sailing cruises, weekends, events, club outings… Schedule, route map, shared budget, meals, shopping, photos: the whole group finds the same information in one place."
+        onHome: true
+        a: "A collaborative mobile app to plan, live and share your group projects: trips and sailing cruises, weekends, parties and events, club and association outings… Day-by-day schedule, map, shared expenses, meals, shopping, photos and a keepsake album: the whole group finds the same information in one place, and everyone pitches in."
       - q: "Is Cruzmi free?"
+        onHome: true
         a: "Yes. Downloading and using the app is free. Only the photo albums you choose to order (high-definition PDF or printed book) are paid for."
-      - q: "Which devices does Cruzmi run on?"
-        a: "Cruzmi is available on iPhone (iOS 16.4 or later) from the App Store, and on Android phones from Google Play."
+      - q: "Which phones does Cruzmi run on?"
+        onHome: true
+        a: "On iPhone (iOS 16.4 or later) from the App Store and on Android phones from Google Play, in English, French and Spanish."
       - q: "Which languages is the app available in?"
         a: "Cruzmi is available in English, French and Spanish. More languages will follow."
       - q: "Can I use Cruzmi outside France?"
@@ -35,7 +38,8 @@ categories:
       - q: "How do I invite people to my project?"
         a: "From your project, share the invitation link by text, email or in your usual group chat. Your guests download the app, then join the project by tapping the link."
       - q: "Does every participant need to install the app?"
-        a: "Yes: to join a project, see the schedule and contribute (expenses, shopping, photos…), each participant uses the app on their phone."
+        onHome: true
+        a: "Yes: to join a project, see the schedule and contribute (expenses, shopping, photos…), each participant uses the app on their phone. They just tap the invitation link."
       - q: "Can we use only some of the features?"
         a: "Yes. When you create the project, switch on only the modules you need (expenses, meals, shopping, photos, resources…). You can change this at any time."
 

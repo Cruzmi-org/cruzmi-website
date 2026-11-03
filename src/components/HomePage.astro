@@ -13,7 +13,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import DownloadCta from './DownloadCta.astro';
 import Icon from './Icon.astro';
 import StoreBadges from './StoreBadges.astro';
-import { path, type Locale } from '../i18n/config';
+import { path, stores, type Locale } from '../i18n/config';
 
 interface Props {
   locale: Locale;
@@ -22,6 +22,40 @@ const { locale } = Astro.props;
 const entry = await getEntry('home', locale);
 if (!entry) throw new Error(`Missing home content for locale "${locale}"`);
 const c = entry.data;
+
+// Quick questions: FAQ items flagged onHome, so the text lives in one place only.
+const faq = await getEntry('faq', locale);
+if (!faq) throw new Error(`Missing FAQ content for locale "${locale}"`);
+const quickQuestions = faq.data.categories.flatMap((cat) => cat.items.filter((item) => item.onHome));
+
+// schema.org description of the app and its publisher, for search engines and AI assistants.
+const site = Astro.site?.href ?? 'https://www.cruzmi.com/';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${site}#organization`,
+      name: 'Cruzmi',
+      legalName: 'CRUZMI SAS',
+      url: site,
+      email: 'contact@cruzmi.com',
+    },
+    {
+      '@type': 'MobileApplication',
+      '@id': `${site}#app`,
+      name: 'Cruzmi',
+      url: new URL(path(locale, 'home'), site).href,
+      description: c.meta.description,
+      applicationCategory: 'LifestyleApplication',
+      operatingSystem: 'iOS 16.4+, Android',
+      inLanguage: ['fr', 'en', 'es'],
+      downloadUrl: [stores.ios[locale], stores.android[locale]],
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+      publisher: { '@id': `${site}#organization` },
+    },
+  ],
+};
 
 /** Use-case photos, with the crop position that keeps people in the 4:3 card frame. */
 const useCasePhotos: Record<(typeof c.useCases.items)[number]['image'], { src: ImageMetadata; position: string }> = {
@@ -44,6 +78,8 @@ const benefitCrop: Record<(typeof c.benefits.items)[number]['image'], string> = 
 ---
 
 <BaseLayout locale={locale} routeKey="home" title={c.meta.title} description={c.meta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
   <!-- Hero -->
   <section class="relative overflow-hidden bg-mist">
     <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:py-20 lg:px-8">
@@ -224,6 +260,31 @@ const benefitCrop: Record<(typeof c.benefits.items)[number]['image'], string> = 
         ))
       }
     </ol>
+  </section>
+
+  <!-- Quick questions (from the FAQ) -->
+  <section class="bg-mist">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <h2 class="text-4xl font-bold sm:text-5xl">{c.quickQuestions.title}</h2>
+      <dl class="mt-10 grid gap-5 md:grid-cols-2">
+        {
+          quickQuestions.map((item) => (
+            <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-argile">
+              <dt class="text-2xl leading-tight font-bold text-azur">{item.q}</dt>
+              <dd class="mt-2 text-lg leading-snug">{item.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="mt-8 text-center">
+        <a
+          href={path(locale, 'faq')}
+          class="inline-flex items-center gap-2 text-xl font-bold text-azur underline decoration-blush decoration-2 underline-offset-4 hover:decoration-azur"
+        >
+          {c.quickQuestions.link}<span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </div>
   </section>
 
   <!-- Download -->

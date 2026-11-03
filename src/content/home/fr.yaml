@@ -102,6 +102,11 @@ howItWorks:
         - "Réunissez les photos de tous les participants dans une galerie commune."
         - "Créez votre album en moins d'une minute, en PDF ou imprimé et livré chez vous."
 
+# Questions come from the FAQ (src/content/faq/fr.yaml, items with onHome: true).
+quickQuestions:
+  title: "Les questions qu'on nous pose le plus"
+  link: "Toutes les questions"
+
 download:
   title: "Prêt à embarquer ?"
   text: "Téléchargez Cruzmi et lancez votre premier projet de groupe en quelques minutes."
