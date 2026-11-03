@@ -8,14 +8,8 @@ import Icon from './Icon.astro';
 import type { Locale } from '../i18n/config';
 import { t } from '../i18n/ui';
 
-import programme from '../assets/screenshots/programme.jpg';
-import map from '../assets/screenshots/map-multimodal.jpg';
-import budget from '../assets/screenshots/budget.jpg';
-import meals from '../assets/screenshots/meals.jpg';
-import shopping from '../assets/screenshots/shopping-ipad.jpg';
-import participants from '../assets/screenshots/participants.jpg';
-import photos from '../assets/screenshots/photos.jpg';
-import albums from '../assets/screenshots/printed-albums.jpg';
+import { screenshot } from '../assets/screenshots';
+import albums from '../assets/photos/printed-albums.jpg';
 
 interface Props {
   locale: Locale;
@@ -29,13 +23,13 @@ const c = entry.data;
 /** How each visual is framed: app screens get a device frame, real photos don't. */
 type Frame = 'phone' | 'tablet' | 'photo';
 const visuals: Record<(typeof c.features)[number]['image'], { src: ImageMetadata; frame: Frame }> = {
-  programme: { src: programme, frame: 'phone' },
-  map: { src: map, frame: 'phone' },
-  budget: { src: budget, frame: 'phone' },
-  meals: { src: meals, frame: 'phone' },
-  shopping: { src: shopping, frame: 'tablet' },
-  participants: { src: participants, frame: 'phone' },
-  photos: { src: photos, frame: 'phone' },
+  programme: { src: screenshot(locale, 'programme'), frame: 'phone' },
+  map: { src: screenshot(locale, 'map-route'), frame: 'phone' },
+  budget: { src: screenshot(locale, 'budget'), frame: 'phone' },
+  meals: { src: screenshot(locale, 'meals'), frame: 'phone' },
+  shopping: { src: screenshot(locale, 'shopping'), frame: 'phone' },
+  participants: { src: screenshot(locale, 'participants'), frame: 'phone' },
+  photos: { src: screenshot(locale, 'gallery'), frame: 'phone' },
   albums: { src: albums, frame: 'photo' },
 };
 const frameClass: Record<Frame, string> = {
