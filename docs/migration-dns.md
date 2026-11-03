@@ -81,7 +81,7 @@ Les e-mails et le site sont basculés **séparément**, pour qu'un éventuel sou
 1. **Fusion** `develop` → `main` : la production `cruzmi-website.pages.dev` reçoit le site complet.
 2. **Export de la zone Wix** (capture des enregistrements DNS).
 3. **Zone Cloudflare** : ajouter cruzmi.com (offre gratuite). Cloudflare importe les enregistrements existants. Tout est vérifié contre le §1 et mis en **DNS only** (nuage gris), y compris `cruzmi.com` et `www`, qui pointent **encore vers Wix**.
-4. **Serveurs de noms** : chez LWS, remplacer `ns4/ns5.wixdns.net` par les deux serveurs Cloudflare. Rien ne change pour les visiteurs, ni pour les e-mails : la nouvelle zone est une copie de l'ancienne. Attendre que Cloudflare indique la zone **Active**, puis vérifier les e-mails.
+4. **Serveurs de noms** : chez LWS, remplacer `ns4/ns5.wixdns.net` par les deux serveurs Cloudflare, **`dax.ns.cloudflare.com`** et **`nova.ns.cloudflare.com`** (zone créée le 3 novembre 2026 ; les 18 noms vérifiés renvoient sur ces serveurs exactement les mêmes réponses que sur Wix). Rien ne change pour les visiteurs, ni pour les e-mails : la nouvelle zone est une copie de l'ancienne. Attendre que Cloudflare indique la zone **Active**, puis vérifier les e-mails.
 5. **Bascule du site**, quelques minutes et réversible :
    - Pages → Custom domains → `www.cruzmi.com`, puis `cruzmi.com` ;
    - règle de redirection `cruzmi.com/*` → `https://www.cruzmi.com/$1` (301) ;
