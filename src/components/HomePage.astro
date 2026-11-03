@@ -31,12 +31,15 @@ const useCasePhotos: Record<(typeof c.useCases.items)[number]['image'], { src: I
   projets: { src: projets, position: 'object-[50%_68%]' },
 };
 
-/** Part of each screenshot shown on its benefit card: vertical position of the square crop (skips the project header). */
+/**
+ * Part of each screenshot shown on its benefit card (3:4 portrait crop): the schedule keeps the project
+ * header and the module bar, the others skip that header (identical on every screen).
+ */
 const benefitCrop: Record<(typeof c.benefits.items)[number]['image'], string> = {
-  programme: 'object-[50%_71%]',
-  reimbursements: 'object-[50%_28%]',
-  shopping: 'object-[50%_71%]',
-  gallery: 'object-[50%_88%]',
+  programme: 'object-top',
+  reimbursements: 'object-[50%_42%]',
+  shopping: 'object-bottom',
+  gallery: 'object-[50%_90%]',
 };
 ---
 
@@ -108,7 +111,7 @@ const benefitCrop: Record<(typeof c.benefits.items)[number]['image'], string> = 
                 widths={[360, 720]}
                 sizes="(min-width: 768px) 360px, 80vw"
                 class:list={[
-                  'mx-auto aspect-square w-full max-w-90 rounded-t-3xl object-cover shadow-lg ring-1 ring-argile',
+                  'mx-auto aspect-[3/4] w-full max-w-90 rounded-t-3xl object-cover shadow-lg ring-1 ring-argile',
                   benefitCrop[b.image],
                 ]}
               />
