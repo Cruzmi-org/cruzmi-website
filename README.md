@@ -1,7 +1,10 @@
 # cruzmi-website
 
 Marketing site for [Cruzmi](https://www.cruzmi.com) — Astro (static) + Tailwind CSS 4 + TypeScript,
-hosted on Cloudflare Pages.
+hosted on Cloudflare Pages. Preview: https://develop.cruzmi-website.pages.dev
+
+- **What's left before launch (FR, for the team): [`docs/reste-a-faire.md`](docs/reste-a-faire.md)**
+- DNS migration plan (FR): [`docs/migration-dns.md`](docs/migration-dns.md)
 
 ## Develop
 
@@ -30,3 +33,27 @@ Adding a language (e.g. `es`): add it to `astro.config.mjs`, `src/i18n/config.ts
 then add `src/content/*/es.yaml` and `src/pages/es/`.
 
 Photos: `PhotoPlaceholder` marks every spot waiting for a real, rights-cleared image.
+
+## Contact form
+
+`src/components/ContactPage.astro` posts to `functions/api/contact.ts` (Cloudflare Pages Function),
+which validates the input (`src/lib/contact.ts`), checks Cloudflare Turnstile, then sends the
+message through the Brevo API to `contact@cruzmi.com` with the visitor as reply-to.
+`npm test` runs the function against mocked Turnstile/Brevo endpoints.
+
+Cloudflare Pages settings (Settings > Variables and secrets):
+
+| Name | Type | Value |
+|---|---|---|
+| `BREVO_API_KEY` | secret | Brevo API key (v3) |
+| `TURNSTILE_SECRET_KEY` | secret | Turnstile widget secret key |
+| `PUBLIC_TURNSTILE_SITE_KEY` | build variable | Turnstile widget site key (falls back to Cloudflare's test key) |
+| `CONTACT_TO` | optional | default `contact@cruzmi.com` |
+| `CONTACT_FROM` | optional | default `no-reply@cruzmi.com` (domain must be authenticated in Brevo) |
+
+`npm run dev` does not run Pages Functions: test the form end-to-end on a Cloudflare preview.
+
+## Conventions
+
+French typography: use a narrow no-break space (U+202F) before `? ! : ;` and inside `« »` so
+punctuation never wraps alone onto a new line.

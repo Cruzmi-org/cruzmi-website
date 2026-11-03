@@ -1,0 +1,117 @@
+# Features page copy (EN). Draft written by Claude — to be reviewed by the team.
+# Every claim is checked against docs/fiche-reference-cruzmi.md (what the app really does).
+# `image` refers to a key in src/components/FeaturesPage.astro (screenshots in src/assets/screenshots/).
+meta:
+  title: "Features — Cruzmi"
+  description: "Shared schedule, map, expenses and reimbursements, meals, shopping, photos and a printed album: discover all the features of Cruzmi, the free app for your group projects."
+
+intro:
+  title: "Everything you need to live your projects together"
+  text: "Cruzmi brings everything your group needs into one place, from the first idea to the last memory. Switch on only the modules your project needs: you can always change your mind."
+
+features:
+  - id: programme
+    image: programme
+    kicker: "Schedule"
+    title: "A clear schedule, built together"
+    text: "Day after day, find the stop, the accommodation and the planned activities. Everyone can add ideas to the activity suggestions."
+    points:
+      - "An assistant helps you build the schedule in a few questions."
+      - "Stops, accommodation and activities with times and addresses."
+      - "Add a place by simply pasting a Google Maps link."
+      - "Share the project roadmap as a PDF."
+
+  - id: map
+    image: map
+    kicker: "Map"
+    title: "Your route on the map"
+    text: "See every stop of your project and how you get there: car, train, bike, plane, sailboat…"
+    points:
+      - "Numbered stops, the means of transport and the distance of each leg."
+      - "Today's schedule or the overview, in map or satellite view."
+      - "For sailing: editable sailing routes and GPX track import."
+      - "Your own outbound and return journeys, visible only to you."
+
+  - id: budget
+    image: budget
+    kicker: "Expenses"
+    title: "Fair accounts between participants"
+    text: "Everyone logs what they pay, Cruzmi does the maths. No more spreadsheets or “who owes what to whom?”."
+    points:
+      - "A planned budget for the group, or just for you."
+      - "A fair split: each person's weighting, couples and families grouped, days of attendance."
+      - "An expense can be offered as a gift, without weighing on the shared accounts."
+      - "Cruzmi works out who owes whom, keeping the number of transfers down."
+      - "Expenses can be exported to Excel."
+
+  - id: meals
+    image: meals
+    kicker: "Meals"
+    title: "Meals, day by day"
+    text: "Brunch, picnic, lunch at home or dinner out: plan the project's meals and add them to the schedule."
+    points:
+      - "Home-made menus or restaurants."
+      - "A day-by-day view and a summary of the project."
+      - "Meal suggestions shared by the group."
+
+  - id: shopping
+    image: shopping
+    kicker: "Shopping"
+    title: "One shared shopping list"
+    text: "Every participant adds what needs buying and sees in real time what the others have already picked up."
+    points:
+      - "One list for the whole group, sorted by category."
+      - "Purchases ticked off live, no duplicates."
+      - "Export it to Excel and reuse it for a future project."
+
+  - id: participants
+    image: participants
+    kicker: "Participants"
+    title: "The whole group together"
+    text: "Invite participants with a simple link. Everyone joins the project from their phone and finds the information that matters to them."
+    points:
+      - "An invitation link to share wherever you like."
+      - "Each person's dates of attendance."
+      - "Everyone chooses what they share with the group."
+      - "A shareable participants table, handy for a sign-up or crew list."
+
+  - id: photos
+    image: photos
+    kicker: "Photos"
+    title: "All the group's photos in one place"
+    text: "Everyone shares their photos in a common gallery, sorted by day. No more chasing everyone for pictures once the project is over."
+    points:
+      - "A gallery shared by all participants."
+      - "Photos sorted day by day, with their descriptions."
+      - "Save the group's photos to your phone."
+
+  - id: albums
+    image: albums
+    kicker: "Photo albums"
+    title: "Your memories in a real book"
+    text: "From the shared photos, Cruzmi automatically creates an album in less than a minute. Customise it, then order it printed or as a PDF."
+    points:
+      - "An album generated automatically from the gallery."
+      - "Choose the photos, the cover and the size."
+      - "Three finishes: HD PDF (€5), hardcover printed album, or Premium lay-flat edition."
+      - "Printed in France by Flexilivre."
+
+more:
+  title: "And also…"
+  items:
+    - icon: checklist
+      title: "Shared resources"
+      text: "Checklist, useful links, and the things everyone makes available (accommodation, vehicle, equipment…), reusable from one project to the next."
+    - icon: offline
+      title: "Even without signal"
+      text: "Information already loaded on your phone stays available, even offline."
+    - icon: idea
+      title: "Everyone contributes"
+      text: "An activity suggestion, a meal idea, a helping hand: everyone takes part in their own way."
+    - icon: devices
+      title: "iPhone and Android"
+      text: "Cruzmi works on your smartphone, in English, French and Spanish."
+
+download:
+  title: "Ready to give it a try?"
+  text: "Download Cruzmi for free and create your first group project in minutes."

@@ -1,0 +1,54 @@
+# About page copy (EN). Draft written by Claude — mirrors fr.yaml (see TODO(team) notes there).
+meta:
+  title: "About us — Cruzmi"
+  description: "Cruzmi was born from a group of friends who couldn't find an app to organise their projects together. Discover our story, our team and CRUZMI SAS."
+
+intro:
+  kicker: "About us"
+  title: "A group of friends who built the app they dreamed of"
+  lead: "Weekends away, themed getaways, sailing cruises, family celebrations: we love doing things together. Cruzmi grew out of that, and out of a simple observation."
+  imageAlt: "Cruzmi founders hiking together as friends on a tropical trail."
+
+story:
+  title: "Our story"
+  paragraphs:
+    - "Like many groups of friends, we regularly go away together: a weekend, a themed getaway, a cruise, a birthday to celebrate… And every time, the same thing happens: the organising falls on one person, information gets scattered across messages, emails and spreadsheets, and nobody really knows who owes what to whom."
+    - "We looked for the app that would make our lives easier. We couldn't find it. So we built it."
+    - "Cruzmi is the tool we wanted for ourselves: a shared space where everyone takes part, where everyone has the same information, and where memories are shared as easily as expenses."
+
+team:
+  title: "An experienced, pragmatic team"
+  text: "Cruzmi's founders are entrepreneurs and digital professionals. We put our experience to work for a simple ambition: making the organisation of a group project part of the fun, not a chore."
+  values:
+    - title: "Together"
+      text: "A group project is prepared as a group: everyone should be able to contribute."
+    - title: "Simple"
+      text: "A clear app you can pick up without a user manual."
+    - title: "Memorable"
+      text: "The project doesn't end when you get home: memories deserve to last."
+
+company:
+  title: "CRUZMI SAS"
+  text: "Founded in February 2023, CRUZMI SAS designs and develops the Cruzmi app, for everyone who organises projects with others, one-off or regular. It relies on a growing network of tourism, rental and leisure professionals who recommend it to their customers."
+  facts:
+    - label: "Founded"
+      value: "February 2023"
+    - label: "Company"
+      value: "CRUZMI SAS (France)"
+    - label: "App"
+      value: "iPhone and Android"
+    - label: "Languages"
+      value: "English, French, Spanish"
+
+pros:
+  title: "Are you a professional?"
+  text: "Tourism, rental, leisure: join the network of Cruzmi partner professionals and recommend the app to your customers."
+  points:
+    - "Offer your customers a free app to plan and live their stay together."
+    - "Schedule, expenses, meals, photos: they share everything, before, during and after."
+    - "Join a growing network of tourism, rental and leisure professionals."
+  button: "Let's talk"
+
+download:
+  title: "Join the adventure"
+  text: "Download Cruzmi for free and turn your next project into a great shared experience."

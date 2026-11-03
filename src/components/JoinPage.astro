@@ -1,0 +1,110 @@
+---
+/**
+ * Invitation landing page. Invitation links (https://redirect.cruzmi.fr/join/…) open the app when it
+ * is installed; otherwise nginx sends the visitor to /join/?path=/join/… which forwards here.
+ * When ?path is a valid app link path, the last step shows a button back to that app link.
+ */
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DownloadButton from './DownloadButton.astro';
+import Icon from './Icon.astro';
+import StoreBadges from './StoreBadges.astro';
+import { APP_LINK_ORIGIN, APP_LINK_PATH_RE, path, type Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const entry = await getEntry('join', locale);
+if (!entry) throw new Error(`Missing join content for locale "${locale}"`);
+const c = entry.data;
+const [install, account, joinStep] = c.steps;
+---
+
+<BaseLayout locale={locale} routeKey="join" title={c.meta.title} description={c.meta.description} noindex>
+  <section class="bg-mist">
+    <div class="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 lg:py-20">
+      <p class="text-xl font-bold tracking-wide text-azur uppercase">{c.kicker}</p>
+      <h1 class="mt-2 text-5xl leading-[0.95] font-bold text-balance sm:text-6xl">{c.title}</h1>
+      <p class="mx-auto mt-5 max-w-2xl text-xl leading-snug">{c.lead}</p>
+      <div class="mt-8 flex justify-center sm:hidden">
+        <DownloadButton locale={locale} />
+      </div>
+    </div>
+  </section>
+
+  <ol class="mx-auto max-w-3xl space-y-5 px-4 py-14 sm:px-6 lg:py-16">
+    <li class="flex gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-argile sm:p-8">
+      <span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-azur text-2xl font-bold text-white">1</span>
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold">{install.title}</h2>
+        <p class="mt-1 text-xl leading-snug">{install.text}</p>
+        <StoreBadges locale={locale} class="mt-5" />
+      </div>
+    </li>
+
+    <li class="flex gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-argile sm:p-8">
+      <span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-azur text-2xl font-bold text-white">2</span>
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold">{account.title}</h2>
+        <p class="mt-1 text-xl leading-snug">{account.text}</p>
+      </div>
+    </li>
+
+    <li class="flex gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-argile sm:p-8">
+      <span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-azur text-2xl font-bold text-white">3</span>
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold">{joinStep.title}</h2>
+        <!-- Without a valid ?path, only the "tap your link again" text is shown. -->
+        <p class="mt-1 text-xl leading-snug" data-join-text-nolink>{joinStep.textNoLink}</p>
+        <p class="mt-1 text-xl leading-snug" data-join-text-link hidden>{joinStep.text}</p>
+        <a
+          href="#"
+          hidden
+          data-join-open
+          data-origin={APP_LINK_ORIGIN}
+          data-pattern={APP_LINK_PATH_RE.source}
+          class="mt-5 inline-flex items-center gap-2 rounded-full bg-cherry px-7 py-3 text-xl font-semibold text-white shadow-sm transition hover:bg-cherry/90"
+        >
+          {c.openButton}
+          <Icon name="chevron" class="size-5 -rotate-90" />
+        </a>
+      </div>
+    </li>
+
+  </ol>
+  <p class="mx-auto -mt-6 max-w-3xl px-4 pb-14 text-center text-lg sm:px-6">
+    {c.help}{' '}
+    <a href={path(locale, 'contact')} class="font-semibold whitespace-nowrap text-azur underline underline-offset-2">{c.helpLink}</a>.
+  </p>
+
+  <section class="mx-auto max-w-3xl px-4 pb-20 sm:px-6">
+    <div class="rounded-3xl bg-argile/50 p-8 sm:p-10">
+      <h2 class="text-3xl font-bold">{c.discover.title}</h2>
+      <p class="mt-2 text-xl leading-snug">{c.discover.text}</p>
+      <a href={path(locale, 'features')} class="mt-4 inline-block text-xl font-semibold text-azur underline underline-offset-2">
+        {c.discover.link}
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const open = document.querySelector<HTMLAnchorElement>('[data-join-open]');
+  const appPath = new URLSearchParams(location.search).get('path');
+
+  if (open && appPath && new RegExp(open.dataset.pattern ?? '$^').test(appPath)) {
+    // The origin is fixed: ?path can only ever point to our own app link domain.
+    open.href = `${open.dataset.origin}${appPath}`;
+    open.hidden = false;
+    document.querySelector<HTMLElement>('[data-join-text-link]')!.hidden = false;
+    document.querySelector<HTMLElement>('[data-join-text-nolink]')!.hidden = true;
+  }
+
+  // Keep ?path when switching language.
+  if (appPath) {
+    document.querySelectorAll<HTMLAnchorElement>('a[hreflang]').forEach((a) => {
+      a.search = location.search;
+    });
+  }
+</script>

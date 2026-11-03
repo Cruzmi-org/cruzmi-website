@@ -15,6 +15,8 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'fr', locales: { fr: 'fr-FR', en: 'en' } },
+      // Invitation landing pages are noindex: keep them out of the sitemap.
+      filter: (page) => !/\/(join|rejoindre)\/$/.test(page),
     }),
   ],
   vite: { plugins: [tailwindcss()] },

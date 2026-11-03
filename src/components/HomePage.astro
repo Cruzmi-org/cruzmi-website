@@ -1,10 +1,19 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { getEntry } from 'astro:content';
+import heroPhoto from '../assets/photos/hero-vitaly-gariev-unsplash.jpg';
+import printedAlbums from '../assets/photos/printed-albums.jpg';
+import { screenshot } from '../assets/screenshots';
+import voyages from '../assets/photos/cas-usage/voyages.jpg';
+import evenements from '../assets/photos/cas-usage/evenements.jpg';
+import associations from '../assets/photos/cas-usage/associations.jpg';
+import projets from '../assets/photos/cas-usage/projets.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DownloadCta from './DownloadCta.astro';
 import Icon from './Icon.astro';
-import PhotoPlaceholder from './PhotoPlaceholder.astro';
 import StoreBadges from './StoreBadges.astro';
-import type { Locale } from '../i18n/config';
+import { path, stores, type Locale } from '../i18n/config';
 
 interface Props {
   locale: Locale;
@@ -13,9 +22,64 @@ const { locale } = Astro.props;
 const entry = await getEntry('home', locale);
 if (!entry) throw new Error(`Missing home content for locale "${locale}"`);
 const c = entry.data;
+
+// Quick questions: FAQ items flagged onHome, so the text lives in one place only.
+const faq = await getEntry('faq', locale);
+if (!faq) throw new Error(`Missing FAQ content for locale "${locale}"`);
+const quickQuestions = faq.data.categories.flatMap((cat) => cat.items.filter((item) => item.onHome));
+
+// schema.org description of the app and its publisher, for search engines and AI assistants.
+const site = Astro.site?.href ?? 'https://www.cruzmi.com/';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${site}#organization`,
+      name: 'Cruzmi',
+      legalName: 'CRUZMI SAS',
+      url: site,
+      email: 'contact@cruzmi.com',
+    },
+    {
+      '@type': 'MobileApplication',
+      '@id': `${site}#app`,
+      name: 'Cruzmi',
+      url: new URL(path(locale, 'home'), site).href,
+      description: c.meta.description,
+      applicationCategory: 'LifestyleApplication',
+      operatingSystem: 'iOS 16.4+, Android',
+      inLanguage: ['fr', 'en', 'es'],
+      downloadUrl: [stores.ios[locale], stores.android[locale]],
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+      publisher: { '@id': `${site}#organization` },
+    },
+  ],
+};
+
+/** Use-case photos, with the crop position that keeps people in the 4:3 card frame. */
+const useCasePhotos: Record<(typeof c.useCases.items)[number]['image'], { src: ImageMetadata; position: string }> = {
+  voyages: { src: voyages, position: 'object-center' },
+  evenements: { src: evenements, position: 'object-center' },
+  associations: { src: associations, position: 'object-center' },
+  projets: { src: projets, position: 'object-[50%_68%]' },
+};
+
+/**
+ * Part of each screenshot shown on its benefit card (3:4 portrait crop): the schedule keeps the project
+ * header and the module bar, the others skip that header (identical on every screen).
+ */
+const benefitCrop: Record<(typeof c.benefits.items)[number]['image'], string> = {
+  programme: 'object-top',
+  reimbursements: 'object-[50%_42%]',
+  shopping: 'object-bottom',
+  gallery: 'object-[50%_90%]',
+};
 ---
 
 <BaseLayout locale={locale} routeKey="home" title={c.meta.title} description={c.meta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
   <!-- Hero -->
   <section class="relative overflow-hidden bg-mist">
     <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:py-20 lg:px-8">
@@ -26,12 +90,24 @@ const c = entry.data;
         </h1>
         <p class="text-2xl leading-tight font-bold sm:text-3xl">{c.hero.subtitle}</p>
         <p class="max-w-xl text-xl leading-snug">{c.hero.lead}</p>
-        <StoreBadges locale={locale} />
+        <div class="space-y-3">
+          <StoreBadges locale={locale} />
+          <p class="text-lg font-semibold text-azur">{c.hero.reassurance}</p>
+        </div>
         <p class="text-2xl font-semibold text-azur italic">
           <span class="decoration-blush underline decoration-4 underline-offset-8">{c.hero.tagline}</span>
         </p>
       </div>
-      <PhotoPlaceholder locale={locale} alt={c.hero.imageAlt} class="aspect-[4/3] w-full rounded-3xl" />
+      <Image
+        src={heroPhoto}
+        alt={c.hero.imageAlt}
+        width={1920}
+        widths={[640, 960, 1280, 1600, 1920]}
+        sizes="(min-width: 1280px) 608px, (min-width: 1024px) 46vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="h-auto w-full rounded-3xl object-cover shadow-sm"
+      />
     </div>
   </section>
 
@@ -52,14 +128,71 @@ const c = entry.data;
     </ul>
   </section>
 
+  <!-- Benefits: what Cruzmi does for the group, shown with real app screenshots -->
+  <section class="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8 lg:pt-24">
+    <h2 class="max-w-3xl text-4xl leading-none font-bold text-balance sm:text-5xl">{c.benefits.title}</h2>
+    <p class="mt-3 max-w-2xl text-xl">{c.benefits.intro}</p>
+    <ul class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        c.benefits.items.map((b) => (
+          <li class="flex flex-col overflow-hidden rounded-3xl bg-mist ring-1 ring-argile">
+            <div class="space-y-2 p-7 pb-6">
+              <h3 class="text-3xl leading-tight font-bold">{b.title}</h3>
+              <p class="text-lg leading-snug">{b.text}</p>
+            </div>
+            <div class="relative mt-auto px-7">
+              <Image
+                src={screenshot(locale, b.image)}
+                alt=""
+                widths={[360, 720]}
+                sizes="(min-width: 768px) 360px, 80vw"
+                class:list={[
+                  'mx-auto aspect-[3/4] w-full max-w-90 rounded-t-3xl object-cover shadow-lg ring-1 ring-argile',
+                  benefitCrop[b.image],
+                ]}
+              />
+              {b.image === 'gallery' && (
+                <Image
+                  src={printedAlbums}
+                  alt=""
+                  widths={[160, 320]}
+                  sizes="160px"
+                  class="absolute right-4 bottom-6 aspect-square w-32 rounded-2xl object-cover shadow-xl ring-4 ring-white sm:right-8 sm:w-40"
+                />
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-8 text-center">
+      <a
+        href={path(locale, 'features')}
+        class="inline-flex items-center gap-2 text-xl font-bold text-azur underline decoration-blush decoration-2 underline-offset-4 hover:decoration-azur"
+      >
+        {c.benefits.link}<span aria-hidden="true">→</span>
+      </a>
+    </p>
+  </section>
+
   <!-- Use cases -->
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
     <h2 class="max-w-xl text-4xl leading-none font-bold sm:text-5xl">{c.useCases.title}</h2>
-    <ul class="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-2 md:overflow-visible lg:grid-cols-4">
+    <!-- Mobile: full-bleed scroller with the next card peeking, plus position dots. Desktop: grid. -->
+    <ul
+      data-carousel
+      class="-mx-4 mt-10 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:scroll-px-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 lg:grid-cols-4"
+    >
       {
         c.useCases.items.map((u) => (
-          <li class="w-72 shrink-0 snap-start overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-argile md:w-auto">
-            <PhotoPlaceholder locale={locale} alt={u.title} class="aspect-[4/3] w-full" />
+          <li class="w-[80%] shrink-0 snap-start overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-argile sm:w-72 md:w-auto">
+            <Image
+              src={useCasePhotos[u.image].src}
+              alt=""
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 296px, (min-width: 768px) 45vw, 80vw"
+              class:list={['aspect-[4/3] w-full object-cover', useCasePhotos[u.image].position]}
+            />
             <div class="space-y-1 p-5">
               <h3 class="text-2xl leading-tight font-bold">{u.title}</h3>
               <p class="text-lg leading-snug">{u.text}</p>
@@ -68,6 +201,16 @@ const c = entry.data;
         ))
       }
     </ul>
+    <div data-carousel-dots class="mt-3 flex justify-center gap-2 md:hidden" aria-hidden="true">
+      {
+        c.useCases.items.map((_, i) => (
+          <span
+            data-active={i === 0 ? 'true' : 'false'}
+            class="h-2 w-2 rounded-full bg-azur/25 transition-all data-[active=true]:w-6 data-[active=true]:bg-azur"
+          />
+        ))
+      }
+    </div>
   </section>
 
   <!-- Audiences -->
@@ -75,7 +218,7 @@ const c = entry.data;
     <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <h2 class="text-4xl font-bold sm:text-5xl">{c.audiences.title}</h2>
       <p class="mt-3 max-w-2xl text-xl">{c.audiences.intro}</p>
-      <ul class="mt-10 grid gap-5 sm:grid-cols-2">
+      <ul class="mt-10 grid gap-5 md:grid-cols-3">
         {
           c.audiences.items.map((a) => (
             <li class="rounded-2xl bg-white p-6 shadow-sm">
@@ -85,6 +228,10 @@ const c = entry.data;
           ))
         }
       </ul>
+      <p class="mt-6 flex items-center gap-4 rounded-2xl bg-white/70 p-5 text-lg leading-snug font-semibold">
+        <Icon name="users" class="size-9 shrink-0 text-azur" />
+        {c.audiences.partners}
+      </p>
     </div>
   </section>
 
@@ -115,14 +262,51 @@ const c = entry.data;
     </ol>
   </section>
 
-  <!-- Download -->
-  <section id="download" class="scroll-mt-20 px-4 pb-20 sm:px-6 lg:px-8">
-    <div class="mx-auto flex max-w-7xl flex-col items-start gap-6 rounded-3xl bg-azur px-8 py-12 text-white md:flex-row md:items-center md:justify-between lg:px-14">
-      <div>
-        <h2 class="text-4xl font-bold sm:text-5xl">{c.download.title}</h2>
-        <p class="mt-2 text-xl text-white/90">{c.download.text}</p>
-      </div>
-      <StoreBadges locale={locale} />
+  <!-- Quick questions (from the FAQ) -->
+  <section class="bg-mist">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <h2 class="text-4xl font-bold sm:text-5xl">{c.quickQuestions.title}</h2>
+      <dl class="mt-10 grid gap-5 md:grid-cols-2">
+        {
+          quickQuestions.map((item) => (
+            <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-argile">
+              <dt class="text-2xl leading-tight font-bold text-azur">{item.q}</dt>
+              <dd class="mt-2 text-lg leading-snug">{item.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="mt-8 text-center">
+        <a
+          href={path(locale, 'faq')}
+          class="inline-flex items-center gap-2 text-xl font-bold text-azur underline decoration-blush decoration-2 underline-offset-4 hover:decoration-azur"
+        >
+          {c.quickQuestions.link}<span aria-hidden="true">→</span>
+        </a>
+      </p>
     </div>
   </section>
+
+  <!-- Download -->
+  <DownloadCta locale={locale} id="download" title={c.download.title} text={c.download.text} />
 </BaseLayout>
+
+<script>
+  // Highlight the dot of the use-case card currently in view (mobile carousel).
+  const list = document.querySelector<HTMLElement>('[data-carousel]');
+  const dots = document.querySelectorAll<HTMLElement>('[data-carousel-dots] > span');
+  if (list && dots.length) {
+    const cards = Array.from(list.children);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const index = cards.indexOf(entry.target);
+          dots.forEach((dot, i) => (dot.dataset.active = String(i === index)));
+        }
+      },
+      { root: list, threshold: 0.6 },
+    );
+    cards.forEach((card) => observer.observe(card));
+  }
+</script>

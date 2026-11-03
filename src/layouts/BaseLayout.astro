@@ -46,6 +46,7 @@ const desc = description ?? tr('meta.defaultDescription');
     <meta name="theme-color" content="#005e93" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <slot name="head" />
   </head>
   <body class="flex min-h-dvh flex-col">
     <a

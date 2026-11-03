@@ -1,0 +1,143 @@
+---
+import { getEntry } from 'astro:content';
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DownloadCta from './DownloadCta.astro';
+import Icon from './Icon.astro';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/ui';
+
+import { screenshot } from '../assets/screenshots';
+import albums from '../assets/photos/printed-albums.jpg';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+const entry = await getEntry('features', locale);
+if (!entry) throw new Error(`Missing features content for locale "${locale}"`);
+const c = entry.data;
+
+/** How each visual is framed: app screens get a device frame, real photos don't. */
+type Frame = 'phone' | 'tablet' | 'photo';
+const visuals: Record<(typeof c.features)[number]['image'], { src: ImageMetadata; frame: Frame }> = {
+  programme: { src: screenshot(locale, 'programme'), frame: 'phone' },
+  map: { src: screenshot(locale, 'map-route'), frame: 'phone' },
+  budget: { src: screenshot(locale, 'balance'), frame: 'phone' },
+  meals: { src: screenshot(locale, 'meals'), frame: 'phone' },
+  shopping: { src: screenshot(locale, 'shopping'), frame: 'phone' },
+  participants: { src: screenshot(locale, 'participants'), frame: 'phone' },
+  photos: { src: screenshot(locale, 'gallery'), frame: 'phone' },
+  albums: { src: albums, frame: 'photo' },
+};
+const frameClass: Record<Frame, string> = {
+  phone: 'w-60 sm:w-64 rounded-[2.25rem] border-[9px] border-night shadow-xl',
+  tablet: 'w-full max-w-sm rounded-[1.75rem] border-[11px] border-night shadow-xl',
+  // The albums photo is a tall phone shot: crop around the books.
+  photo: 'w-72 sm:w-80 aspect-[4/5] object-cover object-[50%_30%] rounded-3xl shadow-xl',
+};
+const frameSizes: Record<Frame, string> = {
+  phone: '(min-width: 640px) 256px, 240px',
+  tablet: '(min-width: 640px) 384px, 90vw',
+  photo: '(min-width: 640px) 320px, 288px',
+};
+const frameWidths: Record<Frame, number[]> = { phone: [256, 512], tablet: [384, 768], photo: [320, 640] };
+---
+
+<BaseLayout locale={locale} routeKey="features" title={c.meta.title} description={c.meta.description}>
+  <!-- Intro -->
+  <section class="bg-mist">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+      <p class="text-xl font-bold tracking-wide text-azur uppercase">{tr('nav.features')}</p>
+      <h1 class="mt-2 max-w-4xl text-5xl leading-[0.95] font-bold text-balance sm:text-6xl">{c.intro.title}</h1>
+      <p class="mt-5 max-w-2xl text-xl leading-snug">{c.intro.text}</p>
+      <nav aria-label={tr('a11y.onThisPage')} class="mt-8">
+        <ul class="flex flex-wrap gap-2">
+          {
+            c.features.map((f) => (
+              <li>
+                <a
+                  href={`#${f.id}`}
+                  class="inline-block rounded-full bg-white px-4 py-1.5 text-lg font-semibold ring-1 ring-argile transition hover:bg-azur hover:text-white"
+                >
+                  {f.kicker}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Feature rows, visual alternating left / right -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {
+      c.features.map((f, i) => {
+        const v = visuals[f.image];
+        const alt = v.frame === 'photo' ? f.title : `${tr('alt.screenshot')} ${f.kicker}`;
+        return (
+          <section
+            id={f.id}
+            aria-labelledby={`${f.id}-title`}
+            class="grid scroll-mt-24 items-center gap-10 border-b border-argile py-16 last:border-0 md:grid-cols-2 lg:gap-20 lg:py-24"
+          >
+            <div class:list={['flex justify-center', i % 2 === 1 && 'md:order-last']}>
+              <div class="relative">
+                <div class="absolute -inset-8 -z-10 rounded-full bg-sky blur-2xl" aria-hidden="true" />
+                <Picture
+                  src={v.src}
+                  alt={alt}
+                  formats={['avif', 'webp']}
+                  widths={frameWidths[v.frame]}
+                  sizes={frameSizes[v.frame]}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  class:list={['h-auto bg-white', frameClass[v.frame]]}
+                />
+              </div>
+            </div>
+            <div>
+              <p class="text-lg font-bold tracking-wide text-azur uppercase">{f.kicker}</p>
+              <h2 id={`${f.id}-title`} class="mt-1 text-4xl leading-none font-bold text-balance sm:text-5xl">
+                {f.title}
+              </h2>
+              <p class="mt-4 text-xl leading-snug">{f.text}</p>
+              <ul class="mt-6 space-y-2 text-lg leading-snug">
+                {f.points.map((pt) => (
+                  <li class="flex gap-2">
+                    <Icon name="check" class="mt-1 size-5 shrink-0 text-azur" />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        );
+      })
+    }
+  </div>
+
+  <!-- And also -->
+  <section class="bg-argile/50">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <h2 class="text-4xl font-bold sm:text-5xl">{c.more.title}</h2>
+      <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          c.more.items.map((m) => (
+            <li class="rounded-2xl bg-white p-6 shadow-sm">
+              <Icon name={m.icon} class="size-9 text-azur" />
+              <h3 class="mt-3 text-2xl leading-tight font-bold">{m.title}</h3>
+              <p class="mt-1 text-lg leading-snug">{m.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <div class="pt-16">
+    <DownloadCta locale={locale} title={c.download.title} text={c.download.text} />
+  </div>
+</BaseLayout>

@@ -27,3 +27,44 @@
     @apply outline-2 outline-offset-2 outline-azur;
   }
 }
+
+/* Long-form Markdown content (legal pages). */
+@layer components {
+  .legal-prose {
+    @apply text-lg leading-snug;
+  }
+  .legal-prose h2 {
+    @apply mt-12 scroll-mt-24 text-3xl leading-tight font-bold first:mt-0;
+  }
+  .legal-prose h3 {
+    @apply mt-8 scroll-mt-24 text-2xl leading-tight font-bold;
+  }
+  .legal-prose p,
+  .legal-prose ul,
+  .legal-prose ol {
+    @apply mt-4;
+  }
+  .legal-prose ul {
+    @apply list-disc space-y-1 pl-6 marker:text-azur;
+  }
+  .legal-prose ol {
+    @apply list-decimal space-y-1 pl-6;
+  }
+  .legal-prose a {
+    @apply font-semibold text-azur underline underline-offset-2;
+  }
+  .legal-prose strong {
+    @apply font-bold;
+  }
+  /* Tables scroll horizontally on small screens instead of overflowing the page. */
+  .legal-prose table {
+    @apply mt-6 block w-full overflow-x-auto border-collapse text-base;
+  }
+  .legal-prose th,
+  .legal-prose td {
+    @apply border border-argile px-3 py-2 text-left align-top;
+  }
+  .legal-prose th {
+    @apply bg-mist font-semibold;
+  }
+}

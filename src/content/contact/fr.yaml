@@ -1,0 +1,46 @@
+# Contact page copy (FR). Draft written by Claude — to be reviewed by the team.
+meta:
+  title: "Contact — Cruzmi"
+  description: "Une question sur Cruzmi, les albums photo, un partenariat ou une demande presse ? Écrivez-nous, l'équipe Cruzmi vous répond par e-mail."
+
+intro:
+  title: "Contactez-nous"
+  text: "Une question, une suggestion, un projet de partenariat ? Écrivez-nous : l'équipe Cruzmi vous répondra par e-mail."
+
+form:
+  firstName: "Prénom"
+  lastName: "Nom"
+  email: "Adresse e-mail"
+  subject: "Objet"
+  subjectOptions:
+    - value: app
+      label: "Une question sur l'application"
+    - value: albums
+      label: "Les albums photo"
+    - value: pro
+      label: "Je suis un professionnel"
+    - value: press
+      label: "Presse et partenariats"
+    - value: other
+      label: "Autre"
+  message: "Votre message"
+  submit: "Envoyer le message"
+  sending: "Envoi en cours…"
+  privacyBefore: "Les informations saisies servent uniquement à répondre à votre message. En savoir plus :"
+  privacyLink: "politique de confidentialité"
+  success:
+    title: "Message envoyé, merci !"
+    text: "Nous avons bien reçu votre message et vous répondrons par e-mail dès que possible."
+  errors:
+    validation: "Vérifiez les champs du formulaire : certains sont manquants ou invalides."
+    captcha: "La vérification anti-robot a échoué. Rechargez la page et réessayez."
+    send: "Votre message n'a pas pu être envoyé. Réessayez dans quelques instants, ou écrivez-nous directement à contact@cruzmi.com."
+  noscript: "Le formulaire nécessite JavaScript. Vous pouvez aussi nous écrire directement à contact@cruzmi.com."
+
+aside:
+  title: "Nous écrire directement"
+  items:
+    - label: "Questions générales"
+      email: "contact@cruzmi.com"
+    - label: "Données personnelles"
+      email: "dpo@cruzmi.com"

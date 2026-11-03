@@ -1,0 +1,90 @@
+# FAQ copy (FR). Draft written by Claude from the Wix FAQ (corrected), the app's own texts and
+# docs/fiche-reference-cruzmi.md. Answers: plain text, blank line = new paragraph, "• " lines = list.
+# Confirmed by the team (2026-11-03): app free except albums, usable abroad once installed, albums
+# delivered worldwide, projects visible only to participants, accounts deleted only by their owner.
+meta:
+  title: "Questions fréquentes — Cruzmi"
+  description: "Prix, projets concernés, partage des dépenses, téléphones compatibles, invitations, albums photo imprimés, données personnelles : les réponses à vos questions sur Cruzmi."
+
+intro:
+  title: "Questions fréquentes"
+  text: "Les réponses aux questions que l'on nous pose le plus souvent. Vous ne trouvez pas la vôtre ? Écrivez-nous."
+
+categories:
+  - id: general
+    title: "L'application"
+    items:
+      - q: "Qu'est-ce que Cruzmi ?"
+        onHome: true
+        a: "Une application mobile collaborative pour organiser, vivre et partager vos projets de groupe : voyages et croisières, week-ends, fêtes et événements, sorties de clubs et d'associations… Programme jour par jour, carte, dépenses partagées, repas, courses, photos et album souvenir : tout le groupe retrouve les mêmes informations au même endroit, et chacun y contribue."
+      - q: "Pour quels types de projets ?"
+        a: "Tous les projets qui réunissent un groupe à des dates précises : un voyage ou une croisière, un week-end entre amis, un anniversaire, un mariage, une cousinade, la sortie ou le stage d'un club, le séjour d'une association… Dès qu'il y a un programme, des dépenses à partager et des souvenirs à garder, Cruzmi vous accompagne."
+      - q: "Cruzmi, c'est gratuit ?"
+        onHome: true
+        a: "Oui. Le téléchargement et l'utilisation de l'application sont gratuits. Seuls les albums photo que vous choisissez de commander (PDF haute définition ou livre imprimé) sont payants."
+      - q: "Sur quels téléphones fonctionne Cruzmi ?"
+        onHome: true
+        a: "Sur iPhone (iOS 16.4 ou plus récent) via l'App Store et sur smartphones Android via Google Play, en français, en anglais et en espagnol."
+      - q: "Dans quelles langues l'application est-elle disponible ?"
+        a: "Cruzmi est disponible en français, en anglais et en espagnol."
+      # Update when more store countries open (docs/reste-a-faire.md A7).
+      - q: "Puis-je utiliser Cruzmi en dehors de la France ?"
+        a: "Oui. Cruzmi se télécharge aujourd'hui sur l'App Store et Google Play en France, en Suisse, en Belgique et au Luxembourg, et nous préparons l'ouverture à d'autres pays. Ailleurs, vous pouvez déjà l'installer sur iPhone et iPad grâce à TestFlight, le programme de test officiel d'Apple. Une fois installée, l'application vous suit dans tous vos déplacements."
+        link: { label: "Installer Cruzmi depuis un autre pays", to: install }
+      - q: "L'application fonctionne-t-elle sans réseau ?"
+        a: "En partie : les informations déjà chargées sur votre téléphone restent consultables. Pour ajouter du contenu et voir les nouveautés des autres participants, une connexion est nécessaire."
+      - q: "Cruzmi, c'est un outil de navigation ?"
+        a: "Non. Pour une croisière, Cruzmi vous aide à organiser le programme, les étapes et la vie à bord, mais ce n'est pas un outil d'aide à la navigation : l'application ne remplace en aucun cas les cartes marines, le GPS et les équipements de sécurité obligatoires à bord."
+
+  - id: account
+    title: "Compte et participants"
+    items:
+      - q: "Comment créer mon compte ?"
+        a: "Avec votre adresse e-mail, ou en un geste avec votre compte Google ou Apple."
+      - q: "Je ne reçois pas l'e-mail de validation de mon compte. Que faire ?"
+        a: "Vérifiez votre dossier de courrier indésirable (spams) et, sur Gmail, l'onglet « Promotions ». Si vous ne le trouvez toujours pas, contactez-nous."
+      - q: "Comment inviter des participants à mon projet ?"
+        a: "Depuis votre projet, partagez le lien d'invitation par message, e-mail ou sur votre groupe de discussion habituel. Vos invités téléchargent l'application, puis rejoignent le projet en cliquant sur le lien."
+      - q: "Tous les participants doivent-ils installer l'application ?"
+        onHome: true
+        a: "Oui : pour rejoindre un projet, consulter le programme et contribuer (dépenses, courses, photos…), chaque participant utilise l'application sur son téléphone. Il suffit de cliquer sur le lien d'invitation."
+      - q: "Peut-on n'utiliser que certaines fonctionnalités ?"
+        a: "Oui. À la création du projet, activez seulement les modules utiles (dépenses, repas, courses, photos, ressources…). Vous pourrez modifier ce choix à tout moment."
+
+  - id: expenses
+    title: "Dépenses"
+    items:
+      - q: "Comment sont partagées les dépenses ?"
+        a: "Chacun enregistre ce qu'il paie, et Cruzmi calcule automatiquement qui rembourse qui, en limitant le nombre de virements.\n\nLa répartition peut tenir compte du poids de chacun, regrouper un couple ou une famille, et suivre les jours de présence de chaque participant. Une dépense peut aussi être offerte, sans peser sur les comptes communs. Les dépenses s'exportent sous Excel."
+      - q: "Faut-il payer dans l'application ?"
+        a: "Non. Cruzmi vous indique qui doit combien à qui, puis chacun rembourse par le moyen de son choix (virement, espèces…). Aucun paiement entre participants ne passe par l'application."
+
+  - id: albums
+    title: "Albums photo"
+    items:
+      - q: "Comment créer un album photo ?"
+        a: "Dès 10 photos partagées dans la galerie du projet, lancez la création d'un album : Cruzmi le compose automatiquement en moins d'une minute.\n\nVous choisissez ensuite les photos, la couverture, le format et l'orientation."
+      - q: "Quelles sont les formules proposées ?"
+        a: "Trois finitions au choix au moment de la commande :\n\n• PDF haute définition (5 €), à télécharger et partager librement ;\n• album imprimé Standard, à couverture rigide ;\n• édition Premium, qui s'ouvre à plat pour que chaque photo s'affiche sans coupure à la reliure.\n\nLe prix de l'album imprimé dépend du format et du nombre de pages. Il est affiché toutes taxes comprises dans l'application avant la commande."
+      - q: "La livraison est-elle comprise ?"
+        a: "Oui. Le prix TTC affiché comprend la livraison à l'adresse indiquée lors de la commande, partout dans le monde.\n\nPour certains pays hors Union européenne (par exemple la Suisse ou le Canada), des frais de douane peuvent être demandés à la réception du colis par les autorités locales. Ils ne sont pas systématiques et restent à la charge du destinataire."
+      - q: "Où les albums sont-ils imprimés ?"
+        a: "Les albums sont imprimés en France par notre partenaire Flexilivre, sur du papier issu de forêts gérées durablement, dans une imprimerie labellisée Imprim'Vert."
+      - q: "Combien de temps mon album reste-t-il disponible ?"
+        a: "Les albums générés sont conservés 15 jours dans l'application : vous pouvez en relancer un nouveau à tout moment, jusqu'à trois albums par projet. Le fichier PDF haute définition est téléchargeable pendant 2 jours après le paiement."
+
+  - id: data
+    title: "Données et confidentialité"
+    items:
+      # Team decision (2026-11-03): no deletion after inactivity. CGU §7.5 must be aligned (docs/reste-a-faire.md C1).
+      - q: "Mes projets sont-ils conservés ?"
+        a: "Oui. Vos projets restent accessibles aussi longtemps que vous le souhaitez : la suppression d'un compte Cruzmi est toujours un choix de son titulaire, jamais une décision automatique."
+      - q: "Comment supprimer mon compte ?"
+        a: "Directement dans l'application, depuis vos préférences : « Suppression de mon compte Cruzmi ». Vos données personnelles sont alors supprimées ; vos contributions aux projets partagés (dépenses, photos…) restent visibles des autres participants de manière anonymisée."
+      - q: "Comment mes données sont-elles protégées ?"
+        a: "Vos projets ne sont visibles que par leurs participants. Tous les détails figurent dans notre politique de confidentialité ; pour toute question, écrivez à dpo@cruzmi.com."
+
+contact:
+  title: "Une autre question ?"
+  text: "Écrivez-nous, l'équipe Cruzmi vous répondra par e-mail."
+  button: "Nous contacter"

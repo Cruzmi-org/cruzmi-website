@@ -1,0 +1,19 @@
+# Cloudflare Pages response headers.
+# A Content-Security-Policy is not set yet: add one once the final third-party list is known
+# (Turnstile needs https://challenges.cloudflare.com for script-src and frame-src).
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000
+
+# Keep the *.pages.dev addresses (production and previews) out of search engines: only
+# www.cruzmi.com must be indexed. Host-specific rule, so it never applies to the custom domain.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+# Fingerprinted build assets (JS, CSS, fonts, optimized images) never change: cache for a year.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

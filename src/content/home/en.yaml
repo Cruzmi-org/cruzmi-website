@@ -1,16 +1,17 @@
 # Home page copy (EN). Draft written by Claude — to be reviewed by the team.
 meta:
-  title: "Cruzmi — The collaborative app for group projects"
+  title: "Cruzmi — The companion for your group projects | Free app"
   description: "Trips, sailing cruises, events, clubs: with Cruzmi, bring everyone together, keep all the information in one place, follow the schedule and share your memories."
 
 hero:
   titleBefore: "All your group projects come to life with"
   titleHighlight: "Cruzmi"
   titleAfter: "!"
-  subtitle: "The collaborative app to organise, share and move your projects forward together."
-  lead: "Bring everyone on board, swap ideas, keep all your information in one place, coordinate your activities and share your experiences."
-  tagline: "What if your next project became a great shared adventure?"
-  imageAlt: "A group of friends planning their next project together around a tablet."
+  subtitle: "The collaborative app to plan, live and share your projects together."
+  lead: "Schedule, expenses, meals, photos: your whole group in one place, and everyone pitches in."
+  reassurance: "Free · iPhone and Android"
+  tagline: "What if your next project became a great shared experience?"
+  imageAlt: "Four friends laughing together around a café table while looking at a smartphone."
 
 pillars:
   - icon: users
@@ -26,54 +27,81 @@ pillars:
     title: "Share"
     text: "Gather content and memories."
 
+benefits:
+  title: "Fewer messages, more time together"
+  intro: "Cruzmi brings together everything your group needs, and everyone pitches in."
+  items:
+    - image: programme
+      title: "A schedule built together"
+      text: "Day after day, everyone sees the place, the accommodation and the planned activities. Got an idea? Suggest it: the group adds it to the schedule in one tap."
+    - image: reimbursements
+      title: "Fair accounts, without chasing anyone"
+      text: "Everyone logs what they pay. Cruzmi takes each person's days of attendance into account, groups couples and families, and works out who owes whom."
+    - image: shopping
+      title: "Meals and shopping, finally shared"
+      text: "Plan meals day by day and build the shopping list together: everyone sees in real time what has already been bought."
+    - image: gallery
+      title: "Your photos together, all the way to a keepsake book"
+      text: "Everyone shares their photos in a common gallery. In under a minute, Cruzmi turns them into an album, to order in print or as a PDF."
+  link: "Discover all features"
+
 useCases:
   title: "Projects for every moment of life"
   items:
-    - title: "Trips and cruises"
+    - image: voyages
+      title: "Trips and cruises"
       text: "A sailing cruise with friends, a family road trip, a weekend away: everyone sets the same course."
-    - title: "Events and parties"
-      text: "Birthdays, weddings, family reunions: share out the tasks and never lose a detail again."
-    - title: "Activities and clubs"
+    - image: evenements
+      title: "Events and parties"
+      text: "Birthdays, weddings, family reunions: schedule, meals and expenses in one place, and no detail lost."
+    - image: associations
+      title: "Activities and clubs"
       text: "Club outings, competitions, training camps: every member knows where, when and with whom."
-    - title: "Personal and shared projects"
-      text: "A renovation, a tour, a neighbourhood project: move forward together, at your own pace."
+    - image: projets
+      title: "Personal and shared projects"
+      text: "A weekend with several families, a multi-day hike, a volunteer trip: move forward together, at your own pace."
 
 audiences:
   title: "Who is Cruzmi for?"
-  intro: "For everyone who does things together — and is tired of messages lost across ten different chats."
+  intro: "For everyone who does things together, each in their own role."
   items:
-    - title: "Friends and families"
-      text: "Plan holidays, cruises and weekends without spreadsheets or endless group chats."
-    - title: "Associations and clubs"
-      text: "Organise outings, trips and events, and keep every member in the loop."
-    - title: "Event organisers"
-      text: "One place for the schedule, participants, meals and expenses."
-    - title: "Professionals"
-      text: "Boat charter companies, agencies, tour organisers: give your customers a tool to prepare their adventure."
+    - title: "You organise"
+      text: "Starting the project? Set it up in a few questions, invite the group with a simple link and keep the big picture, without carrying it all alone."
+    - title: "You're invited"
+      text: "Everything is in one place: the schedule, the shopping list, everyone's photos and what you owe, to the cent. Got an idea? Suggest it to the group."
+    - title: "You get together often"
+      text: "Families, groups of friends, clubs: find your past projects, and reuse your shopping lists and the things you lend (house, boat, camper van) from one project to the next."
+  partners: "Cruzmi is recommended by a growing network of tourism, rental and leisure professionals."
 
 howItWorks:
   title: "How does it work?"
-  intro: "Cruzmi is with you at every stage of your project."
+  intro: "From the first idea to the last memory, Cruzmi supports your group every step of the way."
   steps:
     - label: "Before"
       title: "Plan together"
       points:
-        - "Create your project and invite participants with a simple link."
-        - "Build the day-by-day schedule together."
-        - "Plan the budget, meals and shopping list ahead."
+        - "Create your project in a few questions: dates, places, accommodation."
+        - "Turn on only what you need: expenses, meals, shopping, resources, photos."
+        - "Invite participants with a simple link, by text, WhatsApp or email."
+        - "Build the schedule together: everyone suggests their ideas."
     - label: "During"
       title: "Live the project"
       points:
-        - "Everyone has the schedule and key information at hand."
-        - "Follow each step and the route on the map."
-        - "Log expenses as you go."
+        - "Everyone sees the day's schedule and the route on the map."
+        - "Log expenses as you go: Cruzmi takes into account who was there, and when."
+        - "Tick off the shopping in real time, without buying the same thing twice."
+        - "No signal? Information already loaded stays available."
     - label: "After"
-      title: "Keep the memories"
+      title: "Settle up, keep the memories"
       points:
-        - "Gather everyone's photos in one place."
-        - "Settle up easily."
-        - "Order a printed photo album of your adventure."
+        - "Cruzmi works out who owes whom: all that's left is to pay up."
+        - "Bring together every participant's photos in a shared gallery."
+        - "Create your album in under a minute, as a PDF or printed and delivered to your door."
+
+quickQuestions:
+  title: "The questions we get asked most"
+  link: "All questions"
 
 download:
-  title: "Ready to come aboard?"
-  text: "Download Cruzmi and start your first group project in minutes."
+  title: "Your turn!"
+  text: "Download Cruzmi for free, set up your project in a few questions and invite your group with a simple link."

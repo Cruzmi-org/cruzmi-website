@@ -1,0 +1,145 @@
+---
+/**
+ * Install page for visitors outside the store countries (docs/reste-a-faire.md A7):
+ * iOS through the public TestFlight link, Android through the Google Play testing track once
+ * `altInstall.androidTesting` is set (until then, a "coming soon" message pointing to the contact form).
+ */
+import { getEntry } from 'astro:content';
+import QRCode from 'qrcode';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from './Icon.astro';
+import StoreBadges from './StoreBadges.astro';
+import { altInstall, path, type Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const entry = await getEntry('install', locale);
+if (!entry) throw new Error(`Missing install content for locale "${locale}"`);
+const c = entry.data;
+
+const androidReady = altInstall.androidTesting !== '';
+const qr = (url: string) => QRCode.toString(url, { type: 'svg', margin: 0, errorCorrectionLevel: 'M' });
+const iosQr = await qr(altInstall.testflightJoin);
+const androidQr = androidReady ? await qr(altInstall.androidTesting) : '';
+
+const stepNumber = 'flex size-10 shrink-0 items-center justify-center rounded-full bg-azur text-xl font-bold text-white';
+const primaryButton =
+  'inline-flex items-center gap-2 rounded-full bg-cherry px-6 py-3 text-xl font-semibold text-white shadow-sm transition hover:bg-cherry/90';
+const secondaryButton =
+  'inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-lg font-semibold text-azur ring-1 ring-azur transition hover:bg-sky';
+---
+
+<BaseLayout locale={locale} routeKey="install" title={c.meta.title} description={c.meta.description}>
+  <section class="bg-mist">
+    <div class="mx-auto max-w-4xl px-4 py-14 text-center sm:px-6 lg:py-20">
+      <p class="text-xl font-bold tracking-wide text-azur uppercase">{c.kicker}</p>
+      <h1 class="mt-2 text-5xl leading-[0.95] font-bold text-balance sm:text-6xl">{c.title}</h1>
+      <p class="mx-auto mt-5 max-w-3xl text-xl leading-snug">{c.lead}</p>
+    </div>
+  </section>
+
+  <div class="mx-auto grid max-w-6xl gap-6 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-16 lg:px-8">
+    <!-- iPhone / iPad: TestFlight -->
+    <section id="ios" aria-labelledby="ios-title" class="scroll-mt-24 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-argile sm:p-8">
+      <h2 id="ios-title" class="flex items-center gap-3 text-4xl font-bold">
+        <Icon name="apple" class="size-9 shrink-0" />
+        {c.ios.title}
+      </h2>
+      <p class="mt-2 text-xl leading-snug">{c.ios.intro}</p>
+      <ol class="mt-6 space-y-6">
+        {
+          c.ios.steps.map((step, i) => (
+            <li class="flex gap-4">
+              <span class={stepNumber}>{i + 1}</span>
+              <div class="flex-1">
+                <h3 class="text-2xl leading-tight font-bold">{step.title}</h3>
+                <p class="mt-1 text-lg leading-snug">{step.text}</p>
+                {i === 0 && (
+                  <a href={altInstall.testflightApp} rel="noopener" class:list={[secondaryButton, 'mt-3']}>
+                    <Icon name="apple" class="size-5" />
+                    {c.ios.testflightButton}
+                  </a>
+                )}
+                {i === 1 && (
+                  <>
+                    <a href={altInstall.testflightJoin} rel="noopener" class:list={[primaryButton, 'mt-3']}>
+                      {c.ios.joinButton}
+                      <Icon name="chevron" class="size-5 -rotate-90" />
+                    </a>
+                    <!-- QR code: for visitors reading the page on a computer. -->
+                    <div class="mt-4 hidden items-center gap-4 lg:flex">
+                      <div class="size-28 shrink-0 rounded-xl bg-white p-2 ring-1 ring-argile [&>svg]:size-full" set:html={iosQr} />
+                      <p class="text-base leading-snug font-semibold">{c.ios.scan}</p>
+                    </div>
+                  </>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mt-6 rounded-2xl bg-sky px-4 py-3 text-base leading-snug">{c.ios.note}</p>
+    </section>
+
+    <!-- Android: Google Play testing track -->
+    <section id="android" aria-labelledby="android-title" class="scroll-mt-24 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-argile sm:p-8">
+      <h2 id="android-title" class="flex items-center gap-3 text-4xl font-bold">
+        <Icon name="play" class="size-9 shrink-0" />
+        {c.android.title}
+      </h2>
+      {
+        androidReady ? (
+          <>
+            <p class="mt-2 text-xl leading-snug">{c.android.intro}</p>
+            <ol class="mt-6 space-y-6">
+              {c.android.steps.map((step, i) => (
+                <li class="flex gap-4">
+                  <span class={stepNumber}>{i + 1}</span>
+                  <div class="flex-1">
+                    <h3 class="text-2xl leading-tight font-bold">{step.title}</h3>
+                    <p class="mt-1 text-lg leading-snug">{step.text}</p>
+                    {i === 0 && (
+                      <>
+                        <a href={altInstall.androidTesting} rel="noopener" class:list={[primaryButton, 'mt-3']}>
+                          {c.android.button}
+                          <Icon name="chevron" class="size-5 -rotate-90" />
+                        </a>
+                        <div class="mt-4 hidden items-center gap-4 lg:flex">
+                          <div class="size-28 shrink-0 rounded-xl bg-white p-2 ring-1 ring-argile [&>svg]:size-full" set:html={androidQr} />
+                          <p class="text-base leading-snug font-semibold">{c.android.scan}</p>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </>
+        ) : (
+          <>
+            <p class="mt-2 text-xl leading-snug">{c.android.pending.text}</p>
+            <a href={`${path(locale, 'contact')}?subject=app`} class:list={[secondaryButton, 'mt-5']}>
+              <Icon name="mail" class="size-5" />
+              {c.android.pending.link}
+            </a>
+          </>
+        )
+      }
+    </section>
+  </div>
+
+  <p class="mx-auto -mt-4 max-w-4xl px-4 pb-14 text-center text-lg sm:px-6">
+    {c.help}{' '}
+    <a href={`${path(locale, 'contact')}?subject=app`} class="font-semibold whitespace-nowrap text-azur underline underline-offset-2">{c.helpLink}</a>.
+  </p>
+
+  <section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="rounded-3xl bg-argile/50 p-8 sm:p-10">
+      <h2 class="text-3xl font-bold">{c.inStores.title}</h2>
+      <p class="mt-2 text-xl leading-snug">{c.inStores.text}</p>
+      <StoreBadges locale={locale} elsewhere={false} class="mt-5" />
+    </div>
+  </section>
+</BaseLayout>

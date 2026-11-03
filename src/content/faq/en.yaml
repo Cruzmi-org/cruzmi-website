@@ -1,0 +1,87 @@
+# FAQ copy (EN). Draft written by Claude — mirrors fr.yaml (see notes there).
+# Answers: plain text, blank line = new paragraph, "• " lines = list.
+meta:
+  title: "Frequently asked questions — Cruzmi"
+  description: "Pricing, suitable projects, sharing expenses, compatible phones, invitations, printed photo albums, personal data: answers to your questions about Cruzmi."
+
+intro:
+  title: "Frequently asked questions"
+  text: "Answers to the questions we are asked most often. Can't find yours? Write to us."
+
+categories:
+  - id: general
+    title: "The app"
+    items:
+      - q: "What is Cruzmi?"
+        onHome: true
+        a: "A collaborative mobile app to plan, live and share your group projects: trips and sailing cruises, weekends, parties and events, club and association outings… Day-by-day schedule, map, shared expenses, meals, shopping, photos and a keepsake album: the whole group finds the same information in one place, and everyone pitches in."
+      - q: "What kinds of projects is it for?"
+        a: "Any project that brings a group together on specific dates: a trip or a sailing cruise, a weekend with friends, a birthday, a wedding, a family reunion, a club outing or training camp, an association trip… Whenever there is a schedule, expenses to share and memories to keep, Cruzmi is there with you."
+      - q: "Is Cruzmi free?"
+        onHome: true
+        a: "Yes. Downloading and using the app is free. Only the photo albums you choose to order (high-definition PDF or printed book) are paid for."
+      - q: "Which phones does Cruzmi run on?"
+        onHome: true
+        a: "On iPhone (iOS 16.4 or later) from the App Store and on Android phones from Google Play, in English, French and Spanish."
+      - q: "Which languages is the app available in?"
+        a: "Cruzmi is available in English, French and Spanish."
+      # Update when more store countries open (docs/reste-a-faire.md A7).
+      - q: "Can I use Cruzmi outside France?"
+        a: "Yes. Cruzmi can currently be downloaded from the App Store and Google Play in France, Switzerland, Belgium and Luxembourg, and we are preparing to open it in more countries. Elsewhere, you can already install it on iPhone and iPad with TestFlight, Apple's official testing program. Once installed, the app goes wherever you go."
+        link: { label: "Get Cruzmi from another country", to: install }
+      - q: "Does the app work without a network connection?"
+        a: "Partly: information already loaded on your phone remains available. To add content and see what the other participants have added, you need a connection."
+      - q: "Is Cruzmi a navigation tool?"
+        a: "No. For a sailing cruise, Cruzmi helps you organise the schedule, the stops and life on board, but it is not a navigation aid: the app in no way replaces nautical charts, GPS and the safety equipment required on board."
+
+  - id: account
+    title: "Account and participants"
+    items:
+      - q: "How do I create my account?"
+        a: "With your email address, or in one tap with your Google or Apple account."
+      - q: "I haven't received the email to confirm my account. What should I do?"
+        a: "Check your spam folder and, on Gmail, the “Promotions” tab. If you still can't find it, contact us."
+      - q: "How do I invite people to my project?"
+        a: "From your project, share the invitation link by text, email or in your usual group chat. Your guests download the app, then join the project by tapping the link."
+      - q: "Does every participant need to install the app?"
+        onHome: true
+        a: "Yes: to join a project, see the schedule and contribute (expenses, shopping, photos…), each participant uses the app on their phone. They just tap the invitation link."
+      - q: "Can we use only some of the features?"
+        a: "Yes. When you create the project, switch on only the modules you need (expenses, meals, shopping, photos, resources…). You can change this at any time."
+
+  - id: expenses
+    title: "Expenses"
+    items:
+      - q: "How are expenses shared?"
+        a: "Everyone logs what they pay, and Cruzmi automatically works out who owes whom, keeping the number of transfers down.\n\nThe split can take each person's weighting into account, group a couple or a family together, and follow each participant's days of attendance. An expense can also be offered as a gift, without weighing on the shared accounts. Expenses can be exported to Excel."
+      - q: "Do we pay each other through the app?"
+        a: "No. Cruzmi tells you who owes how much to whom, then everyone pays back however they like (bank transfer, cash…). No payment between participants goes through the app."
+
+  - id: albums
+    title: "Photo albums"
+    items:
+      - q: "How do I create a photo album?"
+        a: "As soon as 10 photos have been shared in the project gallery, start creating an album: Cruzmi lays it out automatically in less than a minute.\n\nYou then choose the photos, the cover, the size and the orientation."
+      - q: "Which options are available?"
+        a: "Three finishes to choose from when you order:\n\n• High-definition PDF (€5), to download and share freely;\n• Standard printed album with a hard cover;\n• Premium edition that opens flat, so every photo is shown with no break at the binding.\n\nThe price of a printed album depends on its size and number of pages. It is shown in the app, including VAT, before you order."
+      - q: "Is delivery included?"
+        a: "Yes. The price shown, including VAT, covers delivery to the address given with your order, anywhere in the world.\n\nFor some countries outside the European Union (for example Switzerland or Canada), local authorities may charge customs fees when the parcel arrives. These are not systematic and are payable by the recipient."
+      - q: "Where are the albums printed?"
+        a: "Albums are printed in France by our partner Flexilivre, on paper from sustainably managed forests, in an Imprim'Vert certified printing works."
+      - q: "How long does my album stay available?"
+        a: "Generated albums are kept in the app for 15 days: you can create a new one at any time, up to three albums per project. The high-definition PDF can be downloaded for 2 days after payment."
+
+  - id: data
+    title: "Data and privacy"
+    items:
+      - q: "Are my projects kept?"
+        a: "Yes. Your projects remain available for as long as you wish: a Cruzmi account is only ever deleted by its owner, never automatically."
+      - q: "How do I delete my account?"
+        a: "Directly in the app, from your preferences: “Delete my Cruzmi account”. Your personal data is then deleted; your contributions to shared projects (expenses, photos…) remain visible to the other participants in anonymised form."
+      - q: "How is my data protected?"
+        a: "Your projects are only visible to their participants. Full details are in our privacy policy; for any question, write to dpo@cruzmi.com."
+
+contact:
+  title: "Another question?"
+  text: "Write to us and the Cruzmi team will get back to you by email."
+  button: "Contact us"
