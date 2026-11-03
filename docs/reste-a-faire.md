@@ -92,16 +92,16 @@ Les textes du site décrivent ce que fait l'appli. Les réponses peuvent être n
 
 | Question | Où c'est utilisé |
 |---|---|
-| Tout est-il gratuit, sauf les albums photo ? (la fiche App Store dit « Gratuit », sans achat intégré) | FAQ `src/content/faq/fr.yaml` |
+| ~~Tout est-il gratuit, sauf les albums photo ?~~ Réponse (2026-11-03) : oui. | FAQ `src/content/faq/fr.yaml` |
 | ~~Dans quels pays l'appli est-elle disponible sur les stores ?~~ Réponse (2026-11-03) : France, Suisse, Belgique, Luxembourg. Voir A7. | FAQ |
-| Les projets ne sont-ils visibles **que** par leurs participants ? | FAQ + politique de confidentialité |
+| ~~Les projets ne sont-ils visibles **que** par leurs participants ?~~ Réponse (2026-11-03) : oui. | FAQ + politique de confidentialité |
 | Quel service envoie les e-mails de l'appli (validation de compte, mot de passe) ? | Politique de confidentialité (sous-traitants) |
 | Google Places et Unsplash : seuls des termes de recherche sont envoyés, sans données de compte ? | Politique de confidentialité |
 | Y a-t-il un outil de statistiques ou de suivi d'erreurs dans l'appli ? (aucun trouvé dans les dépendances) | Politique de confidentialité |
 | La localisation sert uniquement à afficher sa position sur la carte, sans enregistrement ni partage ? (constaté dans `use-user-location.ts`) | Politique de confidentialité |
 | La fonction « démarches avant location / échanges client-loueur » pour les professionnels existe-t-elle encore ? | Page Qui sommes-nous `src/content/about/fr.yaml` |
 | Les « contenus de destination » (infos pratiques, spots, culture) cités sur l'ancien site Wix existent-ils encore ? | Non repris pour l'instant |
-| Conservation des données : suppression après 2 ans d'inactivité (CGU §7.5) ou jamais (ancienne FAQ) ? Est-ce mis en œuvre ? | FAQ + CGU + politique |
+| ~~Conservation des données : suppression après 2 ans d'inactivité (CGU §7.5) ou jamais ?~~ Réponse (2026-11-03) : pas de suppression automatique, seul le titulaire supprime son compte. CGU §7.5 à corriger (C1). | FAQ + CGU + politique |
 
 - [ ] Réponses transmises
 
@@ -176,7 +176,7 @@ Les textes ont été **mis en forme, pas validés juridiquement**. Tant qu'une p
 ### C1. Pages légales
 
 - [ ] **Mentions légales** (`src/content/legal/fr/legal.md`) : **téléphone de l'éditeur** obligatoire (LCEN art. 6 III), aujourd'hui « à compléter » ; vérifier les coordonnées des hébergeurs (Cloudflare pour le site, Contabo pour les données de l'appli).
-- [ ] **CGU** (`terms.md`) : texte Wix du 06/10/2025 repris tel quel. Plusieurs points ne correspondent plus à l'appli (liste détaillée en tête du fichier) : messagerie interne et partage de localisation inexistants, abonnements et achats intégrés inexistants, cookies de mesure d'audience et bandeau inexistants, suppression de compte par e-mail alors que l'appli la propose dans les préférences.
+- [ ] **CGU** (`terms.md`) : texte Wix du 06/10/2025 repris tel quel. Plusieurs points ne correspondent plus à l'appli (liste détaillée en tête du fichier) : messagerie interne et partage de localisation inexistants, abonnements et achats intégrés inexistants, cookies de mesure d'audience et bandeau inexistants, suppression de compte par e-mail alors que l'appli la propose dans les préférences, **§7.5 suppression après 2 ans d'inactivité à retirer** (décision 2026-11-03 : seul le titulaire supprime son compte, la FAQ le dit déjà).
 - [ ] **Politique de confidentialité** (`privacy.md`) : document **nouveau** (il manquait, alors que les stores l'exigent). À valider : liste des sous-traitants, encadrement des transferts hors UE, durées de conservation proposées (messages de contact : 3 ans maximum ; journaux techniques : 12 mois), accords de sous-traitance signés.
 - [ ] Après validation : passer `reviewed: true` dans les 6 fichiers (FR + EN) et mettre à jour la date `updated`.
 
