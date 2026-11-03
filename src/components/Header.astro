@@ -5,6 +5,7 @@ import Icon from './Icon.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import { path, type Locale, type RouteKey } from '../i18n/config';
 import { t } from '../i18n/ui';
+import { accountLogin, showAccountLogin } from '../lib/account';
 
 interface Props {
   locale: Locale;
@@ -48,6 +49,18 @@ const nav = [
 
     <div class="ml-auto flex items-center gap-3 lg:ml-0">
       <LanguageSwitcher locale={locale} routeKey={routeKey} />
+      {
+        showAccountLogin && (
+          <a
+            href={accountLogin.url}
+            title={tr('account.loginHint')}
+            class="hidden items-center gap-2 rounded-full border border-azur px-4 py-2 text-lg font-semibold text-azur transition hover:bg-mist sm:inline-flex"
+          >
+            <Icon name="user" class="size-5" />
+            {tr('account.login')}
+          </a>
+        )
+      }
       <div class="hidden sm:block"><DownloadButton locale={locale} /></div>
       <button
         type="button"
@@ -78,6 +91,19 @@ const nav = [
       <div class="mt-4 px-3 sm:hidden">
         <DownloadButton locale={locale} />
       </div>
+      {
+        showAccountLogin && (
+          <div class="mt-3 px-3 sm:hidden">
+            <a
+              href={accountLogin.url}
+              class="inline-flex items-center gap-2 rounded-full border border-azur px-5 py-2.5 text-lg font-semibold text-azur"
+            >
+              <Icon name="user" class="size-5" />
+              {tr('account.login')}
+            </a>
+          </div>
+        )
+      }
     </nav>
   </div>
 </header>

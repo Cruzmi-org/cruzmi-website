@@ -23,6 +23,7 @@
 | A5 | Mettre à jour les fiches App Store / Google Play | Équipe appli | Après la bascule |
 | A6 | Libellé « Mes escapades » → « Mes projets » dans l'appli (FR) | Équipe appli | Non, mais nécessaire pour la capture « projets » |
 | A7 | Ouvrir l'appli dans d'autres pays sur les stores | Direction + équipe appli | Très recommandé avant l'article (lecteurs EN) |
+| A8 | Activer le bouton « Se connecter » vers Cruzmi Studio | Équipe appli + Studio | Non (préparé, en sommeil) |
 | B1 | Relire tous les textes | Direction + équipe | Oui |
 | B2 | Fournir photos, badges officiels, captures EN | Direction | Oui pour les badges, conseillé pour le reste |
 | C1 | Faire valider les pages légales | Juriste | Oui |
@@ -134,6 +135,21 @@ L'appli n'est aujourd'hui proposée sur l'App Store et Google Play **qu'en Franc
 - [ ] Récupérer le texte complet des deux popups et leurs liens (lien d'inscription au test Google Play, de la forme `https://play.google.com/apps/testing/com.cruzmi.Cruzmi`, et lien public TestFlight `https://testflight.apple.com/join/…`). Le contenu des popups Wix ne se charge qu'au clic : il n'a pas pu être lu automatiquement le 3 novembre 2026.
 - [ ] Vérifier que ces procédures fonctionnent vraiment depuis un pays non ouvert (le lien `https://play.google.com/store/apps/details?id=com.cruzmi.Cruzmi` seul est la page publique normale, il ne suffit pas).
 - [ ] Les reprendre sur le nouveau site (page ou encart « Télécharger Cruzmi hors de France, Belgique, Suisse et Luxembourg », en FR et EN, lié depuis la FAQ et le bandeau de téléchargement de la version anglaise), avant la parution de l'article.
+
+### A8. Bouton « Se connecter » vers Cruzmi Studio — en sommeil
+
+Objectif à terme : depuis le site, un bouton « Se connecter » donne accès à **Cruzmi Studio** (version web) :
+
+- les **professionnels** partenaires accèdent à leur compte pro ;
+- les **particuliers** accèdent à leur compte Cruzmi et retrouvent tous leurs projets et les fonctions de l'appli mobile.
+
+Le bouton est **déjà prévu sur le site mais masqué** : en haut de chaque page, à côté du sélecteur de langue (et dans le menu mobile), en FR et en EN. Testé le 3 novembre 2026 : il s'affiche correctement une fois activé.
+
+- [ ] Ouvrir Cruzmi Studio aux comptes particuliers (projets et fonctions équivalentes à l'appli mobile), en plus des comptes pro.
+- [ ] Fournir l'adresse publique de connexion de Studio (par ex. `https://studio.cruzmi.com/login`).
+- [ ] Activer le bouton : dans `src/lib/account.ts`, renseigner `url` et passer `enabled: true`.
+- [ ] Ensuite seulement, en parler sur le site (FAQ « Puis-je utiliser Cruzmi sur ordinateur ? », page Qui sommes-nous pour l'offre pro). D'ici là, le site ne présente aucune fonction pro ni version web.
+
 ---
 
 ## B. Contenus — direction et équipe
