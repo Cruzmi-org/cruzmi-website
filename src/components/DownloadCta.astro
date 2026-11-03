@@ -1,7 +1,13 @@
 ---
-/** Closing "download the app" band shared by the content pages. */
+/**
+ * Closing "download the app" band shared by the content pages: store badges, a reassurance line and,
+ * on large screens, QR codes to the two store pages (generated at build time from `stores`, so they
+ * always point to the same pages as the badges).
+ */
+import QRCode from 'qrcode';
 import StoreBadges from './StoreBadges.astro';
-import type { Locale } from '../i18n/config';
+import { stores, type Locale } from '../i18n/config';
+import { t } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
@@ -11,16 +17,46 @@ interface Props {
   id?: string;
 }
 const { locale, title, text, id } = Astro.props;
+const tr = t(locale);
+
+const qrCodes = await Promise.all(
+  [
+    { label: 'App Store', url: stores.ios[locale] },
+    { label: 'Google Play', url: stores.android[locale] },
+  ].map(async (s) => ({
+    ...s,
+    svg: await QRCode.toString(s.url, { type: 'svg', margin: 0, errorCorrectionLevel: 'M' }),
+  })),
+);
 ---
 
 <section id={id} class="scroll-mt-20 px-4 pb-20 sm:px-6 lg:px-8">
   <div
-    class="mx-auto flex max-w-7xl flex-col items-start gap-6 rounded-3xl bg-azur px-8 py-12 text-white md:flex-row md:items-center md:justify-between lg:px-14"
+    class="mx-auto flex max-w-7xl flex-col items-start gap-8 rounded-3xl bg-azur px-8 py-12 text-white lg:flex-row lg:items-center lg:justify-between lg:px-14"
   >
-    <div>
+    <div class="max-w-xl">
       <h2 class="text-4xl font-bold sm:text-5xl">{title}</h2>
       <p class="mt-2 text-xl text-white/90">{text}</p>
     </div>
-    <StoreBadges locale={locale} />
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-center">
+      <div class="space-y-3">
+        <StoreBadges locale={locale} />
+        <p class="text-lg font-semibold text-white/90">{tr('store.reassurance')}</p>
+      </div>
+      <!-- QR codes: only useful on a computer, phones use the badges. -->
+      <div class="hidden lg:block">
+        <p class="mb-2 text-base font-semibold text-white/90">{tr('store.scan')}</p>
+        <ul class="flex gap-4">
+          {
+            qrCodes.map((q) => (
+              <li class="text-center">
+                <div class="size-28 rounded-xl bg-white p-2.5 [&>svg]:size-full" set:html={q.svg} />
+                <span class="mt-1 block text-sm font-semibold">{q.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
