@@ -22,6 +22,7 @@
 | A4 | Répondre aux questions factuelles sur l'appli | Équipe appli | Oui |
 | A5 | Mettre à jour les fiches App Store / Google Play | Équipe appli | Après la bascule |
 | A6 | Libellé « Mes escapades » → « Mes projets » dans l'appli (FR) | Équipe appli | Non, mais nécessaire pour la capture « projets » |
+| A7 | Ouvrir l'appli dans d'autres pays sur les stores | Direction + équipe appli | Très recommandé avant l'article (lecteurs EN) |
 | B1 | Relire tous les textes | Direction + équipe | Oui |
 | B2 | Fournir photos, badges officiels, captures EN | Direction | Oui pour les badges, conseillé pour le reste |
 | C1 | Faire valider les pages légales | Juriste | Oui |
@@ -92,7 +93,7 @@ Les textes du site décrivent ce que fait l'appli. Les réponses peuvent être n
 | Question | Où c'est utilisé |
 |---|---|
 | Tout est-il gratuit, sauf les albums photo ? (la fiche App Store dit « Gratuit », sans achat intégré) | FAQ `src/content/faq/fr.yaml` |
-| Dans quels pays l'appli est-elle disponible sur les stores ? | FAQ |
+| ~~Dans quels pays l'appli est-elle disponible sur les stores ?~~ Réponse (2026-11-03) : France, Suisse, Belgique, Luxembourg. Voir A7. | FAQ |
 | Les projets ne sont-ils visibles **que** par leurs participants ? | FAQ + politique de confidentialité |
 | Quel service envoie les e-mails de l'appli (validation de compte, mot de passe) ? | Politique de confidentialité (sous-traitants) |
 | Google Places et Unsplash : seuls des termes de recherche sont envoyés, sans données de compte ? | Politique de confidentialité |
@@ -118,6 +119,21 @@ Le site présente Cruzmi pour **tous les projets de groupe**, pas seulement les 
 - [ ] Remplacer par « Mes projets » et « Mes projets passés » (et vérifier l'espagnol).
 - [ ] Ensuite, refaire la capture de la liste des projets avec un compte de démonstration contenant des projets **variés** (anniversaire, week-end de club, croisière, mariage…) et sans projet de test (« Projet New York 2027 Sans wizard »). Elle illustrera l'idée « tous vos projets au même endroit, en cours, à venir ou passés » sur le site.
 
+
+### A7. Disponibilité de l'appli hors de France, Suisse, Belgique et Luxembourg
+
+L'appli n'est aujourd'hui proposée sur l'App Store et Google Play **qu'en France, en Suisse, en Belgique et au Luxembourg**. Ailleurs, les badges et les QR codes du site mènent à une page « non disponible dans votre pays » (constaté le 3 novembre 2026 sur les liens anglais).
+
+- **Impact** : les lecteurs de la version anglaise de l'article, et tout visiteur hors de ces 4 pays, ne peuvent pas télécharger Cruzmi. La version anglaise du site perd alors son intérêt.
+- [ ] Décider des pays à ouvrir (au minimum ceux du lectorat du magazine) et les activer dans App Store Connect (Tarifs et disponibilité) et dans la Google Play Console (Production → Pays/régions).
+- [ ] Vérifier que les albums photo peuvent être commandés et livrés dans ces pays.
+- [ ] Ensuite, corriger la FAQ « Puis-je utiliser Cruzmi en dehors de la France ? » (elle dit aujourd'hui « où que vous alliez » sans préciser les pays de téléchargement).
+
+**Solution d'attente à reprendre sur le nouveau site** (à traiter tant que l'appli n'est pas ouverte dans les pays anglophones) : l'actuel site Wix explique comment installer Cruzmi hors de ces 4 pays, dans **deux popups** de la page d'accueil (phrase « Pour télécharger Cruzmi hors France, Belgique, Luxembourg, Suisse », puis un logo Android et un logo Apple). D'après l'équipe : version Android « développeur » (programme de test Google Play) et version iOS via **TestFlight**.
+
+- [ ] Récupérer le texte complet des deux popups et leurs liens (lien d'inscription au test Google Play, de la forme `https://play.google.com/apps/testing/com.cruzmi.Cruzmi`, et lien public TestFlight `https://testflight.apple.com/join/…`). Le contenu des popups Wix ne se charge qu'au clic : il n'a pas pu être lu automatiquement le 3 novembre 2026.
+- [ ] Vérifier que ces procédures fonctionnent vraiment depuis un pays non ouvert (le lien `https://play.google.com/store/apps/details?id=com.cruzmi.Cruzmi` seul est la page publique normale, il ne suffit pas).
+- [ ] Les reprendre sur le nouveau site (page ou encart « Télécharger Cruzmi hors de France, Belgique, Suisse et Luxembourg », en FR et EN, lié depuis la FAQ et le bandeau de téléchargement de la version anglaise), avant la parution de l'article.
 ---
 
 ## B. Contenus — direction et équipe
