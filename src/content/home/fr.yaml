@@ -28,6 +28,25 @@ pillars:
     title: "Partager"
     text: "Réunir les contenus et les souvenirs."
 
+benefits:
+  title: "Moins de messages, plus de moments ensemble"
+  intro: "Cruzmi réunit tout ce dont votre groupe a besoin, et chacun y contribue."
+  # image: app screenshot shown on the card (src/assets/screenshots/<locale>/<image>.jpg).
+  items:
+    - image: programme
+      title: "Un programme construit à plusieurs"
+      text: "Jour après jour, chacun retrouve le lieu, l'hébergement et les activités prévues. Une idée ? Proposez-la : le groupe l'ajoute au programme d'un geste."
+    - image: reimbursements
+      title: "Des comptes justes, sans courir après personne"
+      text: "Chacun note ce qu'il paie. Cruzmi tient compte des jours de présence de chacun, regroupe couples et familles, et calcule qui rembourse qui."
+    - image: shopping
+      title: "Repas et courses, enfin partagés"
+      text: "Planifiez les repas jour par jour et faites la liste de courses ensemble : chacun voit en direct ce qui est déjà acheté."
+    - image: gallery
+      title: "Vos photos réunies, jusqu'au livre souvenir"
+      text: "Chacun partage ses photos dans une galerie commune. En moins d'une minute, Cruzmi en fait un album, à commander imprimé ou en PDF."
+  link: "Découvrir toutes les fonctionnalités"
+
 useCases:
   title: "Des projets pour tous les moments de la vie"
   items:

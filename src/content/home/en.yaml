@@ -27,6 +27,24 @@ pillars:
     title: "Share"
     text: "Gather content and memories."
 
+benefits:
+  title: "Fewer messages, more time together"
+  intro: "Cruzmi brings together everything your group needs, and everyone pitches in."
+  items:
+    - image: programme
+      title: "A schedule built together"
+      text: "Day after day, everyone sees the place, the accommodation and the planned activities. Got an idea? Suggest it: the group adds it to the schedule in one tap."
+    - image: reimbursements
+      title: "Fair accounts, without chasing anyone"
+      text: "Everyone logs what they pay. Cruzmi takes each person's days of attendance into account, groups couples and families, and works out who owes whom."
+    - image: shopping
+      title: "Meals and shopping, finally shared"
+      text: "Plan meals day by day and build the shopping list together: everyone sees in real time what has already been bought."
+    - image: gallery
+      title: "Your photos together, all the way to a keepsake book"
+      text: "Everyone shares their photos in a common gallery. In under a minute, Cruzmi turns them into an album, to order in print or as a PDF."
+  link: "Discover all features"
+
 useCases:
   title: "Projects for every moment of life"
   items:

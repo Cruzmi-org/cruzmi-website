@@ -21,6 +21,12 @@ const home = defineCollection({
       imageAlt: z.string(),
     }),
     pillars: z.array(textItem.extend({ icon: z.enum(['users', 'calendar', 'map', 'camera']) })).length(4),
+    benefits: z.object({
+      title: z.string(),
+      intro: z.string(),
+      items: z.array(textItem.extend({ image: z.enum(['programme', 'reimbursements', 'shopping', 'gallery']) })).length(4),
+      link: z.string(),
+    }),
     useCases: z.object({ title: z.string(), items: z.array(textItem) }),
     audiences: z.object({ title: z.string(), intro: z.string(), items: z.array(textItem) }),
     howItWorks: z.object({
