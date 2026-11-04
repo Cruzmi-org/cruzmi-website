@@ -8,7 +8,7 @@
 
 | Élément | Où c'est aujourd'hui | Risque si oublié |
 |---|---|---|
-| E-mails `@cruzmi.com` (contact@, support@, dpo@, legal@…) | MX → `mail.cruzmi.com` = 193.203.239.24 (`mail48.lwspanel.com`, LWS) | Plus aucun e-mail reçu |
+| E-mails `@cruzmi.com` (contact@ ; support@, dpo@ et legal@ n'existent pas encore, voir `reste-a-faire.md` E3) | MX → `mail.cruzmi.com` = 193.203.239.24 (`mail48.lwspanel.com`, LWS) | Plus aucun e-mail reçu |
 | Vérification Google Search Console | TXT `google-site-verification=…` | Perte de l'accès Search Console |
 | Domaine Brevo (formulaire de contact) | TXT `brevo-code`, CNAME `brevo1/brevo2._domainkey`, TXT `_dmarc` | Messages du formulaire en spam ou rejetés |
 | Liens d'invitation de l'appli | `redirect.cruzmi.fr` (zone **cruzmi.fr**, pas cruzmi.com) | Liens d'invitation cassés |
@@ -133,7 +133,9 @@ curl -I https://cruzmi.com/faq            # 301 → https://www.cruzmi.com/faq �
 curl -I "https://www.cruzmi.com/politique-de-confidentialit%C3%A9"   # 301 → /fr/confidentialite/
 ```
 
-- [ ] Envoyer et recevoir un e-mail sur contact@, support@, dpo@ et legal@ (depuis une adresse externe).
+- [x] Réception sur contact@ depuis une adresse externe : OK le 4 novembre 2026, après le changement de serveurs DNS.
+- [ ] Réponse depuis le webmail LWS vers Gmail : **refusée** (« sender is unauthenticated »), déjà le cas avant la migration (rejet daté du 2 novembre 2026). Cause : pas de SPF sur cruzmi.com et clé DKIM LWS (sélecteur `dkim`) non publiée. Voir `reste-a-faire.md` E1.
+- [ ] Une fois créées (E3), tester aussi support@, dpo@ et legal@.
 - [ ] Formulaire de contact : un vrai envoi reçu.
 - [ ] Brevo : domaine toujours « authentifié ».
 - [ ] Search Console : propriété toujours vérifiée ; soumettre `https://www.cruzmi.com/sitemap-index.xml`.

@@ -33,6 +33,7 @@
 | D3 | Après la bascule : vérifications, Search Console, résiliation Wix | Équipe appli | — |
 | E1 | Améliorations e-mail (SPF, DKIM, DMARC) | Équipe appli | Non |
 | E2 | Hygiène des accès Cloudflare / GitHub | Équipe appli | Non |
+| E3 | Créer support@, dpo@ et legal@ (affichées sur le site, inexistantes) | Direction | **Oui** |
 
 ---
 
@@ -235,7 +236,7 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 - [ ] PR `develop` → `main` (merge commit) : https://github.com/Cruzmi-org/cruzmi-website/compare/main...develop. La production `cruzmi-website.pages.dev` se met à jour automatiquement.
 - [ ] Turnstile : vérifier que `www.cruzmi.com` figure dans les noms d'hôte du widget.
 - [ ] **Exporter la zone DNS complète depuis Wix** avant toute modification (l'inventaire public ne voit pas tout).
-- [ ] Bascule pas à pas selon `docs/migration-dns.md` §3 à §5. Le point le plus sensible : recopier **à l'identique** le MX et les enregistrements `mail`, `smtp`, `imap` et `pop`, sinon contact@, support@, dpo@ et legal@ ne reçoivent plus rien.
+- [ ] Bascule pas à pas selon `docs/migration-dns.md` §3 à §5. Le point le plus sensible : recopier **à l'identique** le MX et les enregistrements `mail`, `smtp`, `imap` et `pop`, sinon contact@ ne reçoit plus rien.
 - [ ] Redirection `cruzmi.fr` + `www.cruzmi.fr` → `https://www.cruzmi.com/fr/` (`.htaccess` sur l'hébergement LWS de cruzmi.fr).
 
 **Garder Wix actif** pendant la bascule : c'est le retour arrière possible.
@@ -248,12 +249,14 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 
 ---
 
-## E. Améliorations (non bloquantes)
+## E. Améliorations et e-mails
 
-### E1. Délivrabilité des e-mails @cruzmi.com
+### E1. Délivrabilité des e-mails @cruzmi.com — urgent
 
-- [ ] **SPF** : aucun enregistrement aujourd'hui. Proposition à valider avec la documentation LWS : `v=spf1 mx a:mailphp.lws-hosting.com include:spf.brevo.com ~all`.
-- [ ] **DKIM** pour les boîtes LWS, si l'offre le permet.
+**Constat (4 novembre 2026)** : Gmail **refuse** les réponses envoyées depuis le webmail LWS (« 550 5.7.26 … sender is unauthenticated »). Les réponses passent depuis le smartphone de Bruno, qui envoie probablement par un autre serveur (Gmail). Ce n'est pas lié à la migration : le problème existait déjà avec Wix (rejet daté du 2 novembre 2026).
+
+- [ ] **SPF sur `cruzmi.com`** : TXT `v=spf1 a:mail.cruzmi.com ip4:193.203.239.24 include:lwspanel.com include:spf.brevo.com ~all`, à ajouter dans la zone Cloudflare (et dans la zone Wix tant que la propagation n'est pas terminée). Ne pas y ajouter `include:_spf.google.com` : on dépasserait la limite de 10 recherches DNS imposée par SPF.
+- [ ] **DKIM LWS** : le serveur signe avec le sélecteur `dkim`, mais `dkim._domainkey.cruzmi.com` n'est pas publié. Récupérer la clé dans l'espace client LWS (e-mail → DKIM) et la publier en TXT dans la zone.
 - [ ] **DMARC** : passer de `p=none` à `p=quarantine` une fois SPF et DKIM en place.
 
 ### E2. Hygiène des accès
@@ -261,6 +264,20 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 - [ ] GitHub → Cruzmi-org → Settings → GitHub Apps → **Cloudflare Workers and Pages** : limiter l'accès au seul dépôt `cruzmi-website` (il voit aujourd'hui tous les dépôts de l'organisation).
 - [ ] Cloudflare → Workers et Pages : supprimer le **Worker** `cruzmi-website` créé par erreur s'il existe encore. Garder uniquement le projet **Pages**.
 - [ ] Inviter les membres de l'équipe sur le compte Cloudflare (Manage Account → Members) plutôt que de partager l'identifiant.
+
+### E3. Adresses support@, dpo@ et legal@ — bloquant
+
+L'offre LWS de cruzmi.com comprend **2 boîtes** : contact@cruzmi.com et, semble-t-il, bruno.leoni@cruzmi.com (à confirmer). Or les textes du site, repris des CGU Wix, affichent trois adresses **qui n'existent pas** : un message envoyé à l'une d'elles revient en erreur.
+
+| Adresse | Où elle apparaît |
+|---|---|
+| `dpo@cruzmi.com` | Politique de confidentialité, CGU, mentions légales, FAQ, page Contact |
+| `support@cruzmi.com` | CGU |
+| `legal@cruzmi.com` | CGU, mentions légales |
+
+- [ ] **Recommandé** : créer chez LWS trois **redirections** (ou alias) vers contact@cruzmi.com. Elles sont généralement incluses sans limite, contrairement aux boîtes. Les textes restent alors inchangés. Une adresse dédiée aux données personnelles (`dpo@`) est d'ailleurs une bonne pratique RGPD.
+- [ ] À défaut : remplacer ces adresses par contact@cruzmi.com dans les textes (pages légales FR et EN, FAQ, page Contact). À demander à la personne qui maintient le site.
+- [ ] Vérifier aussi les adresses affichées dans l'appli et sur les fiches des stores (adresse de support).
 
 ---
 
