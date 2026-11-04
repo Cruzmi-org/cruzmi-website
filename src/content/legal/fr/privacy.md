@@ -18,7 +18,7 @@ La présente politique explique quelles données personnelles CRUZMI SAS traite 
 
 **CRUZMI SAS**, société par actions simplifiée au capital de 30 000 euros, immatriculée au RCS de Créteil sous le numéro 948 690 623, dont le siège social est situé 1 rue Jean-Moulin, 94130 Nogent-sur-Marne, France.
 
-Pour toute question relative à vos données personnelles : [dpo@cruzmi.com](mailto:dpo@cruzmi.com).
+Pour toute question relative à vos données personnelles : [contact@cruzmi.com](mailto:contact@cruzmi.com).
 
 ## 2. Données traitées, finalités et bases légales
 
@@ -118,7 +118,7 @@ Conformément au Règlement général sur la protection des données (RGPD) et �
 - droit de retirer votre consentement à tout moment ;
 - droit de définir des directives relatives au sort de vos données après votre décès.
 
-Vous pouvez supprimer votre compte directement dans l'application (Préférences → « Suppression de mon compte Cruzmi »). Pour exercer vos autres droits, écrivez à [dpo@cruzmi.com](mailto:dpo@cruzmi.com). Nous pourrons vous demander de justifier de votre identité.
+Vous pouvez supprimer votre compte directement dans l'application (Préférences → « Suppression de mon compte Cruzmi »). Pour exercer vos autres droits, écrivez à [contact@cruzmi.com](mailto:contact@cruzmi.com). Nous pourrons vous demander de justifier de votre identité.
 
 Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la Commission nationale de l'informatique et des libertés (CNIL) : [www.cnil.fr](https://www.cnil.fr).
 

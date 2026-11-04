@@ -33,7 +33,7 @@
 | D3 | Après la bascule : vérifications, Search Console, résiliation Wix | Équipe appli | — |
 | E1 | Améliorations e-mail (SPF, DKIM, DMARC) | Équipe appli | Non |
 | E2 | Hygiène des accès Cloudflare / GitHub | Équipe appli | Non |
-| E3 | Créer support@, dpo@ et legal@ (affichées sur le site, inexistantes) | Direction | **Oui** |
+| E3 | Adresses support@, dpo@ et legal@ inexistantes : textes passés sur contact@ (fait), adresses dédiées plus tard | Direction | Non |
 
 ---
 
@@ -265,7 +265,7 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 - [ ] Cloudflare → Workers et Pages : supprimer le **Worker** `cruzmi-website` créé par erreur s'il existe encore. Garder uniquement le projet **Pages**.
 - [ ] Inviter les membres de l'équipe sur le compte Cloudflare (Manage Account → Members) plutôt que de partager l'identifiant.
 
-### E3. Adresses support@, dpo@ et legal@ — bloquant
+### E3. Adresses support@, dpo@ et legal@
 
 L'offre LWS de cruzmi.com comprend **2 boîtes** : contact@cruzmi.com et bruno@cruzmi.com (constaté le 4 novembre 2026 dans l'espace client LWS ; l'offre permet aussi des « redirections simples »). Or les textes du site, repris des CGU Wix, affichent trois adresses **qui n'existent pas** : un message envoyé à l'une d'elles revient en erreur.
 
@@ -275,8 +275,9 @@ L'offre LWS de cruzmi.com comprend **2 boîtes** : contact@cruzmi.com et bruno@c
 | `support@cruzmi.com` | CGU |
 | `legal@cruzmi.com` | CGU, mentions légales |
 
-- [ ] **Recommandé** : créer chez LWS trois **redirections** (ou alias) vers contact@cruzmi.com. Elles sont généralement incluses sans limite, contrairement aux boîtes. Les textes restent alors inchangés. Une adresse dédiée aux données personnelles (`dpo@`) est d'ailleurs une bonne pratique RGPD.
-- [ ] À défaut : remplacer ces adresses par contact@cruzmi.com dans les textes (pages légales FR et EN, FAQ, page Contact). À demander à la personne qui maintient le site.
+- [x] **Décision du 4 novembre 2026** : l'offre LWS n'autorise qu'**un seul alias ou redirection**, déjà utilisé. Les textes du site (pages légales FR et EN, FAQ, page Contact) renvoient donc tous vers **contact@cruzmi.com**.
+- [ ] Identifier l'alias ou la redirection LWS existant (« Alias & redirections : 1 / 1 », mais absent de la liste des boîtes).
+- [ ] Plus tard, si l'on veut des adresses dédiées (`dpo@` est une bonne pratique RGPD) : passer à une offre e-mail LWS supérieure, ou déplacer les e-mails vers un service qui inclut les alias (Google Workspace, Zoho, Infomaniak…). Il n'est **pas nécessaire de transférer le domaine** : le registrar (LWS) et l'hébergement des e-mails sont indépendants. Une fois les adresses créées, les remettre dans les textes.
 - [ ] Vérifier aussi les adresses affichées dans l'appli et sur les fiches des stores (adresse de support).
 
 ---

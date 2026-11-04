@@ -37,7 +37,7 @@ All elements of the website and the app (brand, logos, visual identity, texts, i
 
 ## Personal data
 
-The processing of personal data by CRUZMI SAS is described in our [privacy policy](/en/privacy/). For any question or to exercise your rights, write to [dpo@cruzmi.com](mailto:dpo@cruzmi.com).
+The processing of personal data by CRUZMI SAS is described in our [privacy policy](/en/privacy/). For any question or to exercise your rights, write to [contact@cruzmi.com](mailto:contact@cruzmi.com).
 
 ## Cookies
 
@@ -45,6 +45,4 @@ The website www.cruzmi.com does not set any advertising or audience-measurement 
 
 ## Contact
 
-General enquiries: [contact@cruzmi.com](mailto:contact@cruzmi.com)\
-Personal data: [dpo@cruzmi.com](mailto:dpo@cruzmi.com)\
-Legal matters: [legal@cruzmi.com](mailto:legal@cruzmi.com)
+For any question, including about your personal data: [contact@cruzmi.com](mailto:contact@cruzmi.com)

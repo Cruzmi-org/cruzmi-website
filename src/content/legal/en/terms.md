@@ -144,7 +144,7 @@ In accordance with applicable regulations, the User has the following rights:
 - restriction;
 - portability.
 
-These rights may be exercised by email to: [dpo@cruzmi.com](mailto:dpo@cruzmi.com)
+These rights may be exercised by email to: [contact@cruzmi.com](mailto:contact@cruzmi.com)
 
 ### 7.5. Retention period
 
@@ -187,7 +187,7 @@ CRUZMI SAS reserves the right to suspend or delete a User account, in particular
 - breach of these Terms;
 - fraudulent, abusive or unlawful use of the Service.
 
-The User may request the deletion of their account at any time via the settings or by email to [support@cruzmi.com](mailto:support@cruzmi.com).
+The User may request the deletion of their account at any time via the settings or by email to [contact@cruzmi.com](mailto:contact@cruzmi.com).
 
 Deletion entails the deletion of the data, unless there is a legal obligation to retain it.
 
@@ -204,8 +204,6 @@ Registered office: 1 rue Jean-Moulin, 94130 Nogent-sur-Marne, France\
 SIRET: 948 690 623 00012\
 Publication director: Bruno Leoni\
 Hosting provider: Contabo GmbH\
-General enquiries: [contact@cruzmi.com](mailto:contact@cruzmi.com)\
-GDPR contact: [dpo@cruzmi.com](mailto:dpo@cruzmi.com)\
-Legal contact: [legal@cruzmi.com](mailto:legal@cruzmi.com)
+Contact: [contact@cruzmi.com](mailto:contact@cruzmi.com)
 
 See also our [legal notice](/en/legal-notice/).
