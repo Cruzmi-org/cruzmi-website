@@ -255,7 +255,7 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 
 **Constat (4 novembre 2026)** : Gmail **refuse** les réponses envoyées depuis le webmail LWS (« 550 5.7.26 … sender is unauthenticated »). Les réponses passent depuis le smartphone de Bruno, qui envoie probablement par un autre serveur (Gmail). Ce n'est pas lié à la migration : le problème existait déjà avec Wix (rejet daté du 2 novembre 2026).
 
-- [ ] **SPF sur `cruzmi.com`** : TXT `v=spf1 a:mail.cruzmi.com ip4:193.203.239.24 include:lwspanel.com include:spf.brevo.com ~all`, à ajouter dans la zone Cloudflare (et dans la zone Wix tant que la propagation n'est pas terminée). Ne pas y ajouter `include:_spf.google.com` : on dépasserait la limite de 10 recherches DNS imposée par SPF.
+- [x] **SPF sur `cruzmi.com`** (ajouté le 4 novembre 2026 dans les zones Cloudflare et Wix ; réponse depuis le webmail LWS bien reçue sur Gmail) : TXT `v=spf1 a:mail.cruzmi.com ip4:193.203.239.24 include:lwspanel.com include:spf.brevo.com ~all`, à ajouter dans la zone Cloudflare (et dans la zone Wix tant que la propagation n'est pas terminée). Ne pas y ajouter `include:_spf.google.com` : on dépasserait la limite de 10 recherches DNS imposée par SPF.
 - [ ] **DKIM LWS** : le serveur signe avec le sélecteur `dkim`, mais `dkim._domainkey.cruzmi.com` n'est pas publié. Récupérer la clé dans l'espace client LWS (e-mail → DKIM) et la publier en TXT dans la zone.
 - [ ] **DMARC** : passer de `p=none` à `p=quarantine` une fois SPF et DKIM en place.
 

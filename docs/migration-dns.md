@@ -134,7 +134,7 @@ curl -I "https://www.cruzmi.com/politique-de-confidentialit%C3%A9"   # 301 → /
 ```
 
 - [x] Réception sur contact@ depuis une adresse externe : OK le 4 novembre 2026, après le changement de serveurs DNS.
-- [ ] Réponse depuis le webmail LWS vers Gmail : **refusée** (« sender is unauthenticated »), déjà le cas avant la migration (rejet daté du 2 novembre 2026). Cause : pas de SPF sur cruzmi.com et clé DKIM LWS (sélecteur `dkim`) non publiée. Voir `reste-a-faire.md` E1.
+- [x] Réponse depuis le webmail LWS vers Gmail : OK le 4 novembre 2026 après l'ajout du SPF. Elle était **refusée** auparavant (« sender is unauthenticated »), déjà le cas avant la migration (rejet daté du 2 novembre 2026). Cause : pas de SPF sur cruzmi.com et clé DKIM LWS (sélecteur `dkim`) non publiée. Voir `reste-a-faire.md` E1.
 - [ ] Une fois créées (E3), tester aussi support@, dpo@ et legal@.
 - [ ] Formulaire de contact : un vrai envoi reçu.
 - [ ] Brevo : domaine toujours « authentifié ».
