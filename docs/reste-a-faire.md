@@ -267,7 +267,7 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 
 ### E3. Adresses support@, dpo@ et legal@ — bloquant
 
-L'offre LWS de cruzmi.com comprend **2 boîtes** : contact@cruzmi.com et, semble-t-il, bruno.leoni@cruzmi.com (à confirmer). Or les textes du site, repris des CGU Wix, affichent trois adresses **qui n'existent pas** : un message envoyé à l'une d'elles revient en erreur.
+L'offre LWS de cruzmi.com comprend **2 boîtes** : contact@cruzmi.com et bruno@cruzmi.com (constaté le 4 novembre 2026 dans l'espace client LWS ; l'offre permet aussi des « redirections simples »). Or les textes du site, repris des CGU Wix, affichent trois adresses **qui n'existent pas** : un message envoyé à l'une d'elles revient en erreur.
 
 | Adresse | Où elle apparaît |
 |---|---|
