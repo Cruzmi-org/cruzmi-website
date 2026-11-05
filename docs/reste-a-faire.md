@@ -246,7 +246,8 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 ### D3. Après la bascule
 
 - [ ] Vérifications de `docs/migration-dns.md` §6 (e-mails, formulaire et redirections Wix vérifiés le 4 novembre 2026 ; reste : liens des stores, lien d'invitation) : formulaire, redirections Wix, liens des stores, lien d'invitation.
-- [ ] Google Search Console : propriété toujours vérifiée, soumettre `https://www.cruzmi.com/sitemap-index.xml`.
+- [x] Google Search Console (5 novembre 2026) : la propriété « Domaine » cruzmi.com est toujours vérifiée (TXT Google recopié). `sitemap-index.xml` a été soumis, `/fr/` et `/en/` testés en direct (« disponible pour Google ») et l'indexation demandée. Le sitemap ne liste que les pages indexables : les pages légales y reviendront d'elles-mêmes avec `reviewed: true`.
+- [ ] Vers le 7 novembre 2026 : vérifier que le sitemap est passé en « Opération effectuée » (environ 13 pages découvertes) et supprimer l'ancien `sitemap.xml` (Wix) de la liste s'il y est encore.
 - [ ] Formulaire : les messages arrivaient en indésirables chez LWS (score 8,9, dû au « Répondre à » vers l'adresse du visiteur ; SPF, DKIM et DMARC passent). Solution : `no-reply@cruzmi.com` ajouté aux expéditeurs autorisés de contact@ dans le webmail LWS. À refaire si la boîte change.
 - [ ] Après deux semaines sans incident, **résilier Wix**. Ensuite, dans Cloudflare : remplacer les 3 A Wix de `cruzmi.com` par un seul `A 192.0.2.1` (proxifié), et supprimer `s1._domainkey`, `s2._domainkey`, `sel1._domainkey` et `sg` (e-mails Wix).
 
