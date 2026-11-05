@@ -17,7 +17,7 @@
 | # | Tâche | Qui | Bloquant pour la mise en ligne ? |
 |---|---|---|---|
 | A1 | Confirmer la valeur du secret `WEB_DOMAIN` | Équipe appli | Oui |
-| A2 | Modifier nginx sur `redirect.cruzmi.fr` (page d'invitation) | Équipe appli | Non, mais très recommandé avant l'article |
+| A2 | Modifier nginx sur `redirect.cruzmi.fr` (page d'invitation) : déployé le 5 nov., tests sur téléphone à faire | Équipe appli | Non, mais très recommandé avant l'article |
 | A3 | Vérifier l'URL de site Supabase Auth (`cruzmi.fr`) | Équipe appli | Oui |
 | A4 | Répondre aux questions factuelles sur l'appli | Équipe appli | Oui |
 | A5 | Mettre à jour les fiches App Store / Google Play | Équipe appli | Après la bascule |
@@ -51,7 +51,14 @@ L'appli construit ses liens universels (invitations) avec `WEB_DOMAIN` (`cruzmi-
 
 ### A2. nginx sur `redirect.cruzmi.fr` : page d'accueil des invités
 
-**Problème actuel** (vérifié le 5 novembre 2026) : quand un membre invite quelqu'un, l'appli crée un lien `https://redirect.cruzmi.fr/join/<projet>/<invitation>`.
+**État au 5 novembre 2026 : déployé.** Vérifications 1 à 3 OK (302 vers `/join/?path=…`, les deux fichiers `.well-known` en 200 `application/json`, un lien piégé avec saut de ligne part sur `/join/` sans `?path=`). **Reste à faire** : tests 4 et 5 sur iPhone et Android, et Healthcheck (chemin `/.well-known/assetlinks.json`).
+
+- [x] Configuration nginx déployée
+- [ ] Tests sur téléphone (iPhone + Android, avec et sans l'appli)
+
+**Accès GitHub de Coolify** (cause du premier échec de déploiement, « GitHub API call failed: Not Found ») : le Coolify actuel (109.199.115.17) lit les dépôts via l'app GitHub **`cruzmi-org-coolify`**, en accès « Only select repositories ». `universal-links` n'y figurait plus : il a été ajouté le 5 novembre 2026 (GitHub → Cruzmi-org → Settings → GitHub Apps → `cruzmi-org-coolify`). L'autre app installée, **`coolifycruzmi`** (accès à tous les dépôts), appartient à l'ancien Coolify (144.91.121.229, qui ne répond plus) : à désinstaller une fois qu'on a vérifié que plus rien ne s'en sert (voir E2).
+
+**Problème d'origine** (constaté le 5 novembre 2026, avant la modification) : quand un membre invite quelqu'un, l'appli crée un lien `https://redirect.cruzmi.fr/join/<projet>/<invitation>`.
 
 - **L'invité a déjà l'appli** : le téléphone ouvre Cruzmi directement. Il s'appuie pour ça sur `/.well-known/apple-app-site-association` (iPhone, `"paths": ["*"]`) et `/.well-known/assetlinks.json` (Android), que `redirect.cruzmi.fr` sert correctement.
 - **L'invité n'a pas l'appli**, cas le plus fréquent : le lien s'ouvre dans le navigateur et nginx répond par une **404**. La racine `redirect.cruzmi.fr/` affiche la page par défaut « Welcome to nginx! ». L'invité ne sait pas quoi faire.
@@ -342,6 +349,7 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 - [ ] GitHub → Cruzmi-org → Settings → GitHub Apps → **Cloudflare Workers and Pages** : limiter l'accès au seul dépôt `cruzmi-website` (il voit aujourd'hui tous les dépôts de l'organisation).
 - [ ] Cloudflare → Workers et Pages : supprimer le **Worker** `cruzmi-website` créé par erreur s'il existe encore. Garder uniquement le projet **Pages**.
 - [ ] Inviter les membres de l'équipe sur le compte Cloudflare (Manage Account → Members) plutôt que de partager l'identifiant.
+- [ ] GitHub → Cruzmi-org → Settings → GitHub Apps → **`coolifycruzmi`** : app de l'ancien Coolify (144.91.121.229, hors service), avec accès à **tous** les dépôts. Vérifier dans Coolify → Sources qu'aucune source ne l'utilise (seule `cruzmi-org-coolify` est utilisée par `universal-links`), puis la désinstaller (**Uninstall**).
 
 ### E3. Adresses support@, dpo@ et legal@
 
