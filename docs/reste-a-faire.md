@@ -51,7 +51,7 @@ L'appli construit ses liens universels (invitations) avec `WEB_DOMAIN` (`cruzmi-
 
 ### A2. nginx sur `redirect.cruzmi.fr` : page d'accueil des invités
 
-**État au 5 novembre 2026 : déployé.** Vérifications 1 à 3 OK (302 vers `/join/?path=…`, les deux fichiers `.well-known` en 200 `application/json`, un lien piégé avec saut de ligne part sur `/join/` sans `?path=`). **Reste à faire** : tests 4 et 5 sur iPhone et Android, et Healthcheck (chemin `/.well-known/assetlinks.json`).
+**État au 5 novembre 2026 : déployé.** Vérifications 1 à 3 OK (302 vers `/join/?path=…`, les deux fichiers `.well-known` en 200 `application/json`, un lien piégé avec saut de ligne part sur `/join/` sans `?path=`). Healthcheck pointé sur `/.well-known/assetlinks.json` (laissé désactivé). **Reste à faire** : tests 4 et 5 sur iPhone et Android.
 
 - [x] Configuration nginx déployée
 - [ ] Tests sur téléphone (iPhone + Android, avec et sans l'appli)
