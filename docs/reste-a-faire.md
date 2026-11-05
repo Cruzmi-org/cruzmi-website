@@ -237,7 +237,7 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 - [x] Turnstile : `www.cruzmi.com` et `cruzmi.com` ajoutés le 4 novembre 2026. Vérifier que `www.cruzmi.com` figure dans les noms d'hôte du widget.
 - [x] **Exporter la zone DNS complète depuis Wix** (fait le 3 novembre 2026) avant toute modification (l'inventaire public ne voit pas tout).
 - [x] Zone Cloudflare active (3 novembre 2026), **www.cruzmi.com sert le nouveau site depuis le 4 novembre 2026**.
-- [ ] **Reste à basculer** `cruzmi.com` (domaine nu), `fr.cruzmi.com` et `en.cruzmi.com` : ils passent encore par Wix (`en.` répond 404). Indispensable **avant de résilier Wix** (`docs/migration-dns.md` §2, étape 5).
+- [x] `cruzmi.com`, `fr.cruzmi.com` et `en.cruzmi.com` basculés le 5 novembre 2026 : règles de redirection Cloudflare (301 vers www, chemin conservé pour `cruzmi.com` ; `/fr/` et `/en/` pour les sous-domaines). Enregistrements proxifiés : les 3 A Wix de `cruzmi.com` (inutilisés, à remplacer par `A 192.0.2.1` à la résiliation de Wix) ; `fr` et `en` en `A 192.0.2.1`. Un CNAME vers `cdn3.wixdns.net` ne fonctionne pas : Wix étant lui-même sur Cloudflare, il répond à la place de nos règles.
 - [x] Bascule pas à pas selon `docs/migration-dns.md` §3 à §5. Le point le plus sensible : recopier **à l'identique** le MX et les enregistrements `mail`, `smtp`, `imap` et `pop`, sinon contact@ ne reçoit plus rien.
 - [ ] Redirection `cruzmi.fr` + `www.cruzmi.fr` → `https://www.cruzmi.com/fr/` (`.htaccess` sur l'hébergement LWS de cruzmi.fr).
 
@@ -248,7 +248,7 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 - [ ] Vérifications de `docs/migration-dns.md` §6 (e-mails, formulaire et redirections Wix vérifiés le 4 novembre 2026 ; reste : liens des stores, lien d'invitation) : formulaire, redirections Wix, liens des stores, lien d'invitation.
 - [ ] Google Search Console : propriété toujours vérifiée, soumettre `https://www.cruzmi.com/sitemap-index.xml`.
 - [ ] Formulaire : les messages arrivaient en indésirables chez LWS (score 8,9, dû au « Répondre à » vers l'adresse du visiteur ; SPF, DKIM et DMARC passent). Solution : `no-reply@cruzmi.com` ajouté aux expéditeurs autorisés de contact@ dans le webmail LWS. À refaire si la boîte change.
-- [ ] Après deux semaines sans incident, **et une fois `cruzmi.com`, `fr.` et `en.` basculés** : **résilier Wix**.
+- [ ] Après deux semaines sans incident, **résilier Wix**. Ensuite, dans Cloudflare : remplacer les 3 A Wix de `cruzmi.com` par un seul `A 192.0.2.1` (proxifié), et supprimer `s1._domainkey`, `s2._domainkey`, `sel1._domainkey` et `sg` (e-mails Wix).
 
 ---
 
