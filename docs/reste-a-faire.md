@@ -125,7 +125,31 @@ Points d'attention :
 
 Faire les tests 4 et 5 sur iPhone **et** sur Android.
 
-**Retour arrière** : remettre la configuration copiée à l'étape 2 et recharger nginx.
+**Retour arrière** : vider le champ « Custom Nginx Configuration » (il était vide avant la modification : Coolify utilise alors sa configuration par défaut), puis Save et Redeploy. On peut aussi passer par l'onglet **Rollback** de Coolify. Pour mémoire, la configuration par défaut générée par Coolify (build pack Static) le 5 novembre 2026 :
+
+```nginx
+server {
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        try_files $uri $uri.html $uri/index.html $uri/index.htm $uri/ =404;
+    }
+
+    # Handle 404 errors
+    error_page 404 /404.html;
+    location = /404.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+
+    # Handle server errors (50x)
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+}
+```
 
 - [ ] nginx modifié et testé (iOS + Android)
 
