@@ -16,3 +16,5 @@
 /followers                           /fr/                   301
 /profile-1                           /fr/                   301
 /fullscreen-page                     /fr/                   301
+# Old Wix sitemap URL (known to Google) -> new sitemap index.
+/sitemap.xml                         /sitemap-index.xml     301
