@@ -239,7 +239,7 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 - [x] Zone Cloudflare active (3 novembre 2026), **www.cruzmi.com sert le nouveau site depuis le 4 novembre 2026**.
 - [x] `cruzmi.com`, `fr.cruzmi.com` et `en.cruzmi.com` basculés le 5 novembre 2026 : règles de redirection Cloudflare (301 vers www, chemin conservé pour `cruzmi.com` ; `/fr/` et `/en/` pour les sous-domaines). Enregistrements proxifiés : les 3 A Wix de `cruzmi.com` (inutilisés, à remplacer par `A 192.0.2.1` à la résiliation de Wix) ; `fr` et `en` en `A 192.0.2.1`. Un CNAME vers `cdn3.wixdns.net` ne fonctionne pas : Wix étant lui-même sur Cloudflare, il répond à la place de nos règles.
 - [x] Bascule pas à pas selon `docs/migration-dns.md` §3 à §5. Le point le plus sensible : recopier **à l'identique** le MX et les enregistrements `mail`, `smtp`, `imap` et `pop`, sinon contact@ ne reçoit plus rien.
-- [ ] Redirection `cruzmi.fr` + `www.cruzmi.fr` → `https://www.cruzmi.com/fr/` (`.htaccess` sur l'hébergement LWS de cruzmi.fr).
+- [x] Redirection `cruzmi.fr` + `www.cruzmi.fr` → `https://www.cruzmi.com/fr/` : faite le 5 novembre 2026 avec la redirection de domaine LWS (« 301 (Htaccess) », espace client → cruzmi.fr). Le chemin est conservé. LWS redirige vers `http://`, puis Cloudflare passe en HTTPS : une étape de plus, sans conséquence. `redirect.cruzmi.fr` et les autres sous-domaines ne sont pas touchés (vérifié).
 
 **Garder Wix actif** pendant la bascule : c'est le retour arrière possible.
 
