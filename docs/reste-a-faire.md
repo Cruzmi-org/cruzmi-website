@@ -69,22 +69,45 @@ L'appli construit ses liens universels (invitations) avec `WEB_DOMAIN` (`cruzmi-
 2. **Copier la configuration actuelle** (retour arrière).
 3. Dans le bloc `server` de `redirect.cruzmi.fr` :
    - garder telle quelle la partie qui sert `/.well-known/` ;
-   - remplacer le bloc `location /` (celui qui produit la 404 et la page « Welcome to nginx! ») par :
+   - remplacer le bloc `location /` (celui qui produit la 404 et la page « Welcome to nginx! ») par la configuration ci-dessous.
+
+   L'application Coolify s'appelle `cruzmi-org/universal-links` : dépôt Git du même nom, branche `main`, build pack **Static**, image `nginx:alpine`. La config se colle dans le champ **General → Custom Nginx Configuration** (vide = config par défaut), puis Save et Redeploy. Config complète à coller :
 
    ```nginx
-   # App link files: unchanged. Serve the iOS file (no extension) as JSON, as Apple recommends.
-   location = /.well-known/apple-app-site-association {
-       default_type application/json;
-       # ... keep the existing root / alias / try_files lines here ...
-   }
+   server {
+       root /usr/share/nginx/html;
 
-   # Any other path means the app is not installed: send the visitor to the invitation page.
-   location / {
-       return 302 https://www.cruzmi.com/join/?path=$uri;
+       # Universal-link files (iOS + Android): served as before.
+       # The iOS file has no extension: serve it as JSON, as Apple recommends.
+       location = /.well-known/apple-app-site-association {
+           default_type application/json;
+           try_files $uri =404;
+       }
+       location /.well-known/ {
+           try_files $uri =404;
+       }
+
+       # Any other path means the app is not installed: send the visitor to the invitation page.
+       # Only safe path characters are passed on (same rule as the page itself); anything else
+       # goes to the page without ?path=.
+       location / {
+           if ($request_uri ~ "^(/[A-Za-z0-9_/-]{1,200})(\?.*)?$") {
+               return 302 https://www.cruzmi.com/join/?path=$1;
+           }
+           return 302 https://www.cruzmi.com/join/;
+       }
+
+       # Server errors (50x)
+       error_page 500 502 503 504 /50x.html;
+       location = /50x.html {
+           internal;
+       }
    }
    ```
 
-4. Recharger nginx : redéployer le service dans Coolify, ou lancer `nginx -t` puis `nginx -s reload` dans le conteneur.
+   Ne pas utiliser `$uri` directement dans le `return` : nginx le décode, et un lien piégé pourrait injecter un saut de ligne dans la réponse. Vérifier aussi l'onglet **Healthcheck** : s'il teste `/`, le pointer sur `/.well-known/assetlinks.json`, car `/` répondra désormais par une 302.
+
+4. Recharger nginx : **Redeploy** dans Coolify.
 
 Points d'attention :
 
