@@ -51,31 +51,58 @@ L'appli construit ses liens universels (invitations) avec `WEB_DOMAIN` (`cruzmi-
 
 ### A2. nginx sur `redirect.cruzmi.fr` : page d'accueil des invités
 
-**Problème actuel** : un invité qui n'a pas encore l'appli et touche un lien d'invitation (`https://redirect.cruzmi.fr/join/<trip>/<membership>`) tombe sur une **page 404 nginx**.
+**Problème actuel** (vérifié le 5 novembre 2026) : quand un membre invite quelqu'un, l'appli crée un lien `https://redirect.cruzmi.fr/join/<projet>/<invitation>`.
 
-**Ce qui existe déjà** : le site a une page « Vous êtes invité ! ». `/join/` choisit la langue, puis affiche `/fr/rejoindre/` ou `/en/join/`. Elle explique comment installer l'appli et créer un compte. Si elle reçoit `?path=/join/<trip>/<membership>`, elle affiche un bouton qui rouvre l'invitation dans l'appli une fois installée. Le lien est contrôlé : il ne peut pointer que vers `https://redirect.cruzmi.fr`.
+- **L'invité a déjà l'appli** : le téléphone ouvre Cruzmi directement. Il s'appuie pour ça sur `/.well-known/apple-app-site-association` (iPhone, `"paths": ["*"]`) et `/.well-known/assetlinks.json` (Android), que `redirect.cruzmi.fr` sert correctement.
+- **L'invité n'a pas l'appli**, cas le plus fréquent : le lien s'ouvre dans le navigateur et nginx répond par une **404**. La racine `redirect.cruzmi.fr/` affiche la page par défaut « Welcome to nginx! ». L'invité ne sait pas quoi faire.
+
+**Ce qui existe déjà** : la page « Vous êtes invité ! » du site, en ligne sur `https://www.cruzmi.com/join/`.
+
+- `/join/` choisit la langue, puis affiche `/fr/rejoindre/` ou `/en/join/`.
+- La page explique comment installer l'appli et créer un compte.
+- Si elle reçoit `?path=/join/<projet>/<invitation>`, elle affiche un bouton « Ouvrir l'invitation dans Cruzmi », qui ramène l'invité dans le projet une fois l'appli installée.
+- Le lien est contrôlé : il ne peut pointer que vers `https://redirect.cruzmi.fr`.
 
 **À faire dans nginx** (Coolify, serveur 109.199.115.17) :
 
-```nginx
-# Keep serving the universal-link files as today.
-location /.well-known/ {
-    default_type application/json;   # recommended for AASA (served as application/octet-stream today)
-    # ... existing config ...
-}
+1. Dans Coolify, retrouver le service qui sert `redirect.cruzmi.fr` et ouvrir sa **configuration nginx** (`default.conf` ou configuration personnalisée montée dans le conteneur).
+2. **Copier la configuration actuelle** (retour arrière).
+3. Dans le bloc `server` de `redirect.cruzmi.fr` :
+   - garder telle quelle la partie qui sert `/.well-known/` ;
+   - remplacer le bloc `location /` (celui qui produit la 404 et la page « Welcome to nginx! ») par :
 
-# Any other path = the app is not installed: send the visitor to the invitation page.
-location / {
-    return 302 https://www.cruzmi.com/join/?path=$uri;
-}
-```
+   ```nginx
+   # App link files: unchanged. Serve the iOS file (no extension) as JSON, as Apple recommends.
+   location = /.well-known/apple-app-site-association {
+       default_type application/json;
+       # ... keep the existing root / alias / try_files lines here ...
+   }
 
-- Utiliser une **302**, pas une 301, pour que les navigateurs ne mémorisent pas la redirection.
-- **Avant la bascule DNS**, www.cruzmi.com est encore sur Wix : remplacer temporairement `https://www.cruzmi.com` par `https://develop.cruzmi-website.pages.dev` pour tester.
-- **Tests** :
-  - appli désinstallée, ouvrir un lien d'invitation → la page d'invitation s'affiche avec le bouton ;
-  - appli installée → le lien ouvre toujours l'appli directement ;
-  - `curl -I https://redirect.cruzmi.fr/.well-known/apple-app-site-association` → 200, `content-type: application/json`.
+   # Any other path means the app is not installed: send the visitor to the invitation page.
+   location / {
+       return 302 https://www.cruzmi.com/join/?path=$uri;
+   }
+   ```
+
+4. Recharger nginx : redéployer le service dans Coolify, ou lancer `nginx -t` puis `nginx -s reload` dans le conteneur.
+
+Points d'attention :
+
+- **302 et non 301** : une 301 est mémorisée par les navigateurs. Si la page change d'adresse, ou si l'appli gère ces liens autrement, les invités resteraient bloqués sur l'ancienne redirection.
+- `default_type application/json` est facultatif. Le fichier iPhone est servi aujourd'hui en `application/octet-stream` : ça fonctionne, mais Apple recommande `application/json`.
+- **Risque très faible** : les deux fichiers qui servent aux téléphones à reconnaître les liens ne changent pas, et un invité qui a l'appli n'arrive jamais jusqu'à nginx.
+
+**Vérifications** :
+
+1. `curl -I https://redirect.cruzmi.fr/join/abc/def` → `302`, `Location: https://www.cruzmi.com/join/?path=/join/abc/def`.
+2. `curl -I https://redirect.cruzmi.fr/.well-known/apple-app-site-association` → `200`, `content-type: application/json`.
+3. `curl -I https://redirect.cruzmi.fr/.well-known/assetlinks.json` → `200`, `content-type: application/json`.
+4. Téléphone **sans** l'appli : toucher un lien d'invitation → page « Vous êtes invité » avec le bouton « Ouvrir l'invitation dans Cruzmi ».
+5. Téléphone **avec** l'appli : toucher un lien d'invitation → Cruzmi s'ouvre directement sur le projet, comme aujourd'hui.
+
+Faire les tests 4 et 5 sur iPhone **et** sur Android.
+
+**Retour arrière** : remettre la configuration copiée à l'étape 2 et recharger nginx.
 
 - [ ] nginx modifié et testé (iOS + Android)
 
