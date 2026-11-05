@@ -63,7 +63,7 @@ link points to a search instead of the app page; nav items without anchors; acce
 ## Migration constraints (do not break)
 
 - **DNS of cruzmi.com is at Wix** (ns4/ns5.wixdns.net); registrar is LWS. Before leaving Wix, recreate
-  ALL records at LWS — especially **MX (mail.cruzmi.com)**: contact@, support@, dpo@, legal@ must keep
+  ALL records at LWS — especially **MX (mail.cruzmi.com)**: contact@ (LWS mailboxes: contact@ and bruno@ only; support@, dpo@, legal@ do not exist, so the site only shows contact@, see docs/reste-a-faire.md E3) must keep
   working. Keep the Search Console TXT record.
 - **Universal links**: mobile app uses `applinks:${WEB_DOMAIN}` (cruzmi-supabase/app.config.ts).
   Checked 2026-11-02: AASA/assetlinks are served by `redirect.cruzmi.fr` (nginx on Coolify, zone

@@ -82,7 +82,7 @@ categories:
       - q: "Comment supprimer mon compte ?"
         a: "Directement dans l'application, depuis vos préférences : « Suppression de mon compte Cruzmi ». Vos données personnelles sont alors supprimées ; vos contributions aux projets partagés (dépenses, photos…) restent visibles des autres participants de manière anonymisée."
       - q: "Comment mes données sont-elles protégées ?"
-        a: "Vos projets ne sont visibles que par leurs participants. Tous les détails figurent dans notre politique de confidentialité ; pour toute question, écrivez à dpo@cruzmi.com."
+        a: "Vos projets ne sont visibles que par leurs participants. Tous les détails figurent dans notre politique de confidentialité ; pour toute question, écrivez à contact@cruzmi.com."
 
 contact:
   title: "Une autre question ?"

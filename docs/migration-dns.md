@@ -8,7 +8,7 @@
 
 | Élément | Où c'est aujourd'hui | Risque si oublié |
 |---|---|---|
-| E-mails `@cruzmi.com` (contact@, support@, dpo@, legal@…) | MX → `mail.cruzmi.com` = 193.203.239.24 (`mail48.lwspanel.com`, LWS) | Plus aucun e-mail reçu |
+| E-mails `@cruzmi.com` (contact@ ; support@, dpo@ et legal@ n'existent pas encore, voir `reste-a-faire.md` E3) | MX → `mail.cruzmi.com` = 193.203.239.24 (`mail48.lwspanel.com`, LWS) | Plus aucun e-mail reçu |
 | Vérification Google Search Console | TXT `google-site-verification=…` | Perte de l'accès Search Console |
 | Domaine Brevo (formulaire de contact) | TXT `brevo-code`, CNAME `brevo1/brevo2._domainkey`, TXT `_dmarc` | Messages du formulaire en spam ou rejetés |
 | Liens d'invitation de l'appli | `redirect.cruzmi.fr` (zone **cruzmi.fr**, pas cruzmi.com) | Liens d'invitation cassés |
@@ -27,10 +27,15 @@
 | `smtp`, `imap`, `pop` | CNAME | `mail.cruzmi.com` | **Oui** |
 | `cruzmi.com` | TXT | `google-site-verification=TLcPFkw3SrKn0v9SWFzDJXWstazbyn-LcDMC9XPPYiM` | **Oui** |
 | `cruzmi.com` | TXT | `brevo-code:577adf056f6e8587be066fd6d49fd180` | **Oui** |
+| `mail` | TXT | `v=spf1 a:mail.cruzmi.com ip4:193.203.239.24 include:_spf.google.com ~all` (SPF du seul sous-domaine `mail` ; Wix l'affiche aussi dans une section « SPF », ancien type inutile à recopier) | **Oui, à l'identique** |
 | `brevo1._domainkey` | CNAME | `b1.cruzmi-com.dkim.brevo.com` | **Oui** |
 | `brevo2._domainkey` | CNAME | `b2.cruzmi-com.dkim.brevo.com` | **Oui** |
 | `_dmarc` | TXT | `v=DMARC1; p=none; rua=mailto:rua@dmarc.brevo.com` | **Oui** |
-| `s1._domainkey` | CNAME | `s1._domainkey.cruzmi.com.s010.ascendbywix.com` (e-mails marketing Wix) | Non, sauf si Wix e-mailing est utilisé |
+| `s1._domainkey`, `s2._domainkey`, `sel1._domainkey` | CNAME | `<nom>.cruzmi.com.s010.ascendbywix.com` (e-mails marketing Wix) | Oui pendant la transition, à supprimer à la résiliation de Wix |
+| `sg` | CNAME | `sg.cruzmi.com.s010.ascendbywix.com` (envoi d'e-mails Wix) | Idem |
+| `fr`, `en` | CNAME | `cdn3.wixdns.net` (anciennes adresses de langue Wix ; `fr` redirige vers www, `en` répond 404) | Oui, puis à l'étape 5 : redirection vers `https://www.cruzmi.com/fr/` et `/en/` |
+
+> Inventaire complété le 3 novembre 2026 avec l'export de la zone Wix (captures, aucun AAAA, SRV ni CAA). `s2`, `sel1`, `sg`, `fr`, `en` et le TXT de `mail` n'apparaissaient pas dans le relevé public : 21 enregistrements à recopier (4 A, 12 CNAME, 1 MX, 4 TXT).
 
 Constats :
 - **Aucun enregistrement SPF** sur cruzmi.com (pas de `v=spf1`). Voir §6 (amélioration, hors migration).
@@ -76,10 +81,11 @@ Les e-mails et le site sont basculés **séparément**, pour qu'un éventuel sou
 1. **Fusion** `develop` → `main` : la production `cruzmi-website.pages.dev` reçoit le site complet.
 2. **Export de la zone Wix** (capture des enregistrements DNS).
 3. **Zone Cloudflare** : ajouter cruzmi.com (offre gratuite). Cloudflare importe les enregistrements existants. Tout est vérifié contre le §1 et mis en **DNS only** (nuage gris), y compris `cruzmi.com` et `www`, qui pointent **encore vers Wix**.
-4. **Serveurs de noms** : chez LWS, remplacer `ns4/ns5.wixdns.net` par les deux serveurs Cloudflare. Rien ne change pour les visiteurs, ni pour les e-mails : la nouvelle zone est une copie de l'ancienne. Attendre que Cloudflare indique la zone **Active**, puis vérifier les e-mails.
+4. **Serveurs de noms** : chez LWS, remplacer `ns4/ns5.wixdns.net` par les deux serveurs Cloudflare, **`dax.ns.cloudflare.com`** et **`nova.ns.cloudflare.com`** (zone créée le 3 novembre 2026 ; les 18 noms vérifiés renvoient sur ces serveurs exactement les mêmes réponses que sur Wix). Rien ne change pour les visiteurs, ni pour les e-mails : la nouvelle zone est une copie de l'ancienne. Attendre que Cloudflare indique la zone **Active**, puis vérifier les e-mails.
 5. **Bascule du site**, quelques minutes et réversible :
    - Pages → Custom domains → `www.cruzmi.com`, puis `cruzmi.com` ;
    - règle de redirection `cruzmi.com/*` → `https://www.cruzmi.com/$1` (301) ;
+   - `fr.cruzmi.com` et `en.cruzmi.com` : enregistrements proxifiés, avec des règles de redirection vers `https://www.cruzmi.com/fr/` et `https://www.cruzmi.com/en/` (301) ;
    - ajouter les noms d'hôte au widget Turnstile.
 6. **Vérifications** du §6, Search Console, puis résiliation de Wix après deux semaines.
 
@@ -127,7 +133,9 @@ curl -I https://cruzmi.com/faq            # 301 → https://www.cruzmi.com/faq �
 curl -I "https://www.cruzmi.com/politique-de-confidentialit%C3%A9"   # 301 → /fr/confidentialite/
 ```
 
-- [ ] Envoyer et recevoir un e-mail sur contact@, support@, dpo@ et legal@ (depuis une adresse externe).
+- [x] Réception sur contact@ depuis une adresse externe : OK le 4 novembre 2026, après le changement de serveurs DNS.
+- [x] Réponse depuis le webmail LWS vers Gmail : OK le 4 novembre 2026 après l'ajout du SPF. Elle était **refusée** auparavant (« sender is unauthenticated »), déjà le cas avant la migration (rejet daté du 2 novembre 2026). Cause : pas de SPF sur cruzmi.com et clé DKIM LWS (sélecteur `dkim`) non publiée. Voir `reste-a-faire.md` E1.
+- [ ] Une fois créées (E3), tester aussi support@, dpo@ et legal@.
 - [ ] Formulaire de contact : un vrai envoi reçu.
 - [ ] Brevo : domaine toujours « authentifié ».
 - [ ] Search Console : propriété toujours vérifiée ; soumettre `https://www.cruzmi.com/sitemap-index.xml`.

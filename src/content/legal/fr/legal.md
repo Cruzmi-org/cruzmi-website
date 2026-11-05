@@ -41,7 +41,7 @@ L'ensemble des éléments du site et de l'application (marque, logos, charte gra
 
 ## Données personnelles
 
-Les traitements de données personnelles réalisés par CRUZMI SAS sont décrits dans notre [politique de confidentialité](/fr/confidentialite/). Pour toute question ou pour exercer vos droits, écrivez à [dpo@cruzmi.com](mailto:dpo@cruzmi.com).
+Les traitements de données personnelles réalisés par CRUZMI SAS sont décrits dans notre [politique de confidentialité](/fr/confidentialite/). Pour toute question ou pour exercer vos droits, écrivez à [contact@cruzmi.com](mailto:contact@cruzmi.com).
 
 ## Cookies
 
@@ -49,6 +49,4 @@ Le site www.cruzmi.com ne dépose aucun cookie publicitaire ni de mesure d'audie
 
 ## Contact
 
-Contact général : [contact@cruzmi.com](mailto:contact@cruzmi.com)\
-Données personnelles : [dpo@cruzmi.com](mailto:dpo@cruzmi.com)\
-Questions juridiques : [legal@cruzmi.com](mailto:legal@cruzmi.com)
+Pour toute question, y compris sur vos données personnelles : [contact@cruzmi.com](mailto:contact@cruzmi.com)

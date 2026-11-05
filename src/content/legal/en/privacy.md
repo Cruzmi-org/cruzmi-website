@@ -16,7 +16,7 @@ This policy explains which personal data CRUZMI SAS processes when you use the C
 
 **CRUZMI SAS**, a French simplified joint-stock company with a share capital of €30,000, registered with the Créteil Trade and Companies Register under number 948 690 623, whose registered office is at 1 rue Jean-Moulin, 94130 Nogent-sur-Marne, France.
 
-For any question about your personal data: [dpo@cruzmi.com](mailto:dpo@cruzmi.com).
+For any question about your personal data: [contact@cruzmi.com](mailto:contact@cruzmi.com).
 
 ## 2. Data processed, purposes and legal bases
 
@@ -106,7 +106,7 @@ Under the General Data Protection Regulation (GDPR) and the French Data Protecti
 - right to withdraw your consent at any time;
 - right to set instructions regarding what happens to your data after your death.
 
-You can delete your account directly in the app (Preferences → "Delete my Cruzmi account"). To exercise your other rights, write to [dpo@cruzmi.com](mailto:dpo@cruzmi.com). We may ask you to prove your identity.
+You can delete your account directly in the app (Preferences → "Delete my Cruzmi account"). To exercise your other rights, write to [contact@cruzmi.com](mailto:contact@cruzmi.com). We may ask you to prove your identity.
 
 If, after contacting us, you believe your rights have not been respected, you may lodge a complaint with the French data protection authority (CNIL): [www.cnil.fr](https://www.cnil.fr), or with the supervisory authority of your country of residence.
 

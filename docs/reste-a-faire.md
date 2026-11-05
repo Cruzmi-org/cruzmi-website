@@ -1,6 +1,6 @@
 # Nouveau site cruzmi.com — reste à faire
 
-> État au 3 novembre 2026. Document destiné à l'équipe Cruzmi, en particulier à l'équipe en charge de l'appli.
+> État au 5 novembre 2026. Document destiné à l'équipe Cruzmi, en particulier à l'équipe en charge de l'appli.
 > Cocher les cases au fil de l'eau (dans une PR) pour garder ce fichier à jour.
 
 ## Contexte en 30 secondes
@@ -33,6 +33,7 @@
 | D3 | Après la bascule : vérifications, Search Console, résiliation Wix | Équipe appli | — |
 | E1 | Améliorations e-mail (SPF, DKIM, DMARC) | Équipe appli | Non |
 | E2 | Hygiène des accès Cloudflare / GitHub | Équipe appli | Non |
+| E3 | Adresses support@, dpo@ et legal@ inexistantes : textes passés sur contact@ (fait), adresses dédiées plus tard | Direction | Non |
 
 ---
 
@@ -232,28 +233,33 @@ Le DNS de cruzmi.com est aujourd'hui **chez Wix**, le domaine est enregistré ch
 
 Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 
-- [ ] PR `develop` → `main` (merge commit) : https://github.com/Cruzmi-org/cruzmi-website/compare/main...develop. La production `cruzmi-website.pages.dev` se met à jour automatiquement.
-- [ ] Turnstile : vérifier que `www.cruzmi.com` figure dans les noms d'hôte du widget.
-- [ ] **Exporter la zone DNS complète depuis Wix** avant toute modification (l'inventaire public ne voit pas tout).
-- [ ] Bascule pas à pas selon `docs/migration-dns.md` §3 à §5. Le point le plus sensible : recopier **à l'identique** le MX et les enregistrements `mail`, `smtp`, `imap` et `pop`, sinon contact@, support@, dpo@ et legal@ ne reçoivent plus rien.
+- [x] PR #1 fusionnée le 3 novembre 2026. **À refaire à chaque lot de changements** : PR `develop` → `main` (merge commit) : https://github.com/Cruzmi-org/cruzmi-website/compare/main...develop. La production `cruzmi-website.pages.dev` se met à jour automatiquement.
+- [x] Turnstile : `www.cruzmi.com` et `cruzmi.com` ajoutés le 4 novembre 2026. Vérifier que `www.cruzmi.com` figure dans les noms d'hôte du widget.
+- [x] **Exporter la zone DNS complète depuis Wix** (fait le 3 novembre 2026) avant toute modification (l'inventaire public ne voit pas tout).
+- [x] Zone Cloudflare active (3 novembre 2026), **www.cruzmi.com sert le nouveau site depuis le 4 novembre 2026**.
+- [ ] **Reste à basculer** `cruzmi.com` (domaine nu), `fr.cruzmi.com` et `en.cruzmi.com` : ils passent encore par Wix (`en.` répond 404). Indispensable **avant de résilier Wix** (`docs/migration-dns.md` §2, étape 5).
+- [x] Bascule pas à pas selon `docs/migration-dns.md` §3 à §5. Le point le plus sensible : recopier **à l'identique** le MX et les enregistrements `mail`, `smtp`, `imap` et `pop`, sinon contact@ ne reçoit plus rien.
 - [ ] Redirection `cruzmi.fr` + `www.cruzmi.fr` → `https://www.cruzmi.com/fr/` (`.htaccess` sur l'hébergement LWS de cruzmi.fr).
 
 **Garder Wix actif** pendant la bascule : c'est le retour arrière possible.
 
 ### D3. Après la bascule
 
-- [ ] Vérifications de `docs/migration-dns.md` §6 : e-mails sur les 4 adresses, formulaire, redirections Wix, liens des stores, lien d'invitation.
+- [ ] Vérifications de `docs/migration-dns.md` §6 (e-mails, formulaire et redirections Wix vérifiés le 4 novembre 2026 ; reste : liens des stores, lien d'invitation) : formulaire, redirections Wix, liens des stores, lien d'invitation.
 - [ ] Google Search Console : propriété toujours vérifiée, soumettre `https://www.cruzmi.com/sitemap-index.xml`.
-- [ ] Après deux semaines sans incident : **résilier Wix**.
+- [ ] Formulaire : les messages arrivaient en indésirables chez LWS (score 8,9, dû au « Répondre à » vers l'adresse du visiteur ; SPF, DKIM et DMARC passent). Solution : `no-reply@cruzmi.com` ajouté aux expéditeurs autorisés de contact@ dans le webmail LWS. À refaire si la boîte change.
+- [ ] Après deux semaines sans incident, **et une fois `cruzmi.com`, `fr.` et `en.` basculés** : **résilier Wix**.
 
 ---
 
-## E. Améliorations (non bloquantes)
+## E. Améliorations et e-mails
 
-### E1. Délivrabilité des e-mails @cruzmi.com
+### E1. Délivrabilité des e-mails @cruzmi.com — urgent
 
-- [ ] **SPF** : aucun enregistrement aujourd'hui. Proposition à valider avec la documentation LWS : `v=spf1 mx a:mailphp.lws-hosting.com include:spf.brevo.com ~all`.
-- [ ] **DKIM** pour les boîtes LWS, si l'offre le permet.
+**Constat (4 novembre 2026)** : Gmail **refuse** les réponses envoyées depuis le webmail LWS (« 550 5.7.26 … sender is unauthenticated »). Les réponses passent depuis le smartphone de Bruno, qui envoie probablement par un autre serveur (Gmail). Ce n'est pas lié à la migration : le problème existait déjà avec Wix (rejet daté du 2 novembre 2026).
+
+- [x] **SPF sur `cruzmi.com`** (ajouté le 4 novembre 2026 dans les zones Cloudflare et Wix ; réponse depuis le webmail LWS bien reçue sur Gmail) : TXT `v=spf1 a:mail.cruzmi.com ip4:193.203.239.24 include:lwspanel.com include:spf.brevo.com ~all`, à ajouter dans la zone Cloudflare (et dans la zone Wix tant que la propagation n'est pas terminée). Ne pas y ajouter `include:_spf.google.com` : on dépasserait la limite de 10 recherches DNS imposée par SPF.
+- [ ] **DKIM LWS** : le serveur signe avec le sélecteur `dkim`, mais `dkim._domainkey.cruzmi.com` n'est pas publié. Récupérer la clé dans l'espace client LWS (e-mail → DKIM) et la publier en TXT dans la zone.
 - [ ] **DMARC** : passer de `p=none` à `p=quarantine` une fois SPF et DKIM en place.
 
 ### E2. Hygiène des accès
@@ -261,6 +267,21 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 - [ ] GitHub → Cruzmi-org → Settings → GitHub Apps → **Cloudflare Workers and Pages** : limiter l'accès au seul dépôt `cruzmi-website` (il voit aujourd'hui tous les dépôts de l'organisation).
 - [ ] Cloudflare → Workers et Pages : supprimer le **Worker** `cruzmi-website` créé par erreur s'il existe encore. Garder uniquement le projet **Pages**.
 - [ ] Inviter les membres de l'équipe sur le compte Cloudflare (Manage Account → Members) plutôt que de partager l'identifiant.
+
+### E3. Adresses support@, dpo@ et legal@
+
+L'offre LWS de cruzmi.com comprend **2 boîtes** : contact@cruzmi.com et bruno@cruzmi.com (constaté le 4 novembre 2026 dans l'espace client LWS ; l'offre permet aussi des « redirections simples »). Or les textes du site, repris des CGU Wix, affichent trois adresses **qui n'existent pas** : un message envoyé à l'une d'elles revient en erreur.
+
+| Adresse | Où elle apparaît |
+|---|---|
+| `dpo@cruzmi.com` | Politique de confidentialité, CGU, mentions légales, FAQ, page Contact |
+| `support@cruzmi.com` | CGU |
+| `legal@cruzmi.com` | CGU, mentions légales |
+
+- [x] **Décision du 4 novembre 2026** : l'offre LWS n'autorise qu'**un seul alias ou redirection**, déjà utilisé. Les textes du site (pages légales FR et EN, FAQ, page Contact) renvoient donc tous vers **contact@cruzmi.com**.
+- [ ] Identifier l'alias ou la redirection LWS existant (« Alias & redirections : 1 / 1 », mais absent de la liste des boîtes).
+- [ ] Plus tard, si l'on veut des adresses dédiées (`dpo@` est une bonne pratique RGPD) : passer à une offre e-mail LWS supérieure, ou déplacer les e-mails vers un service qui inclut les alias (Google Workspace, Zoho, Infomaniak…). Il n'est **pas nécessaire de transférer le domaine** : le registrar (LWS) et l'hébergement des e-mails sont indépendants. Une fois les adresses créées, les remettre dans les textes.
+- [ ] Vérifier aussi les adresses affichées dans l'appli et sur les fiches des stores (adresse de support).
 
 ---
 

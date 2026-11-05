@@ -10,3 +10,9 @@
 # so it goes to the (new) privacy policy, which links to the CGU.
 /politique-de-confidentialit%C3%A9   /fr/confidentialite/   301
 /politique-de-confidentialité        /fr/confidentialite/   301
+# Other Wix pages (home alias, empty members area, leftover pages).
+/accueil                             /fr/                   301
+/my-account                          /fr/                   301
+/followers                           /fr/                   301
+/profile-1                           /fr/                   301
+/fullscreen-page                     /fr/                   301

@@ -158,7 +158,7 @@ Conformément à la réglementation applicable, l'Utilisateur dispose des droits
 - limitation ;
 - portabilité.
 
-Ces droits peuvent être exercés par email à : [dpo@cruzmi.com](mailto:dpo@cruzmi.com)
+Ces droits peuvent être exercés par email à : [contact@cruzmi.com](mailto:contact@cruzmi.com)
 
 ### 7.5. Durée de conservation
 
@@ -201,7 +201,7 @@ CRUZMI SAS se réserve le droit de suspendre ou supprimer un compte Utilisateur,
 - violation des présentes CGU ;
 - usage frauduleux, abusif ou illicite du Service.
 
-L'Utilisateur peut demander la suppression de son compte à tout moment via les paramètres ou par email à [support@cruzmi.com](mailto:support@cruzmi.com).
+L'Utilisateur peut demander la suppression de son compte à tout moment via les paramètres ou par email à [contact@cruzmi.com](mailto:contact@cruzmi.com).
 
 La suppression entraîne la suppression des données, sauf obligation légale de conservation.
 
@@ -218,8 +218,6 @@ Siège social : 1 rue Jean-Moulin, 94130 Nogent-sur-Marne\
 SIRET : 948 690 623 00012\
 Directeur de la publication : Bruno Leoni\
 Hébergeur : Contabo GmbH\
-Contact général : [contact@cruzmi.com](mailto:contact@cruzmi.com)\
-Contact RGPD : [dpo@cruzmi.com](mailto:dpo@cruzmi.com)\
-Contact juridique : [legal@cruzmi.com](mailto:legal@cruzmi.com)
+Contact : [contact@cruzmi.com](mailto:contact@cruzmi.com)
 
 Voir aussi nos [mentions légales](/fr/mentions-legales/).

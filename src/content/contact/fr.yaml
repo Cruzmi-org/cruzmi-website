@@ -40,7 +40,5 @@ form:
 aside:
   title: "Nous écrire directement"
   items:
-    - label: "Questions générales"
+    - label: "Toutes vos questions, y compris sur vos données personnelles"
       email: "contact@cruzmi.com"
-    - label: "Données personnelles"
-      email: "dpo@cruzmi.com"
