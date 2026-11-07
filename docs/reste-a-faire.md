@@ -249,7 +249,11 @@ server {
 
 **Retour arrière** : recoller la configuration du 5 novembre (bloc ci-dessus), Save, Redeploy.
 
-**Message d'invitation** : WhatsApp n'affiche la carte que du **premier lien** d'un message. Le texte d'invitation ne doit contenir que le lien `redirect.cruzmi.fr` (la page d'invitation propose déjà l'App Store et Google Play). C'est le cas du texte actuel de l'appli (`memberships.inviteMessage`).
+**Message d'invitation** : WhatsApp n'affiche la carte que du **premier lien** d'un message. Le texte d'invitation ne doit contenir que le lien `redirect.cruzmi.fr` (la page d'invitation propose déjà l'App Store et Google Play). **Ce n'est pas encore le cas dans l'appli publiée** : le texte actuel (`memberships.inviteMessage` sur `main` et `develop` du dépôt de l'appli) commence par les liens Google Play et App Store, donc la carte Cruzmi n'apparaît pas. Le texte court (« Rejoins-moi sur le projet *…* dans Cruzmi 👉 lien ») existe sur la branche `fix/message-invitation`, non commitée au 7 novembre.
+
+- [ ] Nouveau texte d'invitation (FR, EN, ES) commité, fusionné et publié sur les stores (décision du 7 nov. : version stores, comme d'habitude)
+
+Pour de futures corrections de textes sans passer par les stores : [`docs/eas-update.md`](eas-update.md) (EAS Update, procédure proposée, pas encore utilisée).
 
 ### A3. URL de site Supabase Auth (`cruzmi.fr`) — bloquant
 
