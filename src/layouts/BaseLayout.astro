@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SeoHead from '../components/SeoHead.astro';
 import { htmlLang, locales, path, defaultLocale, type Locale, type RouteKey } from '../i18n/config';
 import { t } from '../i18n/ui';
 
@@ -10,13 +11,17 @@ interface Props {
   routeKey: RouteKey;
   title: string;
   description?: string;
+  /** Social preview image (1200×630 JPEG in public/og/). Defaults to /og/default.jpg. */
+  image?: string;
+  imageAlt?: string;
   noindex?: boolean;
 }
-const { locale, routeKey, title, description, noindex = false } = Astro.props;
+const { locale, routeKey, title, description, image = '/og/default.jpg', imageAlt, noindex = false } = Astro.props;
 const tr = t(locale);
-const site = Astro.site!;
-const canonical = new URL(path(locale, routeKey), site).href;
-const desc = description ?? tr('meta.defaultDescription');
+const alternates = [
+  ...locales.map((l) => ({ hreflang: htmlLang[l], href: path(l, routeKey) })),
+  { hreflang: 'x-default', href: path(defaultLocale, routeKey) },
+];
 ---
 
 <!doctype html>
@@ -24,24 +29,18 @@ const desc = description ?? tr('meta.defaultDescription');
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={desc} />
-    <link rel="canonical" href={canonical} />
-    {
-      locales.map((l) => (
-        <link rel="alternate" hreflang={htmlLang[l]} href={new URL(path(l, routeKey), site).href} />
-      ))
-    }
-    <link rel="alternate" hreflang="x-default" href={new URL(path(defaultLocale, routeKey), site).href} />
-    {noindex && <meta name="robots" content="noindex" />}
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={tr('meta.siteName')} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={desc} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : 'en_GB'} />
-    <!-- TODO: og:image (1200×630) once real visuals are available -->
+    <SeoHead
+      title={title}
+      description={description ?? tr('meta.defaultDescription')}
+      image={image}
+      imageAlt={imageAlt ?? tr('meta.defaultImageAlt')}
+      url={path(locale, routeKey)}
+      locale={locale}
+      alternateLocales={locales.filter((l) => l !== locale)}
+      alternates={alternates}
+      noindex={noindex}
+      siteName={tr('meta.siteName')}
+    />
 
     <meta name="theme-color" content="#005e93" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

@@ -17,7 +17,7 @@
 | # | Tâche | Qui | Bloquant pour la mise en ligne ? |
 |---|---|---|---|
 | A1 | Confirmer la valeur du secret `WEB_DOMAIN` | Équipe appli | Oui |
-| A2 | Modifier nginx sur `redirect.cruzmi.fr` (page d'invitation) | Équipe appli | Non, mais très recommandé avant l'article |
+| A2 | Modifier nginx sur `redirect.cruzmi.fr` (page d'invitation) : déployé le 5 nov., tests sur téléphone à faire | Équipe appli | Non, mais très recommandé avant l'article |
 | A3 | Vérifier l'URL de site Supabase Auth (`cruzmi.fr`) | Équipe appli | Oui |
 | A4 | Répondre aux questions factuelles sur l'appli | Équipe appli | Oui |
 | A5 | Mettre à jour les fiches App Store / Google Play | Équipe appli | Après la bascule |
@@ -51,31 +51,112 @@ L'appli construit ses liens universels (invitations) avec `WEB_DOMAIN` (`cruzmi-
 
 ### A2. nginx sur `redirect.cruzmi.fr` : page d'accueil des invités
 
-**Problème actuel** : un invité qui n'a pas encore l'appli et touche un lien d'invitation (`https://redirect.cruzmi.fr/join/<trip>/<membership>`) tombe sur une **page 404 nginx**.
+**État au 5 novembre 2026 : déployé.** Vérifications 1 à 3 OK (302 vers `/join/?path=…`, les deux fichiers `.well-known` en 200 `application/json`, un lien piégé avec saut de ligne part sur `/join/` sans `?path=`). Healthcheck pointé sur `/.well-known/assetlinks.json` (laissé désactivé). **Reste à faire** : tests 4 et 5 sur iPhone et Android.
 
-**Ce qui existe déjà** : le site a une page « Vous êtes invité ! ». `/join/` choisit la langue, puis affiche `/fr/rejoindre/` ou `/en/join/`. Elle explique comment installer l'appli et créer un compte. Si elle reçoit `?path=/join/<trip>/<membership>`, elle affiche un bouton qui rouvre l'invitation dans l'appli une fois installée. Le lien est contrôlé : il ne peut pointer que vers `https://redirect.cruzmi.fr`.
+- [x] Configuration nginx déployée
+- [ ] Tests sur téléphone (iPhone + Android, avec et sans l'appli)
+
+**Accès GitHub de Coolify** (cause du premier échec de déploiement, « GitHub API call failed: Not Found ») : le Coolify actuel (109.199.115.17) lit les dépôts via l'app GitHub **`cruzmi-org-coolify`**, en accès « Only select repositories ». `universal-links` n'y figurait plus : il a été ajouté le 5 novembre 2026 (GitHub → Cruzmi-org → Settings → GitHub Apps → `cruzmi-org-coolify`). L'autre app installée, **`coolifycruzmi`** (accès à tous les dépôts), appartient à l'ancien Coolify (144.91.121.229, qui ne répond plus) : à désinstaller une fois qu'on a vérifié que plus rien ne s'en sert (voir E2).
+
+**Problème d'origine** (constaté le 5 novembre 2026, avant la modification) : quand un membre invite quelqu'un, l'appli crée un lien `https://redirect.cruzmi.fr/join/<projet>/<invitation>`.
+
+- **L'invité a déjà l'appli** : le téléphone ouvre Cruzmi directement. Il s'appuie pour ça sur `/.well-known/apple-app-site-association` (iPhone, `"paths": ["*"]`) et `/.well-known/assetlinks.json` (Android), que `redirect.cruzmi.fr` sert correctement.
+- **L'invité n'a pas l'appli**, cas le plus fréquent : le lien s'ouvre dans le navigateur et nginx répond par une **404**. La racine `redirect.cruzmi.fr/` affiche la page par défaut « Welcome to nginx! ». L'invité ne sait pas quoi faire.
+
+**Ce qui existe déjà** : la page « Vous êtes invité ! » du site, en ligne sur `https://www.cruzmi.com/join/`.
+
+- `/join/` choisit la langue, puis affiche `/fr/rejoindre/` ou `/en/join/`.
+- La page explique comment installer l'appli et créer un compte.
+- Si elle reçoit `?path=/join/<projet>/<invitation>`, elle affiche un bouton « Ouvrir l'invitation dans Cruzmi », qui ramène l'invité dans le projet une fois l'appli installée.
+- Le lien est contrôlé : il ne peut pointer que vers `https://redirect.cruzmi.fr`.
 
 **À faire dans nginx** (Coolify, serveur 109.199.115.17) :
 
-```nginx
-# Keep serving the universal-link files as today.
-location /.well-known/ {
-    default_type application/json;   # recommended for AASA (served as application/octet-stream today)
-    # ... existing config ...
-}
+1. Dans Coolify, retrouver le service qui sert `redirect.cruzmi.fr` et ouvrir sa **configuration nginx** (`default.conf` ou configuration personnalisée montée dans le conteneur).
+2. **Copier la configuration actuelle** (retour arrière).
+3. Dans le bloc `server` de `redirect.cruzmi.fr` :
+   - garder telle quelle la partie qui sert `/.well-known/` ;
+   - remplacer le bloc `location /` (celui qui produit la 404 et la page « Welcome to nginx! ») par la configuration ci-dessous.
 
-# Any other path = the app is not installed: send the visitor to the invitation page.
-location / {
-    return 302 https://www.cruzmi.com/join/?path=$uri;
+   L'application Coolify s'appelle `cruzmi-org/universal-links` : dépôt Git du même nom, branche `main`, build pack **Static**, image `nginx:alpine`. La config se colle dans le champ **General → Custom Nginx Configuration** (vide = config par défaut), puis Save et Redeploy. Config complète à coller :
+
+   ```nginx
+   server {
+       root /usr/share/nginx/html;
+
+       # Universal-link files (iOS + Android): served as before.
+       # The iOS file has no extension: serve it as JSON, as Apple recommends.
+       location = /.well-known/apple-app-site-association {
+           default_type application/json;
+           try_files $uri =404;
+       }
+       location /.well-known/ {
+           try_files $uri =404;
+       }
+
+       # Any other path means the app is not installed: send the visitor to the invitation page.
+       # Only safe path characters are passed on (same rule as the page itself); anything else
+       # goes to the page without ?path=.
+       location / {
+           if ($request_uri ~ "^(/[A-Za-z0-9_/-]{1,200})(\?.*)?$") {
+               return 302 https://www.cruzmi.com/join/?path=$1;
+           }
+           return 302 https://www.cruzmi.com/join/;
+       }
+
+       # Server errors (50x)
+       error_page 500 502 503 504 /50x.html;
+       location = /50x.html {
+           internal;
+       }
+   }
+   ```
+
+   Ne pas utiliser `$uri` directement dans le `return` : nginx le décode, et un lien piégé pourrait injecter un saut de ligne dans la réponse. Vérifier aussi l'onglet **Healthcheck** : s'il teste `/`, le pointer sur `/.well-known/assetlinks.json`, car `/` répondra désormais par une 302.
+
+4. Recharger nginx : **Redeploy** dans Coolify.
+
+Points d'attention :
+
+- **302 et non 301** : une 301 est mémorisée par les navigateurs. Si la page change d'adresse, ou si l'appli gère ces liens autrement, les invités resteraient bloqués sur l'ancienne redirection.
+- `default_type application/json` est facultatif. Le fichier iPhone est servi aujourd'hui en `application/octet-stream` : ça fonctionne, mais Apple recommande `application/json`.
+- **Risque très faible** : les deux fichiers qui servent aux téléphones à reconnaître les liens ne changent pas, et un invité qui a l'appli n'arrive jamais jusqu'à nginx.
+
+**Vérifications** :
+
+1. `curl -I https://redirect.cruzmi.fr/join/abc/def` → `302`, `Location: https://www.cruzmi.com/join/?path=/join/abc/def`.
+2. `curl -I https://redirect.cruzmi.fr/.well-known/apple-app-site-association` → `200`, `content-type: application/json`.
+3. `curl -I https://redirect.cruzmi.fr/.well-known/assetlinks.json` → `200`, `content-type: application/json`.
+4. Téléphone **sans** l'appli : toucher un lien d'invitation → page « Vous êtes invité » avec le bouton « Ouvrir l'invitation dans Cruzmi ».
+5. Téléphone **avec** l'appli : toucher un lien d'invitation → Cruzmi s'ouvre directement sur le projet, comme aujourd'hui.
+
+Faire les tests 4 et 5 sur iPhone **et** sur Android.
+
+**Retour arrière** : vider le champ « Custom Nginx Configuration » (il était vide avant la modification : Coolify utilise alors sa configuration par défaut), puis Save et Redeploy. On peut aussi passer par l'onglet **Rollback** de Coolify. Pour mémoire, la configuration par défaut générée par Coolify (build pack Static) le 5 novembre 2026 :
+
+```nginx
+server {
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        try_files $uri $uri.html $uri/index.html $uri/index.htm $uri/ =404;
+    }
+
+    # Handle 404 errors
+    error_page 404 /404.html;
+    location = /404.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+
+    # Handle server errors (50x)
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
 }
 ```
-
-- Utiliser une **302**, pas une 301, pour que les navigateurs ne mémorisent pas la redirection.
-- **Avant la bascule DNS**, www.cruzmi.com est encore sur Wix : remplacer temporairement `https://www.cruzmi.com` par `https://develop.cruzmi-website.pages.dev` pour tester.
-- **Tests** :
-  - appli désinstallée, ouvrir un lien d'invitation → la page d'invitation s'affiche avec le bouton ;
-  - appli installée → le lien ouvre toujours l'appli directement ;
-  - `curl -I https://redirect.cruzmi.fr/.well-known/apple-app-site-association` → 200, `content-type: application/json`.
 
 - [ ] nginx modifié et testé (iOS + Android)
 
@@ -195,7 +276,11 @@ Conventions : on **vouvoie** le visiteur (l'appli tutoie, le site non). En fran�
 - [ ] **Photos libres de droits** pour remplacer les encadrés « Photo à fournir » : visuel principal de l'accueil, 4 cas d'usage, photo des fondateurs. Les photos de la maquette semblent générées par IA : à éviter sans droits clairs.
 - [ ] **Accord des personnes visibles** sur les captures de l'appli (Participants, Photos, albums imprimés).
 - [ ] **Captures de l'appli en anglais** pour la page `/en/features/`, si l'appli peut s'afficher en anglais.
-- [ ] **Image de partage** pour les réseaux sociaux (1200×630), à brancher dans `src/layouts/BaseLayout.astro`.
+- [ ] **Images de partage définitives** (carte d'aperçu WhatsApp, iMessage, Messenger, Telegram, Slack, LinkedIn…). Deux visuels provisoires sont en place (logo + captures de l'appli, générés le 7 nov.), à remplacer en gardant **le même nom de fichier** :
+  - `public/og/invitation.jpg` : liens d'invitation (`/join/`, `/fr/rejoindre/`, `/en/join/`) ;
+  - `public/og/default.jpg` : toutes les autres pages.
+
+  Contraintes : **JPEG, 1200×630 px, moins de 300 Ko** (WhatsApp ignore les images trop lourdes), sans texte dans une seule langue (la même image sert en FR et en EN), contenu important dans le **carré central de 630×630** (certaines applis recadrent en carré). Après remplacement, forcer le rafraîchissement du cache sur https://developers.facebook.com/tools/debug/ (« Scrape Again », qui vaut aussi pour WhatsApp), puis vérifier sur https://www.opengraph.xyz. Les balises sont produites par `src/components/SeoHead.astro` ; titres et descriptions de l'invitation dans `src/content/join/*.yaml` (`meta`).
 
 ---
 
@@ -246,7 +331,8 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 ### D3. Après la bascule
 
 - [ ] Vérifications de `docs/migration-dns.md` §6 (e-mails, formulaire et redirections Wix vérifiés le 4 novembre 2026 ; reste : liens des stores, lien d'invitation) : formulaire, redirections Wix, liens des stores, lien d'invitation.
-- [ ] Google Search Console : propriété toujours vérifiée, soumettre `https://www.cruzmi.com/sitemap-index.xml`.
+- [x] Google Search Console (5 novembre 2026) : la propriété « Domaine » cruzmi.com est toujours vérifiée (TXT Google recopié). `sitemap-index.xml` a été soumis, `/fr/` et `/en/` testés en direct (« disponible pour Google ») et l'indexation demandée. Le sitemap ne liste que les pages indexables : les pages légales y reviendront d'elles-mêmes avec `reviewed: true`.
+- [ ] Vers le 7 novembre 2026 : vérifier que le sitemap est passé en « Opération effectuée » (environ 13 pages découvertes) et supprimer l'ancien `sitemap.xml` (Wix) de la liste s'il y est encore.
 - [ ] Formulaire : les messages arrivaient en indésirables chez LWS (score 8,9, dû au « Répondre à » vers l'adresse du visiteur ; SPF, DKIM et DMARC passent). Solution : `no-reply@cruzmi.com` ajouté aux expéditeurs autorisés de contact@ dans le webmail LWS. À refaire si la boîte change.
 - [ ] Après deux semaines sans incident, **résilier Wix**. Ensuite, dans Cloudflare : remplacer les 3 A Wix de `cruzmi.com` par un seul `A 192.0.2.1` (proxifié), et supprimer `s1._domainkey`, `s2._domainkey`, `sel1._domainkey` et `sg` (e-mails Wix).
 
@@ -267,6 +353,7 @@ Prérequis : B1, B2 (badges), C1, C2 et D1 terminés ; A1 et A3 vérifiés.
 - [ ] GitHub → Cruzmi-org → Settings → GitHub Apps → **Cloudflare Workers and Pages** : limiter l'accès au seul dépôt `cruzmi-website` (il voit aujourd'hui tous les dépôts de l'organisation).
 - [ ] Cloudflare → Workers et Pages : supprimer le **Worker** `cruzmi-website` créé par erreur s'il existe encore. Garder uniquement le projet **Pages**.
 - [ ] Inviter les membres de l'équipe sur le compte Cloudflare (Manage Account → Members) plutôt que de partager l'identifiant.
+- [ ] GitHub → Cruzmi-org → Settings → GitHub Apps → **`coolifycruzmi`** : app de l'ancien Coolify (144.91.121.229, hors service), avec accès à **tous** les dépôts. Vérifier dans Coolify → Sources qu'aucune source ne l'utilise (seule `cruzmi-org-coolify` est utilisée par `universal-links`), puis la désinstaller (**Uninstall**).
 
 ### E3. Adresses support@, dpo@ et legal@
 

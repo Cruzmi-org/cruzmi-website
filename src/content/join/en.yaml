@@ -1,7 +1,11 @@
 # Invitation landing page (EN). Draft written by Claude — to be reviewed by the team.
+# meta: also the link preview card shown in WhatsApp, iMessage, Messenger… (description ≤ 160 chars).
+# ES, for when the es locale is added: title "Invitación para unirte a un proyecto en Cruzmi",
+# description "Únete al grupo en Cruzmi, la app gratuita para organizar viajes y proyectos en grupo: programa, gastos compartidos, fotos…"
 meta:
-  title: "You're invited to Cruzmi"
-  description: "You've been invited to join a Cruzmi project: install the free app, create your account and join the group."
+  title: "You're invited to join a project on Cruzmi"
+  description: "Join the group on Cruzmi, the free app to plan trips and projects together: schedule, shared expenses, photos and more."
+  imageAlt: "Cruzmi, the app to plan trips and projects together"
 
 kicker: "Invitation"
 title: "You're invited to join a Cruzmi project!"

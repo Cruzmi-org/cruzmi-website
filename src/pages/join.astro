@@ -3,8 +3,19 @@
  * /join/ — neutral entry point for invitation links when the app is not installed.
  * nginx on redirect.cruzmi.fr sends non-.well-known requests here as /join/?path=<original path>.
  * Forwards to /fr/rejoindre/ or /en/join/ by browser language, keeping the query string.
+ *
+ * Link-preview bots (WhatsApp, iMessage, Messenger, Telegram, Slack…) follow the nginx redirect and
+ * read THIS page's static HTML without running JS: it carries the invitation card tags (FR, the
+ * main audience). The JS redirect only runs in real browsers; there is deliberately no
+ * <meta http-equiv="refresh"> fallback, so bots that honour it do not leave this page.
+ * Step 2 (later): render this page on the server to show the project's own name and cover photo.
  */
-const site = Astro.site!;
+import { getEntry } from 'astro:content';
+import SeoHead from '../components/SeoHead.astro';
+
+const entry = await getEntry('join', 'fr');
+if (!entry) throw new Error('Missing join content for locale "fr"');
+const { meta } = entry.data;
 ---
 
 <!doctype html>
@@ -12,18 +23,27 @@ const site = Astro.site!;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Cruzmi</title>
+    <SeoHead
+      title={meta.title}
+      description={meta.description}
+      image="/og/invitation.jpg"
+      imageAlt={meta.imageAlt}
+      url="/join/"
+      locale="fr"
+      alternateLocales={['en']}
+      noindex
+    />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="canonical" href={new URL('/fr/rejoindre/', site).href} />
     <script is:inline>
       var langs = navigator.languages || [navigator.language || 'fr'];
       var fr = String(langs[0] || 'fr').toLowerCase().indexOf('fr') === 0;
       location.replace((fr ? '/fr/rejoindre/' : '/en/join/') + location.search);
     </script>
-    <noscript><meta http-equiv="refresh" content="0; url=/fr/rejoindre/" /></noscript>
   </head>
   <body>
-    <p><a href="/fr/rejoindre/">Français</a> · <a href="/en/join/">English</a></p>
+    <p>
+      <a href="/fr/rejoindre/">Rejoindre le projet (français)</a> ·
+      <a href="/en/join/">Join the project (English)</a>
+    </p>
   </body>
 </html>
