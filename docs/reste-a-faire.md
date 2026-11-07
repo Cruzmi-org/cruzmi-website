@@ -166,8 +166,10 @@ server {
 
 **Changement** : `location /` ne répond plus par une 302, mais par une **petite page HTML en 200** qui porte elle-même les balises de la carte, puis renvoie le navigateur vers `https://www.cruzmi.com/join/?path=…` en JavaScript (`location.replace`, sans entrée dans l'historique). La partie `/.well-known/` ne change pas, ni les liens universels : un invité qui a l'appli n'arrive jamais jusqu'à nginx. Les textes de la carte sont recopiés de `src/content/join/fr.yaml` : **à mettre à jour aux deux endroits** si on les change.
 
-- [ ] Nouvelle configuration collée dans Coolify (Custom Nginx Configuration), Save, Redeploy
-- [ ] Vérifications ci-dessous OK
+- [x] Nouvelle configuration collée dans Coolify (Custom Nginx Configuration), Save, puis **Force Rebuild** (déployée le 7 nov.)
+- [x] Vérifications 1 à 3 ci-dessous OK (7 nov. : 200 `text/html`, balises présentes pour facebookexternalhit, WhatsApp, Twitterbot, TelegramBot, Slackbot et LinkedInBot ; chemins piégés renvoyés vers `/join/` sans `?path=` ; `.well-known` inchangés)
+
+**Piège Coolify** : un simple Redeploy ne suffit pas. Le build pack Static intègre la config nginx dans l'image ; si le commit Git n'a pas changé, Coolify réutilise l'ancienne image (« No build configuration changed & image found… Build step skipped ») et l'ancienne config reste active. Après toute modification de la config, utiliser **Force deploy (without cache) / Force Rebuild**.
 - [ ] Carte visible dans WhatsApp sur un lien d'invitation **jamais partagé** (WhatsApp garde en mémoire les aperçus déjà vus)
 
 Configuration complète à coller (remplace celle du 5 novembre ci-dessus, qui devient le retour arrière) :
