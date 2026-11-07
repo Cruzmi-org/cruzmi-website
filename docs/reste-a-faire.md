@@ -160,6 +160,95 @@ server {
 
 - [ ] nginx modifié et testé (iOS + Android)
 
+#### Mise à jour du 7 novembre 2026 : carte d'aperçu WhatsApp
+
+**Constat** : WhatsApp (iPhone) ne suit pas la 302 de `redirect.cruzmi.fr` vers `www.cruzmi.com/join/` pour lire les balises Open Graph. Le lien d'invitation s'affiche donc sans carte (juste le nom de domaine), alors que `https://www.cruzmi.com/join/` collé directement affiche bien la carte bleue. Le débogueur Meta, lui, suit la redirection, ce qui masquait le problème.
+
+**Changement** : `location /` ne répond plus par une 302, mais par une **petite page HTML en 200** qui porte elle-même les balises de la carte, puis renvoie le navigateur vers `https://www.cruzmi.com/join/?path=…` en JavaScript (`location.replace`, sans entrée dans l'historique). La partie `/.well-known/` ne change pas, ni les liens universels : un invité qui a l'appli n'arrive jamais jusqu'à nginx. Les textes de la carte sont recopiés de `src/content/join/fr.yaml` : **à mettre à jour aux deux endroits** si on les change.
+
+- [ ] Nouvelle configuration collée dans Coolify (Custom Nginx Configuration), Save, Redeploy
+- [ ] Vérifications ci-dessous OK
+- [ ] Carte visible dans WhatsApp sur un lien d'invitation **jamais partagé** (WhatsApp garde en mémoire les aperçus déjà vus)
+
+Configuration complète à coller (remplace celle du 5 novembre ci-dessus, qui devient le retour arrière) :
+
+```nginx
+server {
+    root /usr/share/nginx/html;
+
+    # Universal-link files (iOS + Android): served as before.
+    # The iOS file has no extension: serve it as JSON, as Apple recommends.
+    location = /.well-known/apple-app-site-association {
+        default_type application/json;
+        try_files $uri =404;
+    }
+    location /.well-known/ {
+        try_files $uri =404;
+    }
+
+    # Any other path means the app is not installed. Answer 200 with a tiny page that carries the
+    # link-preview tags itself (WhatsApp does not follow redirects to read them), then sends
+    # browsers on to the invitation page. Only safe path characters are passed on (same rule as
+    # the page itself), so $join_qs can be written into the HTML as is.
+    location / {
+        set $join_qs "";
+        if ($request_uri ~ "^(/[A-Za-z0-9_/-]{1,200})(\?.*)?$") {
+            set $join_qs "?path=$1";
+        }
+        default_type text/html;
+        charset utf-8;
+        add_header Cache-Control "no-cache" always;
+        return 200 '<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Invitation à rejoindre un projet sur Cruzmi</title>
+<meta name="description" content="Rejoignez le groupe sur Cruzmi, l&#39;appli gratuite pour organiser vos voyages et projets à plusieurs&#8239;: programme, dépenses partagées, photos…">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cruzmi">
+<meta property="og:title" content="Invitation à rejoindre un projet sur Cruzmi">
+<meta property="og:description" content="Rejoignez le groupe sur Cruzmi, l&#39;appli gratuite pour organiser vos voyages et projets à plusieurs&#8239;: programme, dépenses partagées, photos…">
+<meta property="og:url" content="https://www.cruzmi.com/join/">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://www.cruzmi.com/og/invitation.jpg">
+<meta property="og:image:secure_url" content="https://www.cruzmi.com/og/invitation.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cruzmi, l&#39;application pour organiser vos voyages et projets à plusieurs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Invitation à rejoindre un projet sur Cruzmi">
+<meta name="twitter:description" content="Rejoignez le groupe sur Cruzmi, l&#39;appli gratuite pour organiser vos voyages et projets à plusieurs&#8239;: programme, dépenses partagées, photos…">
+<meta name="twitter:image" content="https://www.cruzmi.com/og/invitation.jpg">
+<link rel="canonical" href="https://www.cruzmi.com/join/">
+<script>location.replace("https://www.cruzmi.com/join/$join_qs");</script>
+</head><body>
+<p><a href="https://www.cruzmi.com/join/$join_qs">Ouvrir l&#39;invitation / Open the invitation</a></p>
+</body></html>
+';
+    }
+
+    # Server errors (50x)
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        internal;
+    }
+}
+```
+
+**Vérifications** :
+
+1. `curl -s https://redirect.cruzmi.fr/join/abc/def | grep -E "og:image|location.replace"` → la balise `og:image` et `location.replace("https://www.cruzmi.com/join/?path=/join/abc/def")`.
+2. `curl -sI https://redirect.cruzmi.fr/join/abc/def` → `200`, `content-type: text/html; charset=utf-8`.
+3. Les deux fichiers `.well-known` → toujours `200`, `application/json`.
+4. Téléphone sans l'appli : le lien ouvre bien la page « Vous êtes invité » avec le bouton « Ouvrir l'invitation dans Cruzmi ».
+5. Téléphone avec l'appli : Cruzmi s'ouvre directement, comme avant.
+
+**Retour arrière** : recoller la configuration du 5 novembre (bloc ci-dessus), Save, Redeploy.
+
+**Message d'invitation** : WhatsApp n'affiche la carte que du **premier lien** d'un message. Le texte d'invitation ne doit contenir que le lien `redirect.cruzmi.fr` (la page d'invitation propose déjà l'App Store et Google Play). C'est le cas du texte actuel de l'appli (`memberships.inviteMessage`).
+
 ### A3. URL de site Supabase Auth (`cruzmi.fr`) — bloquant
 
 L'URL de site de Supabase Auth est `cruzmi.fr`, aujourd'hui une page de parking LWS. Le plan prévoit de rediriger `cruzmi.fr` et `www.cruzmi.fr` (et seulement eux, jamais `redirect.cruzmi.fr`) vers `https://www.cruzmi.com/fr/`.
