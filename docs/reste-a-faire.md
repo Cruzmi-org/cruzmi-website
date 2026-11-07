@@ -276,7 +276,11 @@ Conventions : on **vouvoie** le visiteur (l'appli tutoie, le site non). En fran�
 - [ ] **Photos libres de droits** pour remplacer les encadrés « Photo à fournir » : visuel principal de l'accueil, 4 cas d'usage, photo des fondateurs. Les photos de la maquette semblent générées par IA : à éviter sans droits clairs.
 - [ ] **Accord des personnes visibles** sur les captures de l'appli (Participants, Photos, albums imprimés).
 - [ ] **Captures de l'appli en anglais** pour la page `/en/features/`, si l'appli peut s'afficher en anglais.
-- [ ] **Image de partage** pour les réseaux sociaux (1200×630), à brancher dans `src/layouts/BaseLayout.astro`.
+- [ ] **Images de partage définitives** (carte d'aperçu WhatsApp, iMessage, Messenger, Telegram, Slack, LinkedIn…). Deux visuels provisoires sont en place (logo + captures de l'appli, générés le 7 nov.), à remplacer en gardant **le même nom de fichier** :
+  - `public/og/invitation.jpg` : liens d'invitation (`/join/`, `/fr/rejoindre/`, `/en/join/`) ;
+  - `public/og/default.jpg` : toutes les autres pages.
+
+  Contraintes : **JPEG, 1200×630 px, moins de 300 Ko** (WhatsApp ignore les images trop lourdes), sans texte dans une seule langue (la même image sert en FR et en EN), contenu important dans le **carré central de 630×630** (certaines applis recadrent en carré). Après remplacement, forcer le rafraîchissement du cache sur https://developers.facebook.com/tools/debug/ (« Scrape Again », qui vaut aussi pour WhatsApp), puis vérifier sur https://www.opengraph.xyz. Les balises sont produites par `src/components/SeoHead.astro` ; titres et descriptions de l'invitation dans `src/content/join/*.yaml` (`meta`).
 
 ---
 

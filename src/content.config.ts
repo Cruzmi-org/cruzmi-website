@@ -158,7 +158,8 @@ const legal = defineCollection({
 const join = defineCollection({
   loader: glob({ pattern: '*.yaml', base: './src/content/join' }),
   schema: z.object({
-    meta: z.object({ title: z.string(), description: z.string() }),
+    // meta: also used for the social preview card of /join/ (WhatsApp, iMessage…).
+    meta: z.object({ title: z.string(), description: z.string(), imageAlt: z.string() }),
     kicker: z.string(),
     title: z.string(),
     lead: z.string(),

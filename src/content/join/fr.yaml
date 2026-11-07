@@ -1,8 +1,10 @@
 # Invitation landing page (FR): where invitation links land when the app is not installed yet.
 # Draft written by Claude — to be reviewed by the team.
+# meta: also the link preview card shown in WhatsApp, iMessage, Messenger… (description ≤ 160 chars).
 meta:
-  title: "Vous êtes invité sur Cruzmi"
-  description: "Vous avez reçu une invitation à rejoindre un projet Cruzmi : installez l'application gratuite, créez votre compte et rejoignez le groupe."
+  title: "Invitation à rejoindre un projet sur Cruzmi"
+  description: "Rejoignez le groupe sur Cruzmi, l'appli gratuite pour organiser vos voyages et projets à plusieurs : programme, dépenses partagées, photos…"
+  imageAlt: "Cruzmi, l'application pour organiser vos voyages et projets à plusieurs"
 
 kicker: "Invitation"
 title: "Vous êtes invité à rejoindre un projet Cruzmi !"

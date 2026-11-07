@@ -6,6 +6,7 @@ export const ui = {
     'meta.siteName': 'Cruzmi',
     'meta.defaultDescription':
       "Cruzmi, l'application collaborative pour organiser, partager et faire avancer vos projets de groupe : voyages, croisières, événements, associations…",
+    'meta.defaultImageAlt': "Cruzmi, l'application pour organiser vos projets de groupe",
     'a11y.skip': 'Aller au contenu',
     'a11y.home': "Cruzmi — page d'accueil",
     'a11y.menu': 'Menu',
@@ -43,6 +44,7 @@ export const ui = {
     'meta.siteName': 'Cruzmi',
     'meta.defaultDescription':
       'Cruzmi, the collaborative app to organise, share and move your group projects forward: trips, sailing cruises, events, clubs…',
+    'meta.defaultImageAlt': 'Cruzmi, the app to organise your group projects',
     'a11y.skip': 'Skip to content',
     'a11y.home': 'Cruzmi — home page',
     'a11y.menu': 'Menu',
