@@ -262,14 +262,14 @@ L'URL de site de Supabase Auth est `cruzmi.fr`, aujourd'hui une page de parking 
 - **À vérifier** : quels e-mails d'authentification renvoient vers cette URL (confirmation d'inscription, mot de passe oublié, lien magique…) et ce que voit l'utilisateur après la redirection.
 - Si c'est gênant, changer l'URL de site, ou prévoir une page dédiée sur le nouveau site (à demander).
 
-- [ ] Vérifié — décision : `……………………`
+- [x] Vérifié le 10 novembre 2026 — décision : `rien à changer, la Site URL reste https://cruzmi.fr`
 
 **Constat du 10 novembre 2026** (capture de Supabase → Authentication → URL Configuration, et code de l'appli) :
 
 - Site URL : `https://cruzmi.fr`. Redirect URLs : `cruzmi://**`, `localhost`/`127.0.0.1:8081`, `https://cruzmi.fr`, `https://admin.cruzmi.fr/**`, `https://studio.cruzmi.fr/**`.
 - L'appli passe toujours une adresse `cruzmi://…` (`makeRedirectUri()`) pour l'inscription, le mot de passe oublié et Google/Apple. Studio et admin passent leur propre adresse (`/auth/callback`, `/auth/reset-password`). Toutes figurent dans la liste autorisée.
 - La Site URL ne sert donc qu'en secours (adresse non autorisée ou absente). Dans ce cas, l'utilisateur arrive sur `https://cruzmi.fr/?code=…` ou `#access_token=…`, puis sur l'accueil `www.cruzmi.com/fr/`. Ce n'est pas une page d'erreur, c'est acceptable.
-- **Reste à vérifier** : les modèles d'e-mails (Authentication → Emails) ne doivent pas construire de lien avec `{{ .SiteURL }}/chemin` (le chemin mènerait à `/fr/chemin`, page introuvable). Les modèles par défaut utilisent `{{ .ConfirmationURL }}` et ne posent pas de problème.
+- Modèles d'e-mails (Authentication → Emails) : les liens utilisent `{{ .ConfirmationURL }}`, pas `{{ .SiteURL }}/chemin`. Vérifié le 10 novembre 2026, aucun lien ne tombe sur une page introuvable.
 
 ### A4. Questions factuelles sur l'appli — bloquant
 
