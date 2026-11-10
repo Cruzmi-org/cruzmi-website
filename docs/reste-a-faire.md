@@ -18,7 +18,7 @@
 |---|---|---|---|
 | A1 | Confirmer la valeur du secret `WEB_DOMAIN` | Équipe appli | Oui |
 | A2 | Modifier nginx sur `redirect.cruzmi.fr` (page d'invitation) : déployé le 5 nov., tests sur téléphone à faire | Équipe appli | Non, mais très recommandé avant l'article |
-| A3 | Vérifier l'URL de site Supabase Auth (`cruzmi.fr`) | Équipe appli | Oui |
+| A3 | ~~Vérifier l'URL de site Supabase Auth (`cruzmi.fr`)~~ : vérifié le 10 nov., rien à changer | Équipe appli | — |
 | A4 | Répondre aux questions factuelles sur l'appli | Équipe appli | Oui |
 | A5 | Mettre à jour les fiches App Store / Google Play | Équipe appli | Après la bascule |
 | A6 | Libellé « Mes escapades » → « Mes projets » dans l'appli (FR) | Équipe appli | Non, mais nécessaire pour la capture « projets » |
